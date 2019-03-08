@@ -5,11 +5,7 @@ const AuthHelper=require('../helper/authHelper');
 const authHelper=new AuthHelper();
 const IoHelper=require('../helper/ioHelper');
 const ioHelper=new IoHelper();
-const bodyParser=require('body-parser');
-const xmlBodyParser=require('express-xml-bodyparser');
-routes.use(bodyParser.json());
-routes.use(bodyParser.urlencoded({extended: false}));
-routes.use(xmlBodyParser())
+
 routes.get('/:domain/Authentication', function(req, res, next) {
    try{
        var authToken=authHelper.getJwtToken(req.params.domain,req.params.domain,false);
