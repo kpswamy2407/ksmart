@@ -1,5 +1,6 @@
 var md5=require('md5');
-var jwt=require('jsonwebtoken');
+var sha1=require('sha1');
+var randomString=require('randomstring');
 const dotenv = require('dotenv');
 dotenv.config();
 class AuthHelper{
@@ -10,28 +11,12 @@ class AuthHelper{
         var encrptedPlainText=this.getMd5(plainStr);
         return (encrptedPlainText==encrptionText)?true:false;
     }
-    getJwtToken(string,secret,expire){
-        if(expire){
-            var token=jwt.sign({
-                data: string
-              }, secret,{expiresIn:process.env.EXPIRE});
-            
-        } 
-        else{
-            var token=jwt.sign({
-                data: string
-              }, secret);
-        }
-       return new Buffer.from(token).toString('base64');
+    getRandomString(){
+        return randomString.generate({
+            charset:'abcdef0123456789@#$^&&(@(@(@)@+_@',
+            length:15
+        });
     }
-    verifyJwtToken(token,secret){
-        try {
-            token=new Buffer.from(token,'base64').toString('ascii');
-            var decoded = jwt.verify(token,secret);
-            return decoded.data;
-        } catch (error) {
-            return error
-        }
-    }
+    
 }
 module.exports=AuthHelper;

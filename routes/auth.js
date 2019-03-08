@@ -4,19 +4,21 @@ const Sequelize = require('sequelize');
 const AuthHelper=require('../helper/authHelper');
 const authHelper=new AuthHelper();
 const IoHelper=require('../helper/ioHelper');
+const RedisHelper=require('../helper/redisHelper');
 const ioHelper=new IoHelper();
-
+const redisHelper=new RedisHelper();
 routes.get('/:domain/Authentication', function(req, res, next) {
    try{
-       var authToken=authHelper.getJwtToken(req.params.domain,req.params.domain,false);
-       var salt=authHelper.getJwtToken(req.params.domain,req.params.domain,true);
-       var data={};
-       data.authtoken=authToken;
-       data.dynasalt=salt;
-       var isXMLResponse=(req.query.extjson=='true')?false:true;
-       ioHelper.getSuccessResponse({'collection':{'authentication':data,'rowcount':''}},isXMLResponse,res);
+      var authToken=authHelper.getMd5(authHelper.getRandomString());
+      var salt=authHelper.getMd5(authHelper.getRandomString());
+      redisHelper.setValue(authToken+'_'+req.ip,salt,process.env.REDIS_MIN_TTL);
+      var data={};
+      data.authtoken=authToken;
+      data.dynasalt=salt;
+      var isXMLResponse=(req.query.extjson=='true')?false:true;
+      ioHelper.getSuccessResponse({'collection':{'authentication':data,'rowcount':''}},isXMLResponse,res);
    }catch(error){
-        ioHelper.getErrorResponse(error,true,res);
+      ioHelper.getErrorResponse(error,true,res);
    }
 });
 routes.post('/:domain/Authentication',(req,res,next)=>{
