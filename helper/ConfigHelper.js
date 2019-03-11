@@ -34,6 +34,7 @@ ConfigHelper.prototype.mkCompanyDir=function(path){
 	return true;
 }
 ConfigHelper.prototype.save=function(path,data){
-
+	var file=this.getBasePath()+'/'+path;
+	return fs.writeFileSync(file,data);
 }
 module.exports=exports=ConfigHelper;
