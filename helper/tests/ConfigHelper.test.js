@@ -42,7 +42,7 @@ describe('ConfigHelper.js',function(){
 	});
 	describe('#isCompanyDir()',function(){
 		const PATH='./runtime';
-		const COMPANY='ABCD';
+		const COMPANY='ISCOMPANYDIR';
 		before(function(){
 			fs.mkdirSync(PATH+'/'+COMPANY);
 		});
@@ -58,6 +58,21 @@ describe('ConfigHelper.js',function(){
 			var ch=new ConfigHelper();
 			ch.setBasePath(PATH);
 			assert.equal(ch.isCompanyDir('INVALIDCOMPDIR'),false);			
+		});
+	});
+	describe('#mkCompanyDir()',function(){
+		const PATH='./runtime';
+		const COMPANY='ABCD';
+		it('should return true if company folder has been created or already exists',function(){
+			var ch=new ConfigHelper();
+			ch.setBasePath(PATH);
+			assert.equal(ch.mkCompanyDir(COMPANY),true);
+		});
+		it('should throw error while trying to create company folder without basepath',function(){
+			var ch=new ConfigHelper();
+			assert.throws(()=>{
+				ch.mkCompanyDir(COMPANY);
+			},Error);
 		});
 	});
 });

@@ -28,6 +28,12 @@ ConfigHelper.prototype.isCompanyDir=function(name){
 	return false;
 }
 ConfigHelper.prototype.mkCompanyDir=function(path){
+	var company=this.getBasePath()+'/'+path;
+	if(!this.isCompanyDir(path))
+		fs.mkdirSync(company);
+	return true;
+}
+ConfigHelper.prototype.save=function(path,data){
 
 }
 module.exports=exports=ConfigHelper;
