@@ -1,6 +1,7 @@
 // export MOCHA=/var/www/html/ksmart/node_modules/mocha/bin/mocha
 // clear; $MOCHA ConfigHelper.test.js
-const fs=require('fs')
+const fs=require('fs');
+const rimraf=require('rimraf');
 const assert=require('assert');
 const ConfigHelper=require('./../ConfigHelper.js');
 describe('ConfigHelper.js',function(){
@@ -63,7 +64,22 @@ describe('ConfigHelper.js',function(){
 	describe('#mkCompanyDir()',function(){
 		const PATH='./runtime';
 		const COMPANY='ABCD';
-		it('should return true if company folder has been created or already exists',function(){
+		before(function(){
+			if(fs.existsSync(PATH+'/'+COMPANY)){
+				fs.rmdirSync(PATH+'/'+COMPANY);
+			}
+		});
+		after(function(){
+			if(fs.existsSync(PATH+'/'+COMPANY)){
+				fs.rmdirSync(PATH+'/'+COMPANY);
+			}
+		});
+		it('should return true if company folder has been created',function(){
+			var ch=new ConfigHelper();
+			ch.setBasePath(PATH);
+			assert.equal(ch.mkCompanyDir(COMPANY),true);
+		});
+		it('should return true if company folder already exists',function(){
 			var ch=new ConfigHelper();
 			ch.setBasePath(PATH);
 			assert.equal(ch.mkCompanyDir(COMPANY),true);
@@ -73,6 +89,28 @@ describe('ConfigHelper.js',function(){
 			assert.throws(()=>{
 				ch.mkCompanyDir(COMPANY);
 			},Error);
+		});
+	});
+	describe('#save()',function(){
+		const PATH='./runtime';
+		const COMPANY='ABCD';
+		before(function(){
+			if(fs.existsSync(PATH+'/'+COMPANY)){
+				fs.rmdirSync(PATH+'/'+COMPANY);
+			}
+		});
+		after(function(){
+			if(fs.existsSync(PATH+'/'+COMPANY)){
+				rimraf(PATH+'/'+COMPANY,_=>{});
+			}
+		});
+		it('should return true if config xml has been created under company folder',function(){
+			var ch=new ConfigHelper();
+			ch.setBasePath(PATH);
+			ch.mkCompanyDir(COMPANY);
+			ch.setBasePath(PATH+'/'+COMPANY);
+			var data=fs.readFileSync('./runtime/db.config.xml',{encoding:'utf-8'});
+			assert.equal(ch.save('dms.xml',data),undefined);
 		});
 	});
 });
