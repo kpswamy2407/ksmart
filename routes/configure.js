@@ -7,8 +7,9 @@ module.exports=(req,res,next)=>{
 		config.mkCompanyDir(req.params.domain);
 		config.setBasePath(process.env.DOMAINS_XML_PATH+'/'+req.params.domain);
 		config.save(req.params.config+'.xml',req.body.toString());
+		res.end();
 	}
 	catch(e){
-
+		res.status(500).end();
 	}
 };
