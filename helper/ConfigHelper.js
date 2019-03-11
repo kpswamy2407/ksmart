@@ -37,4 +37,12 @@ ConfigHelper.prototype.save=function(configItem,data){
 	var file=this.getBasePath()+'/'+configItem+'.xml';
 	return fs.writeFileSync(file,data);
 }
+ConfigHelper.prototype.load=function(domain,configItem){
+	var path=this.getBasePath()+'/'+domain+'/'+configItem+'.xml';
+	if(!fs.existsSync(path))
+		throw new Error('Configuration doesnot exist.');
+	const GetConfigHelper=require('./GetConfigHelper.js');
+	var gch=new GetConfigHelper(path);
+	return gch;	
+}
 module.exports=exports=ConfigHelper;
