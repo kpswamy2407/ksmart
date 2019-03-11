@@ -29,7 +29,6 @@ routes.post('/:domain/Authentication',(req,res,next)=>{
          port:3306
        });
        var authToken=req.query.auth_token;
-       var key=authToken+"_"+req.ip;
        var domain=req.params.domain;
        var isXMLResponse=(req.query.extjson=='true')?false:true;
        var response={};
@@ -49,7 +48,7 @@ routes.post('/:domain/Authentication',(req,res,next)=>{
                               if(input.user_password.toLocaleLowerCase()==authHelper.getMd5(user.password+dynasaltValue).toLocaleLowerCase()){
                                  if(user.isactive==1){
                                     redisHelper.setValue(authToken+"_"+req.ip+"token",authToken,process.env.REDIS_MAX_TTL)
-                                    response.authusername=req.user_name;
+                                    response.authusername=input.user_name;
                                     response.authtoken=authToken;
                                     response.aclrole=user.role;
                                     response.isactive=user.isactive;
