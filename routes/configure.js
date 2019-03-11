@@ -1,13 +1,14 @@
-var express=require('express');
-var routes=express.Router();
+require('dotenv').config();
+module.exports=(req,res,next)=>{
+	const ConfigHelper=require('./../helper/ConfigHelper.js');
+	var config=new ConfigHelper();
+	try{
+		config.setBasePath(process.env.DOMAINS_XML_PATH);
+		config.mkCompanyDir(req.params.domain);
+		config.setBasePath(process.env.DOMAINS_XML_PATH+'/'+req.params.domain);
+		config.save(req.params.config+'.xml',req.body.toString());
+	}
+	catch(e){
 
-routes.get('/',(req,res)=>{
-    res.send("response from configuressss");
-});
-routes.post('/',(req,res,next)=>{
-    if(req.get('content-type')=='application/xml'||req.get('content-type')=='text/xml'||req.get('content-type')=='application/json'){
-        console.log(req.body);
-    }
-});
-
-module.exports=routes;
+	}
+};
