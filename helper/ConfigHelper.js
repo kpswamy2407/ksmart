@@ -33,8 +33,8 @@ ConfigHelper.prototype.mkCompanyDir=function(path){
 		fs.mkdirSync(company);
 	return true;
 }
-ConfigHelper.prototype.save=function(path,data){
-	var file=this.getBasePath()+'/'+path;
+ConfigHelper.prototype.save=function(configItem,data){
+	var file=this.getBasePath()+'/'+configItem+'.xml';
 	return fs.writeFileSync(file,data);
 }
 module.exports=exports=ConfigHelper;
