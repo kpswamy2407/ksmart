@@ -13,7 +13,7 @@ class AuthHelper{
     }
     getRandomString(){
         return randomString.generate({
-            charset:'abcdef0123456789@#$^&&(@(@(@)@+_@',
+            charset:'abcdef0123456789',
             length:15
         });
     }

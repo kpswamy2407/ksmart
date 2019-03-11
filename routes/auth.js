@@ -23,6 +23,16 @@ routes.get('/:domain/Authentication', function(req, res, next) {
 });
 routes.post('/:domain/Authentication',(req,res,next)=>{
    try {
+      const sequelize = new Sequelize('forumnxt_sp', 'root', 'root', {
+         host: 'localhost',
+         dialect: 'mysql',
+         port:3306
+       });
+       var authToken=req.query.auth_token;
+       var key=authToken+"_"+req.ip;
+       var domain=req.params.domain;
+       var isXMLResponse=(req.query.extjson=='true')?false:true;
+       var response={};
       switch (req.get('content-type')) {
             case 'application/xml':
             case 'text/xml':
@@ -30,28 +40,76 @@ routes.post('/:domain/Authentication',(req,res,next)=>{
                const input=req.body.collections.authentication;
                switch (input.ldapentitytype) {
                     case 'userprofile':
-                       
-                       break;
+                    //check if the dynasalt is valid or not
+                    redisHelper.getValue(req.query.auth_token+"_"+req.ip).then(dynasaltValue=>{
+                     if(dynasaltValue){
+                        var query="select case when vtiger_users.status='Active' then 1 else 0 end as isactive ,user_password as password , vtiger_role.rolename as role FROM vtiger_users inner join vtiger_user2role on vtiger_user2role.userid=vtiger_users.id inner join vtiger_role on vtiger_role.roleid=vtiger_user2role.roleid where deleted=0 and user_name=:user_name";
+                        sequelize.query(query,{replacements:{user_name:input.user_name},type: Sequelize.QueryTypes.SELECT}).spread(user=>{
+                           if(user){
+                              if(input.user_password.toLocaleLowerCase()==authHelper.getMd5(user.password+dynasaltValue).toLocaleLowerCase()){
+                                 if(user.isactive==1){
+                                    redisHelper.setValue(authToken+"_"+req.ip+"token",authToken,process.env.REDIS_MAX_TTL)
+                                    response.authusername=req.user_name;
+                                    response.authtoken=authToken;
+                                    response.aclrole=user.role;
+                                    response.isactive=user.isactive;
+                                    var apiKey=authHelper.getMd5(authHelper.getRandomString()+response.authusername+req.ip+authToken+domain);
+                                    response.apikey=apiKey;
+                                    redisHelper.setValue(authToken+"_"+req.ip+'_'+response.authusername);
+                                    ioHelper.getSuccessResponse({'collection':response,"success":true},isXMLResponse,res);
+                                 }
+                                 else{
+                                    ioHelper.getErrorResponse({'httpcode':401,'simplemessage':'Inactive User','errorcode':'ERR-AU-0001'},true,res) ; 
+                                 }
+                              }
+                              else{
+                                 ioHelper.getErrorResponse({'httpcode':401,'simplemessage':'Invalid Username OR Password','errorcode':'ERR-AU-0001'},true,res) ; 
+                              }
+                           }
+                           else{
+                              ioHelper.getErrorResponse({'httpcode':401,'simplemessage':'unable to fetch data from DB','errorcode':'ERR-AU-0005'},true,res) ;
+                           }
+                           
+                        });
+                     }
+                     else{
+                         ioHelper.getErrorResponse({'httpcode':404,'simplemessage':'Property info missing','errorcode':'ERR-AU-0005'},true,res) ;
+                     }  
+                    });
+                    break;
                     case 'distributorprofile':
-                       
+                        if(redisHelper.getValue(authToken+"_"+req.ip+"token")){
+                           var query=""
+                        }
+                        else{
+                           ioHelper.getErrorResponse({'httpcode':404,'simplemessage':'Property info missing','errorcode':'ERR-AU-0005'},true,res) ;
+                        }
                        break;
                     case 'salesmanprofile':
-                       
+                        if(redisHelper.getValue(authToken+"_"+req.ip+"token")){
+
+                        }
+                        else{
+                           ioHelper.getErrorResponse({'httpcode':404,'simplemessage':'Property info missing','errorcode':'ERR-AU-0005'},true,res) ;
+                        } 
                        break;
                     default:
                     ioHelper.getErrorResponse({'Error':'Invalid LDAP Entity Type'},true,res);
                        break;
                }
-                
-                break;
+               
+              
+               break;
     
             default:
-            console.log('deful');
+            
                 ioHelper.getErrorResponse({'Error':'Invalid input format'},true,res);
             break;
-    }
+      }
    } catch (error) {
     ioHelper.getErrorResponse(error,true,res);
+   }finally{
+      
    }
 });
 //This is for testing purspose only

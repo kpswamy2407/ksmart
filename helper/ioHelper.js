@@ -11,7 +11,9 @@ class ioHelper{
         }
     }
     getErrorResponse(message,isXml,res){
+        
         if(isXml){
+
             res.set('Content-Type', 'text/xml');
             res.send(xml(message));
         }
