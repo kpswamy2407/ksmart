@@ -110,7 +110,7 @@ describe('ConfigHelper.js',function(){
 			ch.mkCompanyDir(COMPANY);
 			ch.setBasePath(PATH+'/'+COMPANY);
 			var data=fs.readFileSync('./runtime/db.config.xml',{encoding:'utf-8'});
-			assert.equal(ch.save('dms.xml',data),undefined);
+			assert.equal(ch.save('dms',data),undefined);
 		});
 	});
 });
