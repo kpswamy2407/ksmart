@@ -113,4 +113,22 @@ describe('ConfigHelper.js',function(){
 			assert.equal(ch.save('dms',data),undefined);
 		});
 	});
+	describe('#load()',function(){
+		const COMPANY='COMPANY0000';
+		const PATH='dms';
+		before(function(){
+			fs.mkdirSync('./runtime/'+COMPANY);
+			fs.writeFileSync('./runtime/'+COMPANY+'/'+PATH+'.xml',fs.readFileSync('./runtime/db.config.xml'));
+		});
+		after(function(){
+			fs.unlinkSync('./runtime/'+COMPANY+'/'+PATH+'.xml');
+			fs.rmdirSync('./runtime/'+COMPANY);
+		});
+		it('should load the configuration if the domain and path are valid',function(){
+			const GetConfigHelper=require('./../GetConfigHelper.js');
+			var ch=new ConfigHelper();
+			ch.setBasePath('./runtime');
+			assert.equal(ch.load(COMPANY,PATH) instanceof GetConfigHelper,true);
+		});
+	});
 });
