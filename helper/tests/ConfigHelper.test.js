@@ -1,5 +1,6 @@
 // export MOCHA=/var/www/html/ksmart/node_modules/mocha/bin/mocha
 // clear; $MOCHA ConfigHelper.test.js
+const fs=require('fs')
 const assert=require('assert');
 const ConfigHelper=require('./../ConfigHelper.js');
 describe('ConfigHelper.js',function(){
@@ -32,11 +33,31 @@ describe('ConfigHelper.js',function(){
 			cm.setBasePath(path);
 			assert.equal(cm.getBasePath(),path);
 		});
-		it('should return the path which was set before',function(){
+		it('should throw error if path was not set before',function(){
 			var cm=new ConfigHelper();
 			assert.throws(()=>{
 				cm.getBasePath();
 			},Error);
+		});
+	});
+	describe('#isCompanyDir()',function(){
+		const PATH='./runtime';
+		const COMPANY='ABCD';
+		before(function(){
+			fs.mkdirSync(PATH+'/'+COMPANY);
+		});
+		after(function(){
+			fs.rmdirSync(PATH+'/'+COMPANY);
+		});
+		it('should return true if the directory exists under base path',function(){
+			var ch=new ConfigHelper();
+			ch.setBasePath(PATH);
+			assert.equal(ch.isCompanyDir(COMPANY),true);			
+		});
+		it('should return false if the directory does not exists under base path',function(){
+			var ch=new ConfigHelper();
+			ch.setBasePath(PATH);
+			assert.equal(ch.isCompanyDir('INVALIDCOMPDIR'),false);			
 		});
 	});
 });

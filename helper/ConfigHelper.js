@@ -18,4 +18,16 @@ function ConfigHelper(){
 		return __path;
 	}
 }
+ConfigHelper.prototype.isCompanyDir=function(name){
+	try{
+		return fs.lstatSync(this.getBasePath()+'/'+name).isDirectory();
+	}
+	catch(e){
+		return false;
+	}
+	return false;
+}
+ConfigHelper.prototype.mkCompanyDir=function(path){
+
+}
 module.exports=exports=ConfigHelper;
