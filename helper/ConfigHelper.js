@@ -32,8 +32,8 @@ ConfigHelper.prototype.companyExists=function(){
 	}
 	return false;
 }
-ConfigHelper.prototype.mkCompanyDir=function(path){
-	var company=this.getBasePath()+'/'+path;
+ConfigHelper.prototype.createCompany=function(){
+	var company=this.getBasePath()+'/'+this.company;
 	if(!this.companyExists())
 		fs.mkdirSync(company);
 	return true;
