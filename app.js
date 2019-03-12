@@ -30,12 +30,11 @@ app.post('/:config/:domain/management/configuration',bodyParser.raw({
 	type:['application/xml','text/xml'],
 }),require('./routes/configure.post'));
 app.get('/:config/:domain/management/configuration',require('./routes/configure.get'));
-
+app.use('/esb',require('./routes/esb.router.js'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 // error handler
 const HttpError=require('./error/HttpError.js');
 const jsontoxml=require('jsontoxml');
