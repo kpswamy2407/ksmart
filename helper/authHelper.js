@@ -16,8 +16,8 @@ class AuthHelper{
     getRandomString(){
         return randomString.generate({
             charset:'abcdef0123456789',
-            length:15
-        });
+            length:7
+        })+Date.now().toString();
     }
     
 }
