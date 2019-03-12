@@ -22,6 +22,9 @@ routes.get('/:domain/Authentication', function(req, res, next) {
    }
 });
 routes.post('/:domain/Authentication',(req,res,next)=>{
+   const ConfigHelper=require('../helper/ConfigHelper')
+   var configHelper=new ConfigHelper();
+   configHelper.setBasePath(process.env.DOMAINS_XML_PATH);
    try {
       switch (req.get('content-type')) {
             case 'application/xml':
@@ -30,7 +33,7 @@ routes.post('/:domain/Authentication',(req,res,next)=>{
                const input=req.body.collections.authentication;
                switch (input.ldapentitytype) {
                     case 'userprofile':
-                       
+                      console.log(configHelper.load(req.params.domain,'dms').getKey('centralmastermysqluser')) 
                        break;
                     case 'distributorprofile':
                        
