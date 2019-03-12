@@ -5,7 +5,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 class AuthHelper{
     getMd5(str){
-        return md5(str)
+        return new Promise((reslove,reject)=>{
+            reslove(md5(str))
+        });
     }
     verifyMd5Digest(plainStr,encrptionText){
         var encrptedPlainText=this.getMd5(plainStr);
