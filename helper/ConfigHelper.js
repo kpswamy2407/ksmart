@@ -42,7 +42,6 @@ ConfigHelper.prototype.load=function(domain,configItem){
 	if(!fs.existsSync(path))
 		throw new Error('Configuration doesnot exist.');
 	const GetConfigHelper=require('./GetConfigHelper.js');
-	var gch=new GetConfigHelper(path);
-	return gch;	
+	return new GetConfigHelper(path);	
 }
 module.exports=exports=ConfigHelper;
