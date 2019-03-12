@@ -15,10 +15,10 @@ class ioHelper{
         if(isXml){
 
             res.set('Content-Type', 'text/xml');
-            res.send(xml(message));
+            res.send(xml({collection:{genericexception:message}}));
         }
         else{
-            res.json(message);
+            res.json({collection:{genericexception:message}});
         }
     }
 }
