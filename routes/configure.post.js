@@ -5,7 +5,6 @@ module.exports=(req,res,next)=>{
 	try{
 		config.setBasePath(process.env.DOMAINS_XML_PATH);
 		config.createCompany();
-		config.setBasePath(process.env.DOMAINS_XML_PATH+'/'+req.params.domain);
 		config.save(req.params.config,req.body.toString());
 		res.end();
 	}
