@@ -9,6 +9,6 @@ module.exports=(req,res,next)=>{
 		res.end();
 	}
 	catch(e){
-		res.status(500).end();
+		next(new HttpError(500,'ERR-XX-XXXX',e.message));
 	}
 };
