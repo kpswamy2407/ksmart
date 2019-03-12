@@ -40,7 +40,7 @@ ConfigHelper.prototype.createCompany=function(){
 	return true;
 }
 ConfigHelper.prototype.save=function(configItem,data){
-	var file=this.getBasePath()+'/'+configItem+'.xml';
+	var file=this.companyPath()+'/'+configItem+'.xml';
 	return fs.writeFileSync(file,data);
 }
 ConfigHelper.prototype.__getPath=function(domain,configItem){
