@@ -22,6 +22,9 @@ routes.get('/:domain/Authentication', function(req, res, next) {
    }
 });
 routes.post('/:domain/Authentication',(req,res,next)=>{
+   const ConfigHelper=require('../helper/ConfigHelper')
+   var configHelper=new ConfigHelper();
+   configHelper.setBasePath(process.env.DOMAINS_XML_PATH);
    try {
       const sequelize = new Sequelize('forumnxt_sp', 'root', 'root', {
          host: 'localhost',
@@ -76,6 +79,7 @@ routes.post('/:domain/Authentication',(req,res,next)=>{
                      }  
                     });
                     break;
+
                     case 'distributorprofile':
                         if(redisHelper.getValue(authToken+"_"+req.ip+"token")){
                            var query=""
