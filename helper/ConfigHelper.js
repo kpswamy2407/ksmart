@@ -23,9 +23,9 @@ ConfigHelper.prototype.companyName=function(){
 	if(this.company == undefined) throw new Error('Company name has NOT been set.');
 	return this.company;
 }
-ConfigHelper.prototype.isCompanyDir=function(name){
+ConfigHelper.prototype.companyExists=function(){
 	try{
-		return fs.lstatSync(this.getBasePath()+'/'+name).isDirectory();
+		return fs.lstatSync(this.getBasePath()+'/'+this.company).isDirectory();
 	}
 	catch(e){
 		return false;
@@ -34,7 +34,7 @@ ConfigHelper.prototype.isCompanyDir=function(name){
 }
 ConfigHelper.prototype.mkCompanyDir=function(path){
 	var company=this.getBasePath()+'/'+path;
-	if(!this.isCompanyDir(path))
+	if(!this.companyExists())
 		fs.mkdirSync(company);
 	return true;
 }
