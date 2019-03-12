@@ -20,10 +20,14 @@
     "mysql2": "^1.6.5",
     "randomstring": "^1.1.5",
     "redis": "^2.8.0",
+    "rimraf": "^2.6.3",
     "sequelize": "^4.43.0",
-    "sha1": "^1.1.1"
+    "sha1": "^1.1.1",
+    "xmldom": "^0.1.27",
+    "xpath": "0.0.27"
   },
   "devDependencies": {
+    "mocha": "^6.0.2",
     "nodemon": "^1.18.10"
   }
 }

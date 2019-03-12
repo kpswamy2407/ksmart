@@ -20,11 +20,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(xmlBodyParser())
+// app.use(xmlBodyParser())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth',authRouter);
-app.use('/:config/:domain/management/configuration',configRouter);
+
+const bodyParser=require('body-parser');
+app.post('/:config/:domain/management/configuration',bodyParser.raw({
+	type:['application/xml','text/xml'],
+}),configRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
