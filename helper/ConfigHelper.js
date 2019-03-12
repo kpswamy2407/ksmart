@@ -23,9 +23,12 @@ ConfigHelper.prototype.companyName=function(){
 	if(this.company == undefined) throw new Error('Company name has NOT been set.');
 	return this.company;
 }
+ConfigHelper.prototype.companyPath=function(){
+	return this.getBasePath()+'/'+this.companyName();
+}
 ConfigHelper.prototype.companyExists=function(){
 	try{
-		return fs.lstatSync(this.getBasePath()+'/'+this.company).isDirectory();
+		return fs.lstatSync(this.companyPath()).isDirectory();
 	}
 	catch(e){
 		return false;
@@ -33,9 +36,7 @@ ConfigHelper.prototype.companyExists=function(){
 	return false;
 }
 ConfigHelper.prototype.createCompany=function(){
-	var company=this.getBasePath()+'/'+this.company;
-	if(!this.companyExists())
-		fs.mkdirSync(company);
+	if(!this.companyExists()) fs.mkdirSync(this.companyPath());
 	return true;
 }
 ConfigHelper.prototype.save=function(configItem,data){
