@@ -7,7 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter=require('./routes/auth');
-var configRouter=require('./routes/configure');
+var configRouter=require('./routes/configure.post');
 var xmlBodyParser=require('express-xml-bodyparser');
 var app = express();
 
