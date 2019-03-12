@@ -37,14 +37,28 @@ app.use(function(req, res, next) {
 });
 
 // error handler
+const HttpError=require('./error/HttpError.js');
+const jsontoxml=require('jsontoxml');
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
+	// render the error page
+	if(err instanceof HttpError){
+		res.status(err.statusCode);
+		res.send(jsontoxml({
+			collections:{
+				genericexception:{
+					httpcode:err.statusCode,
+					simplemessage:err.message,
+					errorcode:err.fnxtCode,
+				}
+			}
+		}));
+	}else{
+		res.status(err.status || 500);
+		res.render('error');
+	}
 });
 
 module.exports = app;
