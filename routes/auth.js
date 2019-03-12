@@ -8,6 +8,7 @@ const RedisHelper = require('../helper/redisHelper');
 const ioHelper = new IoHelper();
 const redisHelper = new RedisHelper();
 require('dotenv').config();
+const HttpError= require('../error/HttpError');
 routes.get('/:domain/Authentication', function (req, res, next) {
   try {
     authHelper.getMd5(authHelper.getRandomString()).then(authToken=>{
@@ -62,109 +63,131 @@ routes.post('/:domain/Authentication', (req, res, next) => {
       case 'text/xml':
       case 'application/json':
         const input = req.body.collections.authentication;
-        const authConfig = configHelper.load(req.params.domain, 'auth');
+        const authConfig = configHelper.load('auth');
         switch (input.ldapentitytype) {
           case 'userprofile':
             redisHelper.getValue(req.query.auth_token + "_" + req.ip).then(dynasaltValue => {
-              if (dynasaltValue) {
-                var query = authConfig.getKey("userprofilesql").replace("$whereCondition", "user_name=:user_name");
-                sequelize.query(query, {
+              if(!dynasaltValue){
+                throw new HttpError(404,"ERR-AU-0005","Property info missing")
+              }
+              var query = authConfig.getKey("userprofilesql").replace("$whereCondition", "user_name=:user_name");
+                return sequelize.query(query, {
                   replacements: {
                     user_name: input.user_name
                   },
                   type: Sequelize.QueryTypes.SELECT
-                }).spread(user => {
-                  if (user) {
+                }).spread(user=>{
                     authHelper.getMd5(user.password + dynasaltValue).then(savedPassword => {
-                      if (input.user_password.toLocaleLowerCase() == savedPassword.toLocaleLowerCase()) {
-                        if (user.isactive == 1) {
-                          redisHelper.setValue(authToken, authToken, process.env.REDIS_MAX_TTL)
-                          response.authusername = input.user_name;
-                          response.authtoken = authToken;
-                          response.aclrole = user.role;
-                          response.isactive = user.isactive;
-                          authHelper.getMd5(authHelper.getRandomString() + response.authusername + req.ip + authToken + domain).then(apiKey => {
-                            response.apikey = apiKey;
-                            redisHelper.setValue(authToken + "_apikey", apiKey,process.env.REDIS_MAX_TTL);
-                            ioHelper.getSuccessResponse({
-                              'collection': response,
-                              "success": true
-                            }, isXMLResponse, res);
-                          });
-
-                        } else {
-                          ioHelper.getErrorResponse({
-                            'httpcode': 401,
-                            'simplemessage': 'Inactive User',
-                            'errorcode': 'ERR-AU-0001'
-                          }, true, res);
-                        }
-                      } else {
-                        ioHelper.getErrorResponse({
-                          'httpcode': 401,
-                          'simplemessage': 'Invalid Username OR Password',
-                          'errorcode': 'ERR-AU-0001'
-                        }, true, res);
+                      if(input.user_password.toLowerCase() !== savedPassword.toLowerCase()){
+                        throw new HttpError(401,'ERR-AU-0001','Invalid Username OR Password')
                       }
-                    });
-                  } else {
-                    ioHelper.getErrorResponse({
-                      'httpcode': 401,
-                      'simplemessage': 'unable to fetch data from DB',
-                      'errorcode': 'ERR-AU-0005'
-                    }, true, res);
-                  }
-
-                });
-              } else {
-                ioHelper.getErrorResponse({
-                  'httpcode': 404,
-                  'simplemessage': 'Property info missing',
-                  'errorcode': 'ERR-AU-0005'
-                }, true, res);
-              }
-            });
-            break;
+                      if(user.isactive!=1){
+                       throw new HttpError(401,'ERR-AU-0001','Inactive User') 
+                      }
+                      redisHelper.setValue(authToken, authToken, process.env.REDIS_MAX_TTL)
+                      response.authusername = input.user_name;
+                      response.authtoken = authToken;
+                      response.aclrole = user.role;
+                      response.isactive = user.isactive;
+                      response.status=true;
+                      authHelper.getMd5(authHelper.getRandomString() + response.authusername + req.ip + authToken + domain).then(apiKey => {
+                        response.apikey = apiKey;
+                        redisHelper.setValue(authToken + "_apikey", apiKey,process.env.REDIS_MAX_TTL);
+                        ioHelper.getSuccessResponse({
+                          'collection': response,
+                          "success": true
+                        }, isXMLResponse, res);
+                      });
+                    }).catch(next);
+                    
+                }).catch(next);
+            }).catch(next);            
+          break;
 
           case 'distributorprofile':
-            if (redisHelper.getValue(authToken + "_" + req.ip + "token")) {
-              var query = ""
-            } else {
-              ioHelper.getErrorResponse({
-                'httpcode': 404,
-                'simplemessage': 'Property info missing',
-                'errorcode': 'ERR-AU-0005'
-              }, true, res);
-            }
-            break;
-          case 'salesmanprofile':
-            if (redisHelper.getValue(authToken + "_" + req.ip + "token")) {
+            redisHelper.getValue(authToken).then(validToken=>{
+              if(!validToken){
+                throw new HttpError(404,"ERR-AU-0005","Property info missing")
+              }
+              var queryString="";
+              Object.entries(input).forEach(([key, value]) => {
+                if(key!='ldapentitytype'){
+                  queryString=queryString+key+"='"+value+"' and ";
+                }
+              });
+              queryString=queryString.trim(" ").slice(0,-3)
+              sequelize.query(authConfig.getKey("distributorprofilesql").replace("$whereCondition",queryString),{ type: sequelize.QueryTypes.SELECT}).spread(queryRes=>{
+                if(queryRes.isactive!=1){
+                  throw new HttpError(401,'ERR-AU-0001','Inactive User')
+                }
+                redisHelper.setValue(authToken, authToken, process.env.REDIS_MAX_TTL)
+                response.authusername =input.distributorid+input.clientid+input.cdkey+input.deviceuniquekey;
 
-            } else {
-              ioHelper.getErrorResponse({
-                'httpcode': 404,
-                'simplemessage': 'Property info missing',
-                'errorcode': 'ERR-AU-0005'
-              }, true, res);
-            }
+                response.authtoken = authToken;
+                response.aclrole ="distributor";
+                response.isactive =queryRes.isactive;
+                response.status=true;
+                authHelper.getMd5(authHelper.getRandomString() + response.authusername + req.ip + authToken + domain).then(apiKey => {
+                  response.apikey = apiKey;
+                  redisHelper.setValue(authToken + "_apikey", apiKey,process.env.REDIS_MAX_TTL);
+                  ioHelper.getSuccessResponse({
+                    'collection': response,
+                    "success": true
+                  }, isXMLResponse, res);
+                }).catch(next);
+
+              }).catch(next);
+            }).catch(next);
+           break;
+          case 'salesmanprofile':
+            redisHelper.getValue(authToken).then(validToken=>{
+                if(!validToken){
+                  throw new HttpError(404,"ERR-AU-0005","Property info missing")
+                }
+                var queryString="";
+                Object.entries(input).forEach(([key, value]) => {
+                  if(key!='ldapentitytype'){
+                    queryString=queryString+key+"='"+value+"' and ";
+                  }
+                });
+                queryString=queryString.trim(" ").slice(0,-3)
+                sequelize.query(authConfig.getKey("salesmanprofilesql").replace("$whereCondition",queryString),{ type: sequelize.QueryTypes.SELECT}).spread(queryRes=>{
+                  if(queryRes.isactive!=1){
+                    throw new HttpError(401,'ERR-AU-0001','Inactive User')
+                  }
+                  redisHelper.setValue(authToken, authToken, process.env.REDIS_MAX_TTL)
+                  response.authusername =input.salesmanid+input.clientid+input.cdkey+input.deviceuniquekey;
+
+                  response.authtoken = authToken;
+                  response.aclrole ="salesman";
+                  response.isactive =queryRes.isactive;
+                  response.status=true;
+                  authHelper.getMd5(authHelper.getRandomString() + response.authusername + req.ip + authToken + domain).then(apiKey => {
+                    response.apikey = apiKey;
+                    redisHelper.setValue(authToken + "_apikey", apiKey,process.env.REDIS_MAX_TTL);
+                    ioHelper.getSuccessResponse({
+                      'collection': response,
+                      "success": true
+                    }, isXMLResponse, res);
+                  }).catch(next);
+                  
+                }).catch(next);
+            }).catch(next);
             break;
           default:
-            ioHelper.getErrorResponse({
-              'Error': 'Invalid LDAP Entity Type'
-            }, true, res);
+            throw new HttpError(400,'ERR-AU-XXXX','Invalid LDAP Entity Type');
             break;
         }
         break;
 
       default:
-
-        ioHelper.getErrorResponse({
-          'Error': 'Invalid input format'
-        }, true, res);
+        throw new HttpError(400,'ERR-AU-XXXX','Invalid input format');
         break;
     }
   } catch (error) {
-    ioHelper.getErrorResponse(error, true, res);
+    
+    throw new HttpError(400,'ERR-AU-XXXX',error.message);
+    
   } finally {
 
   }
