@@ -1,5 +1,5 @@
 const fs=require('fs');
-function ConfigHelper(){
+function ConfigHelper(company){
 	var __path;
 	this.setBasePath=function(p){
 		try{
@@ -17,6 +17,11 @@ function ConfigHelper(){
 			throw new Error('Base path hasnot been set.');
 		return __path;
 	}
+	this.company=company;
+}
+ConfigHelper.prototype.companyName=function(){
+	if(this.company == undefined) throw new Error('Company name has NOT been set.');
+	return this.company;
 }
 ConfigHelper.prototype.isCompanyDir=function(name){
 	try{
