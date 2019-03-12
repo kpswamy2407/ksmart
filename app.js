@@ -7,7 +7,6 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter=require('./routes/auth');
-var configRouter=require('./routes/configure.post');
 var xmlBodyParser=require('express-xml-bodyparser');
 var app = express();
 
@@ -26,9 +25,11 @@ app.use('/users', usersRouter);
 app.use('/auth',authRouter);
 
 const bodyParser=require('body-parser');
+
 app.post('/:config/:domain/management/configuration',bodyParser.raw({
 	type:['application/xml','text/xml'],
-}),configRouter);
+}),require('./routes/configure.post'));
+app.get('/:config/:domain/management/configuration',require('./routes/configure.get'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
