@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth',authRouter);
-app.use('/esb',require('./routes/esb.router.js'));
+app.use('/esb',require('./routes/esbRouter.js'));
 const bodyParser=require('body-parser');
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
