@@ -44,7 +44,7 @@ ConfigHelper.prototype.save=function(configItem,data){
 	return fs.writeFileSync(file,data);
 }
 ConfigHelper.prototype.__getPath=function(configItem){
-	return this.companyPath()+'/'+configItem+'.xml';
+	var path=this.companyPath()+'/'+configItem+'.xml';
 	if(!fs.existsSync(path))
 		throw new Error('Configuration doesnot exist.');
 	return path;
