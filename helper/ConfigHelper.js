@@ -37,11 +37,17 @@ ConfigHelper.prototype.save=function(configItem,data){
 	var file=this.getBasePath()+'/'+configItem+'.xml';
 	return fs.writeFileSync(file,data);
 }
-ConfigHelper.prototype.load=function(domain,configItem){
-	var path=this.getBasePath()+'/'+domain+'/'+configItem+'.xml';
+ConfigHelper.prototype.__getPath=function(domain,configItem){
+	return this.getBasePath()+'/'+domain+'/'+configItem+'.xml';
 	if(!fs.existsSync(path))
 		throw new Error('Configuration doesnot exist.');
+	return path;
+}
+ConfigHelper.prototype.load=function(domain,configItem){
 	const GetConfigHelper=require('./GetConfigHelper.js');
-	return new GetConfigHelper(path);	
+	return new GetConfigHelper(this.__getPath(domain,configItem));
+}
+ConfigHelper.prototype.configPath=function(domain,configItem){
+	return this.__getPath(domain,configItem);
 }
 module.exports=exports=ConfigHelper;
