@@ -127,26 +127,44 @@ routes.post('/:domain/Authentication', (req, res, next) => {
             break;
 
           case 'distributorprofile':
-            if (redisHelper.getValue(authToken + "_" + req.ip + "token")) {
-              var query = ""
-            } else {
-              ioHelper.getErrorResponse({
+           
+            redisHelper.getValue(authToken).then(validToken=>{
+              if(validToken){
+                Object.key(input);
+                var query=authConfig.getKey("distributorprofilesql");
+                query=query.replace("$whereCondition","")
+              }
+              else{
+                 ioHelper.getErrorResponse({
                 'httpcode': 404,
                 'simplemessage': 'Property info missing',
                 'errorcode': 'ERR-AU-0005'
               }, true, res);
-            }
+              }
+            });
             break;
           case 'salesmanprofile':
-            if (redisHelper.getValue(authToken + "_" + req.ip + "token")) {
-
-            } else {
-              ioHelper.getErrorResponse({
+            var queryString="";
+            Object.keys(input).forEach(key=>{
+              if(key!='ldapentitytype'){
+                queryString=queryString+key+"= ? and "
+              } 
+            });
+            console.log(queryString.trim(" ").slice(0,-3))
+            redisHelper.getValue(authToken).then(validToken=>{
+              if(validToken){
+                Object.key(input);
+                var query=authConfig.getKey("distributorprofilesql");
+                query=query.replace("$whereCondition","")
+              }
+              else{
+                 ioHelper.getErrorResponse({
                 'httpcode': 404,
                 'simplemessage': 'Property info missing',
                 'errorcode': 'ERR-AU-0005'
               }, true, res);
-            }
+              }
+            });
             break;
           default:
             ioHelper.getErrorResponse({
