@@ -1,4 +1,5 @@
 require('dotenv').config();
+const HttpError=require('./../error/HttpError.js');
 module.exports=(req,res,next)=>{
 	const ConfigHelper=require('./../helper/ConfigHelper.js');
 	var config=new ConfigHelper(req.params.domain);
@@ -8,6 +9,6 @@ module.exports=(req,res,next)=>{
 		res.sendFile(file);
 	}
 	catch(e){
-		res.status(500).end();
+		next(new HttpError(500,'ERR-XX-XXXX','Unable to load domain configuration.'));
 	}
 };
