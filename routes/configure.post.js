@@ -1,4 +1,5 @@
 require('dotenv').config();
+const HttpError=require('./../error/HttpError.js');
 module.exports=(req,res,next)=>{
 	const ConfigHelper=require('./../helper/ConfigHelper.js');
 	var config=new ConfigHelper(req.params.domain);
