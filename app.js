@@ -23,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth',authRouter);
+app.use('/esb',require('./routes/esb.router.js'));
 
 const bodyParser=require('body-parser');
 
@@ -30,7 +31,6 @@ app.post('/:config/:domain/management/configuration',bodyParser.raw({
 	type:['application/xml','text/xml'],
 }),require('./routes/configure.post'));
 app.get('/:config/:domain/management/configuration',require('./routes/configure.get'));
-app.use('/esb',require('./routes/esb.router.js'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
