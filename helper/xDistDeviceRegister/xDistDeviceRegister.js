@@ -25,7 +25,7 @@ xDistDeviceRegister.prototype.setBasePath=function(p){
 	return this;
 }
 xDistDeviceRegister.prototype.loadDms=function(){
-	return this.getCh().load('dms');
+	return this.getCh().loadDms();
 }
 xDistDeviceRegister.prototype.queryParams=function(){
 	var __params=xDistDeviceRegister.getKey(this.data,'collections');
@@ -54,8 +54,10 @@ xDistDeviceRegister.prototype.register=function(){
 	var __params=this.queryParams();
 	var query=new Query(__sql,__params);
 	var __cb=this.__updateIfActive.bind(this);
+	this.setDb(this.getCh().getDb());
 	return this.__query(query).spread(__cb).finally(()=>{
 		this.getDb().close();
+		this.setDb(null);
 	});
 }
 module.exports=exports=xDistDeviceRegister;
