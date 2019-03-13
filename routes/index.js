@@ -19,6 +19,7 @@ router.get('/:config/:domain/management/configuration',function(req,res,next){
 });
 router.post('/:config/:domain/management/configuration',bodyParser.raw({
 	type:['application/xml','text/xml'],
+	limit:'512mb'
 }),function(req,res,next){
 	const ConfigHelper=require('./../helper/ConfigHelper.js');
 	var config=new ConfigHelper(req.params.domain);
