@@ -3,6 +3,7 @@ var router=express.Router();
 const bodyParser=require('body-parser');
 var xmlBodyParser=require('express-xml-bodyparser');
 const HttpError=require('./../error/HttpError.js');
+const DownloadHelper=require('../helper/downloadHelper');
 require('dotenv').config();
 
 const xDistDeviceRegister=require('./../helper/xDistDeviceRegister');
@@ -29,4 +30,5 @@ router.post('/:domain/xdistdeviceregistration',xmlBodyParser({
 		throw new HttpError(500,'ERR-xx-xxxx',e.message);
 	}
 });
+router.get('/:domain/mobile/:key',DownloadHelper.getResult);
 module.exports = router;
