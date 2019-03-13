@@ -19,8 +19,12 @@ router.post('/:domain/xdistdeviceregistration',xmlBodyParser({
 	var xddr=new xDistDeviceRegister(req.params.domain,req.body);
 	try{
 		xddr.setBasePath(process.env.DOMAINS_XML_PATH);
-		xddr.register().then(()=>{
-			res.status(200).end();
+		xddr.register().then((count)=>{
+			res.status(200).json({
+				collections:{
+					Count: count,
+				}
+			});
 		}).catch(e=>{
 			next(new HttpError(500,'ERR-xx-xxxx',e.message));
 		});
