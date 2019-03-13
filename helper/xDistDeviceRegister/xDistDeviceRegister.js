@@ -43,11 +43,14 @@ xDistDeviceRegister.prototype.__update=function(){
 	var __sql=this.loadDms().getKey('distdeviceregistrationupdatesql');
 	var __params=this.queryParams();
 	var query=new Query(__sql,__params);
-	return this.__query(query,'UPDATE');
+	return this.__query(query,'UPDATE').then(_=>{
+		return 0;
+	});
 }
 xDistDeviceRegister.prototype.__updateIfActive=function(result){
 	if(result != undefined && result.isactive==1)
 		return this.__update();
+	return 0;
 }
 xDistDeviceRegister.prototype.register=function(){
 	var __sql=this.loadDms().getKey('distdeviceregistrationsql');
