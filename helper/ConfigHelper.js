@@ -56,4 +56,30 @@ ConfigHelper.prototype.load=function(configItem){
 ConfigHelper.prototype.configPath=function(configItem){
 	return this.__getPath(configItem);
 }
+ConfigHelper.prototype.loadDms=function(configItem){
+	return this.load('dms');
+}
+ConfigHelper.prototype.getDb=function(){
+	const Sequelize=require('sequelize');
+	var dms=this.loadDms();
+	return new Sequelize(dms.getKey('centralmastermysqldatabase'),null,null,{
+		dialect:'mysql',
+		replication:{
+			write:{
+				host:dms.getKey('centralmastermysqlhost'),
+				port:dms.getKey('centralmastermysqlport'),
+				username:dms.getKey('centralmastermysqluser'),
+				password:dms.getKey('centralmastermysqlpassword'),
+			},
+			read:[
+				{
+					host:dms.getKey('centralslavemysqlhost'),
+					port:dms.getKey('centralslavemysqlport'),
+					username:dms.getKey('centralmastermysqluser'),
+					password:dms.getKey('centralmastermysqlpassword'),
+				}
+			]
+		}
+	});
+}
 module.exports=exports=ConfigHelper;
