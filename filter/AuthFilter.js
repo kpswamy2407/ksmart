@@ -53,15 +53,15 @@ module.exports=exports=function(req,res,next){
 	switch(path){
 		case 'esb':
 			if(!AuthFilter.IsQueryValid(req.query,'authusername')){
-				next(new HttpError(401,'ERR-xx-xxxx','Auth username should not be empty.'));
+				next(new HttpError(401,'ERR-UTL-0001','Auth username should not be empty.'));
 				return;
 			}
 			if(!AuthFilter.IsQueryValid(req.query,'auth_token')){
-				next(new HttpError(401,'ERR-xx-xxxx','Auth token should not be empty.'));
+				next(new HttpError(401,'ERR-UTL-0001','Auth token should not be empty.'));
 				return;
 			}
 			if(!AuthFilter.IsQueryValid(req.query,'api_key')){
-				next(new HttpError(401,'ERR-xx-xxxx','Api key should not be empty.'));
+				next(new HttpError(401,'ERR-UTL-0001','Api key should not be empty.'));
 				return;
 			}
 			var ip=AuthFilter.GetQuery(req,'ip');
@@ -73,17 +73,17 @@ module.exports=exports=function(req,res,next){
 				authf.validate().then((val)=>{
 					next();
 				}).catch(e=>{
-					next(new HttpError(401,'ERR-xx-xxxx',e.message));
+					next(new HttpError(401,'ERR-UTL-0001',e.message));
 				});
 			}catch(e){
-				next(new HttpError(401,'ERR-xx-xxxx','Authentication failure.'));
+				next(new HttpError(401,'ERR-UTL-0001','Authentication failure.'));
 			}
 		break;
 		case 'auth':
 			next();
 		break;
 		default:
-			next(new HttpError(404,'ERR-xx-xxxx','Invalid URL.'));
+			next(new HttpError(404,'ERR-AF-0000','Invalid URL.'));
 		break;
 	}
 };
