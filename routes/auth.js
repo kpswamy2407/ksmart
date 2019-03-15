@@ -17,7 +17,7 @@ routes.get('/:domain/Authentication', function (req, res, next) {
         var data = {};
         data.authtoken = authToken;
         data.dynasalt = salt;
-        var isXMLResponse = (req.query.extjson == 'true') ? false : true;
+        var isXMLResponse = (req.query.format == 'extjson') ? false : true;
         ioHelper.getSuccessResponse({
           'collection': {
           'authentication': data,
@@ -56,7 +56,7 @@ routes.post('/:domain/Authentication', (req, res, next) => {
 
     var authToken = req.query.auth_token;
     var domain = req.params.domain;
-    var isXMLResponse = (req.query.extjson == 'true') ? false : true;
+    var isXMLResponse = (req.query.format == 'extjson') ? false : true;
     var response = {};
     switch (req.get('content-type')) {
       case 'application/xml':
