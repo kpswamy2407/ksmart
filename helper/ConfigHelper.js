@@ -1,6 +1,7 @@
 const fs=require('fs');
 function ConfigHelper(company){
 	var __path;
+	var __migrationPath;
 	this.setBasePath=function(p){
 		try{
 			if(!fs.lstatSync(p).isDirectory()){
@@ -17,6 +18,14 @@ function ConfigHelper(company){
 			throw new Error('Base path hasnot been set.');
 		return __path;
 	}
+	this.setMigrationBasePath=function(p){
+		__migrationPath=p;
+	}
+	this.getMigrationBasePath=function(){
+		if(__migrationPath==undefined)
+			throw new Error('Migration path hasnot been set.');
+		return __migrationPath;
+	}
 	this.company=company;
 }
 ConfigHelper.prototype.companyName=function(){
@@ -29,6 +38,15 @@ ConfigHelper.prototype.companyPath=function(){
 ConfigHelper.prototype.companyExists=function(){
 	try{
 		return fs.lstatSync(this.companyPath()).isDirectory();
+	}
+	catch(e){
+		return false;
+	}
+	return false;
+}
+ConfigHelper.prototype.isXSLTPathExits=function(path){
+	try{
+		return fs.lstatSync(path).isDirectory();
 	}
 	catch(e){
 		return false;
@@ -81,5 +99,36 @@ ConfigHelper.prototype.getDb=function(){
 			]
 		}
 	});
+}
+ConfigHelper.prototype.getXSLTFile=function(source,dest,entity){
+	return new Promise((resolve,reject)=>{
+		var destPath=this.getBasePath()+"/"+this.companyName()+"/"+this.getMigrationBasePath()+"/"+source+"_to_"+dest;
+		console.log(destPath);
+		if(!this.isXSLTPathExits(destPath)){
+			fs.mkdir(destPath, { recursive: true }, (err) => {
+  				if (err) throw new Error("Error while creating folder");
+  					resolve(destPath+"/"+entity+".xsl")
+			});	
+		}
+		else{
+			resolve(destPath+"/"+entity+".xsl")
+		}
+	})
+}
+ConfigHelper.prototype.saveXSLTFile=function(source,dest,entity,data){
+	return this.getXSLTFile(source,dest,entity).then(file=>{
+		if(file){
+			return fs.writeFile(file,data,(err,res)=>{
+			if(err){
+				throw new Error("Internal Error");
+				}
+			});
+		}
+		else{
+			throw new Error("Internal Error");
+		}
+	})
+	
+	
 }
 module.exports=exports=ConfigHelper;
