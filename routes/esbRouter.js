@@ -33,4 +33,14 @@ router.post('/:domain/xdistdeviceregistration',xmlBodyParser({
 		throw new HttpError(500,'ERR-xx-xxxx',e.message);
 	}
 });
+router.post('/:domain/:service',function(req, res, next) {
+	const XslHelper=require('./../helper/XslHelper');
+	var xslh=new XslHelper();
+	try{
+		xslh.upload();
+	}
+	catch(e){
+		throw new HttpError(500,'ERR-xx-xxxx',e.message);
+	}
+});
 module.exports = router;
