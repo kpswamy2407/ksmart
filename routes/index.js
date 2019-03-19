@@ -38,11 +38,11 @@ router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
 	limit:'512mb'
 }),function(req,res,next){
 
-	if(typeof(req.query.dest)=="undefined")
+	if(req.query.dest==undefined)
 		next(new HttpError(406,"ERR-CON-0000","destination can't be null or empty"));
-	if(typeof(req.query.origin)=="undefined")
+	if(req.query.origin==undefined)
 		next(new HttpError(406,"ERR-CON-0001","origin can't be null or empty"));
-	if(typeof(req.query.entity)=="undefined")
+	if(req.query.entity==undefined)
 		next(new HttpError(406,"ERR-CON-0002","entity can't be null or empty"));
 	if(req.body.toString().length==0)
 		next(new HttpError(406,"ERR-CON-0003","input can't be null or empty"));
@@ -62,6 +62,31 @@ router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
 	}
 	catch(e){
 		next(new HttpError(500,'ERR-XX-XXXX',e.message));
+	}
+});
+router.get('/migration/:domain/management/xpathreference',function(req,res,next){
+	if(req.query.dest==undefined)
+		next(new HttpError(406,"ERR-CON-0000","destination can't be null or empty"));
+	if(req.query.origin==undefined)
+		next(new HttpError(406,"ERR-CON-0001","origin can't be null or empty"));
+	if(req.query.entity==undefined)
+		next(new HttpError(406,"ERR-CON-0002","entity can't be null or empty"));
+
+	const ConfigHelper=require('./../helper/ConfigHelper.js');
+	var config=new ConfigHelper(req.params.domain);
+	try{
+		config.setBasePath(process.env.DOMAINS_XML_PATH);
+		config.setMigrationBasePath(process.env.DOMAINS_XSLT);
+		config.configXSLPath(req.query.origin,req.query.dest,req.query.entity).then(file=>{
+			res.sendFile(file);
+		}).catch(e=>{
+			next(new HttpError(500,'ERR-XX-XXXX','Unable to load domain configuration.'));	
+		});
+		
+	}
+	catch(e){
+		
+		next(new HttpError(500,'ERR-XX-XXXX','Unable to load domain configuration.'));
 	}
 });
 module.exports = router;

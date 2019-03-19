@@ -128,7 +128,13 @@ ConfigHelper.prototype.saveXSLTFile=function(source,dest,entity,data){
 			throw new Error("Internal Error");
 		}
 	})
-	
+}
+ConfigHelper.prototype.configXSLPath=function(source,dest,entity){
+	return this.getXSLTFile(source,dest,entity).then(path=>{
+		if(!fs.existsSync(path))
+			throw new Error('XSL file doesnot exist.');
+		return path;
+	});
 	
 }
 module.exports=exports=ConfigHelper;
