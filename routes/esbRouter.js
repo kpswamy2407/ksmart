@@ -36,10 +36,25 @@ router.post('/:domain/xdistdeviceregistration',xmlBodyParser({
 });
 router.get('/:domain/mobile/:key',DownloadHelper.getResult);
 router.post('/:domain/:service',function(req, res, next) {
+	if(req.query.origin==undefined || req.query.origin==''){
+		throw new HttpError(400,'ERR-xx-xxxx','Query params are missing. Invalid request.');
+	}
+	if(req.query.dest==undefined || req.query.dest==''){
+		throw new HttpError(400,'ERR-xx-xxxx','Query params are missing. Invalid request.');
+	}
 	const XslHelper=require('./../helper/XslHelper');
 	var xslh=new XslHelper();
 	try{
-		xslh.upload();
+		xslh.basePath(process.env.DOMAINS_XML_PATH);
+		xslh.companyName(req.params.domain);
+		xslh.migrationFolder('migration');
+		xslh.service=req.params.service;
+		xslh.sourceDestName(req.query.origin,req.query.dest);
+		xslh.upload().then(()=>{
+			res.end();
+		}).catch(e=>{
+			next(new HttpError(500,'ERR-xx-xxxx',e.message));
+		});
 	}
 	catch(e){
 		throw new HttpError(500,'ERR-xx-xxxx',e.message);
