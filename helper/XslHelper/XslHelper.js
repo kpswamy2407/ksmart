@@ -99,12 +99,15 @@ XslHelper.prototype.migrExists=function(){
 	return this.companyExists() && XslHelper.isDir(this.migrPath());
 }
 XslHelper.prototype.sourceDestExists=function(){
+	console.log(this.sourceDestPath());
 	return this.migrExists() && XslHelper.isDir(this.sourceDestPath());
 }
 XslHelper.prototype.serviceExists=function(){
+	console.log(this.servicePath())
 	return this.sourceDestExists() && fs.existsSync(this.servicePath());
 }
 XslHelper.prototype.read=function(){
+	console.log(this.serviceName());
 	if(!this.serviceExists()) throw new XslError(500,'ERR-XXX-xxxx','Service %s doesnot exist. Please upload.'.replace(
 		'%s',this.serviceName()
 	));
@@ -117,8 +120,16 @@ XslHelper.prototype.read=function(){
 	});
 }
 XslHelper.prototype.upload=function(xml){
-	return this.read().then((data)=>{
-
+	return this.read().then((xsl)=>{
+		var libxslt = require('libxslt');
+		libxslt.parse(xsl,(err,stylesheet)=>{
+			stylesheet.apply(xml, function(err, result){
+    		// err contains any error from parsing the document or applying the stylesheet
+    		// result is a string containing the result of the transformation
+    			console.log(result);
+	  		});
+		});
+		
 	});
 }
 module.exports=exports=XslHelper;

@@ -16,7 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 const AuthFilter=require('./filter/AuthFilter.js');
-app.use(AuthFilter);
+//app.use(AuthFilter);
 
 app.use(logger('dev'));
 app.use(express.json());
