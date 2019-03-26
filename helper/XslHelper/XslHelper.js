@@ -99,15 +99,15 @@ XslHelper.prototype.migrExists=function(){
 	return this.companyExists() && XslHelper.isDir(this.migrPath());
 }
 XslHelper.prototype.sourceDestExists=function(){
-	console.log(this.sourceDestPath());
+	
 	return this.migrExists() && XslHelper.isDir(this.sourceDestPath());
 }
 XslHelper.prototype.serviceExists=function(){
-	console.log(this.servicePath())
+	
 	return this.sourceDestExists() && fs.existsSync(this.servicePath());
 }
 XslHelper.prototype.read=function(){
-	console.log(this.serviceName());
+	
 	if(!this.serviceExists()) throw new XslError(500,'ERR-XXX-xxxx','Service %s doesnot exist. Please upload.'.replace(
 		'%s',this.serviceName()
 	));
