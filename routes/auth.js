@@ -195,6 +195,9 @@ routes.post('/:domain/Authentication', (req, res, next) => {
 //This is for testing purspose only
 routes.get('/:domain/authverifiy', (req, res, next) => {
   res.send(authHelper.verifyJwtToken(req.query.auth_token, req.params.domain))
+});
+routes.get('/test',(req,res,next)=>{
+  res.json({'status':'Node application started'});
 })
 module.exports = routes;
 
