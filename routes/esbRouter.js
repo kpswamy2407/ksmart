@@ -65,8 +65,17 @@ router.post('/:domain/:service',function(req, res, next) {
 		xslh.migrationFolder(process.env.DOMAINS_XSLT);
 		xslh.service=req.params.service;
 		xslh.sourceDestName(req.query.origin,req.query.dest);
-		xslh.upload(input).then(()=>{
-			res.end();
+		xslh.upload(input).then((responseCode)=>{
+			if(responseCode==200){
+				res.status(200).json({
+					collections:{
+						Count: 0,
+					}
+				});
+			}
+			else{
+				next(new HttpError(responseCode,'ERR-xx-xxxx',"invalid input data"))
+			}
 		}).catch(e=>{
 			next(new HttpError(500,'ERR-xx-xxxx',e.message));
 		});
