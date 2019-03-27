@@ -120,6 +120,41 @@ XslHelper.prototype.read=function(){
 	});
 }
 XslHelper.prototype.upload=function(xml){
+	var self=this;
+	return this.read().then((xsl)=>{
+		return new Promise((resolve,reject)=>{
+			try{
+				var libxslt = require('libxslt');
+				libxslt.parse(xsl,(err,stylesheet)=>{
+				stylesheet.apply(xml, function(err, xmlFormattedData){
+	    			const ConfigHelper = require('../ConfigHelper')
+	  				var configHelper = new ConfigHelper(self.companyName());
+					configHelper.setBasePath(self.basePath());
+					dbConfig = configHelper.load('dms');
+					const serviceUrl=dbConfig.getKey("dbserviceurl").trim();
+					const phpRequest = require('request')
+					
+					var options = {
+						method: 'post',
+						body: xmlFormattedData,
+						url: serviceUrl
+					}
+					phpRequest(options, function (err, result, body) {
+					if(err) throw new XslError(500,'ERR-PHP-0000','PHP DB Service Failed.')
+						resolve(result.statusCode)
+					
+					});
+				
+				});
+			});
+			}catch(e){
+				throw new XslError(501,'ERR-CONV-UTIL-0003','transformed exception')
+			}
+		});
+			
+	});
+}
+XslHelper.prototype.uploadTest=function(xml){
 	
 	return this.read().then((xsl)=>{
 		return new Promise((resolve,reject)=>{
@@ -127,32 +162,13 @@ XslHelper.prototype.upload=function(xml){
 				var libxslt = require('libxslt');
 				libxslt.parse(xsl,(err,stylesheet)=>{
 				stylesheet.apply(xml, function(err, xmlFormattedData){
-    		// err contains any error from parsing the document or applying the stylesheet
-    		// result is a string containing the result of the transformation
-    			const ConfigHelper = require('../helper/ConfigHelper')
-  				var configHelper = new ConfigHelper(req.params.domain);
-				configHelper.setBasePath(process.env.DOMAINS_XML_PATH);
-				dbConfig = configHelper.load('dms');
-				const serviceUrl=dbConfig.getKey("dbserviceurl").trim();
-				const phpRequest = require('request')
-				
-				var options = {
-					method: 'post',
-					body: xmlFormattedData,
-					url: serviceUrl
-				}
-					phpRequest(options, function (err, result, body) {
-					if(err) throw new XslError(500,'ERR-PHP-0000','PHP DB Service Failed.')
-						resolve(result.statusCode)
-					
-					});
+					resolve(xmlFormattedData);
 				});
 			});
 			}catch(e){
 				throw new XslError(501,'ERR-CONV-UTIL-0003','transformed exception')
 			}
 		});
-		
 			
 	});
 }

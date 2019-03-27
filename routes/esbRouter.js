@@ -84,4 +84,44 @@ router.post('/:domain/:service',function(req, res, next) {
 		throw new HttpError(500,'ERR-xx-xxxx',e.message);
 	}
 });
+router.post('/:domain/:service/test',function(req, res, next) {
+	var accept=[
+		'application/xml',
+		'text/xml',
+		'application/json',
+	];
+	if( !accept.includes(req.get('Content-Type')) )
+		throw new HttpError(404,'ERR-xx-xxxx','Invalid Content-Type request header.');
+	if(req.get('Content-Type')=='application/json'){
+		var input=req.body;
+		input=jsontoxml(input);
+		
+	}
+	else{
+		var input=req.body
+	}
+	if(req.query.origin==undefined || req.query.origin==''){
+		throw new HttpError(400,'ERR-xx-xxxx','Query params are missing. Invalid request.');
+	}
+	if(req.query.dest==undefined || req.query.dest==''){
+		throw new HttpError(400,'ERR-xx-xxxx','Query params are missing. Invalid request.');
+	}
+	const XslHelper=require('./../helper/XslHelper');
+	var xslh=new XslHelper();
+	try{
+		xslh.basePath(process.env.DOMAINS_XML_PATH);
+		xslh.companyName(req.params.domain);
+		xslh.migrationFolder(process.env.DOMAINS_XSLT);
+		xslh.service=req.params.service;
+		xslh.sourceDestName(req.query.origin,req.query.dest);
+		xslh.uploadTest(input).then((response)=>{
+			res.status(200).json(response);
+		}).catch(e=>{
+			next(new HttpError(500,'ERR-xx-xxxx',e.message));
+		});
+	}
+	catch(e){
+		throw new HttpError(500,'ERR-xx-xxxx',e.message);
+	}
+});
 module.exports = router;
