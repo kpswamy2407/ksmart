@@ -49,7 +49,7 @@ AuthFilter.IsQueryValid=function(query,key){
 }
 module.exports=exports=function(req,res,next){
 	var path=req.path.split('/');
-	path=(path.length >= 2)? path[1] : undefined;
+	path=(path.length >= 3)? path[2] : undefined;
 	switch(path){
 		case 'esb':
 			if(!AuthFilter.IsQueryValid(req.query,'authusername')){
