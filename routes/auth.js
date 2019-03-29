@@ -34,8 +34,8 @@ routes.post('/:domain/Authentication', (req, res, next) => {
   const ConfigHelper = require('../helper/ConfigHelper')
   var configHelper = new ConfigHelper(req.params.domain);
   configHelper.setBasePath(process.env.DOMAINS_XML_PATH);
-  dbConfig = configHelper.load('dms');
   try {
+    dbConfig = configHelper.load('dms');
     const sequelize = new Sequelize(dbConfig.getKey("centralmastermysqldatabase"), null, null, {
       dialect: 'mysql',
       replication: {
