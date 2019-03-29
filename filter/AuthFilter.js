@@ -80,6 +80,7 @@ module.exports=exports=function(req,res,next){
 			}
 		break;
 		case 'auth':
+		case 'dms':
 		case 'migration':
 			next();
 		break;
