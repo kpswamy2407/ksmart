@@ -103,7 +103,7 @@ routes.post('/:domain/Authentication', (req, res, next) => {
                 });/*.catch(next);*/
             }).catch((er)=>{
               if(er instanceof HttpError) next(er);
-              else next(new HttpError(500,"ERR-AU-0001",er.message));
+              else next(new HttpError(500,"ERR-XX-xxxx",er.message));
             });            
           break;
 
