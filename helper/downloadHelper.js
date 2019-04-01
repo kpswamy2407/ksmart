@@ -10,7 +10,11 @@ DownloadHelper.getResult = function(req,res,next) {
     var configHelper=new ConfigHelper(req.params.domain);
     configHelper.setBasePath(process.env.DOMAINS_XML_PATH);
     downloadConfig=configHelper.load('mobile');
-    var query=downloadConfig.getKey(req.params.key);
+    try{
+        var query=downloadConfig.getKey(req.params.key);   
+    }catch(e){
+        next(new HttpError(404,'FN-XX-xxxx','Service "'+req.params.key+'" is not available.'))
+    }
     var isXMLResponse = (req.query.format == 'extjson') ? false : true;
     var queryMetaKeys=query.match(/#\$[a-zA-Z]{1,}#/gm)
     for (var i = queryMetaKeys.length - 1; i >= 0; i--) {
