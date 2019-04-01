@@ -12,13 +12,17 @@ function GetConfigHelper(file){
 		return __dom;
 	}
 }
-GetConfigHelper.prototype.getKey=function(key){
+GetConfigHelper.prototype.getKey=function(key,trim){
+	if (trim === void 0) { trim = true; }
 	var base_query='collections/configuration/props/prop';
 	var node;
 	node=this.getXpath().select1(base_query+'/key[text()="'+key+'"]',this.getDom());
 	if(node==undefined) throw new Error('Provided key doesnot exist.');
 	node=this.getXpath().select1('value',node.parentNode);
 	if(node==undefined) throw new Error('Provided key doesnot exist.');
-	return node.textContent.trim();
+	if(trim)
+		return node.textContent.trim();
+	else
+		return node.textContent;
 }
 module.exports=exports=GetConfigHelper;
