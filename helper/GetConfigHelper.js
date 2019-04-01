@@ -19,6 +19,6 @@ GetConfigHelper.prototype.getKey=function(key){
 	if(node==undefined) throw new Error('Provided key doesnot exist.');
 	node=this.getXpath().select1('value',node.parentNode);
 	if(node==undefined) throw new Error('Provided key doesnot exist.');
-	return node.textContent;
+	return node.textContent.trim();
 }
 module.exports=exports=GetConfigHelper;
