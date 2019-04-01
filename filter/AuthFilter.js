@@ -81,6 +81,8 @@ module.exports=exports=function(req,res,next){
 		break;
 		case 'auth':
 		case 'dms':
+		case 'mobile':
+		case 'routing':
 		case 'migration':
 			next();
 		break;
