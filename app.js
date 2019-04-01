@@ -14,7 +14,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
+app.use('/run-query/',require('./routes/run-query'));
 const AuthFilter=require('./filter/AuthFilter.js');
 app.use(AuthFilter);
 
