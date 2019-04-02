@@ -41,8 +41,8 @@ router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
 		throw new HttpError(406,"ERR-CON-0000","destination can't be null or empty");
 	if(req.query.origin==undefined)
 		throw new HttpError(406,"ERR-CON-0001","origin can't be null or empty");
-	if(req.query.entity==undefined)
-		throw new HttpError(406,"ERR-CON-0002","entity can't be null or empty");
+	if(req.query.entitytype==undefined)
+		throw new HttpError(406,"ERR-CON-0002","entitytype can't be null or empty");
 	if(req.body.toString().length==0)
 		throw new HttpError(406,"ERR-CON-0003","input can't be null or empty");
 	const ConfigHelper=require('./../helper/ConfigHelper.js');
@@ -51,7 +51,7 @@ router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
 		config.setBasePath(process.env.DOMAINS_XML_PATH);
 		config.createCompany();
 		config.setMigrationBasePath(process.env.DOMAINS_XSLT);
-		config.saveXSLTFile(req.query.origin,req.query.dest,req.query.entity,req.body.toString()).then(result=>{
+		config.saveXSLTFile(req.query.origin,req.query.dest,req.query.entitytype,req.body.toString()).then(result=>{
 			res.send()
 		}).catch(error=>{
 			next(new HttpError(500,'ERR-XX-XXXX',error.message));	
