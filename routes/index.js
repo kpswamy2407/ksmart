@@ -35,11 +35,12 @@ router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
 	type:['application/xml','text/xml'],
 	limit:'512mb'
 }),function(req,res,next){
-	if(req.query.dest==undefined)
+	var q=req.query;
+	if(q.dest==undefined)
 		throw new HttpError(406,"ERR-CON-0000","destination can't be null or empty");
-	if(req.query.origin==undefined)
+	if(q.origin==undefined)
 		throw new HttpError(406,"ERR-CON-0001","origin can't be null or empty");
-	if(req.query.entitytype==undefined)
+	if(q.entitytype==undefined)
 		throw new HttpError(406,"ERR-CON-0002","entitytype can't be null or empty");
 	if(req.body.toString().length==0)
 		throw new HttpError(406,"ERR-CON-0003","input can't be null or empty");
@@ -49,7 +50,7 @@ router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
 		config.setBasePath(process.env.DOMAINS_XML_PATH);
 		config.createCompany();
 		config.setMigrationBasePath(process.env.DOMAINS_XSLT);
-		config.saveXSLTFile(req.query.origin,req.query.dest,req.query.entitytype,req.body.toString()).then(result=>{
+		config.saveXSLTFile(q.origin,q.dest,q.entitytype,req.body.toString()).then(result=>{
 			res.end();
 		}).catch(error=>{
 			next(new HttpError(500,'ERR-XX-XXXX',error.message));	
