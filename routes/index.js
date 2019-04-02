@@ -52,11 +52,10 @@ router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
 		config.createCompany();
 		config.setMigrationBasePath(process.env.DOMAINS_XSLT);
 		config.saveXSLTFile(req.query.origin,req.query.dest,req.query.entitytype,req.body.toString()).then(result=>{
-			res.send()
+			res.end();
 		}).catch(error=>{
 			next(new HttpError(500,'ERR-XX-XXXX',error.message));	
-		})
-		res.end();
+		});
 	}
 	catch(e){
 		throw new HttpError(500,'ERR-XX-XXXX',e.message);
