@@ -59,7 +59,7 @@ router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
 		res.end();
 	}
 	catch(e){
-		next(new HttpError(500,'ERR-XX-XXXX',e.message));
+		throw new HttpError(500,'ERR-XX-XXXX',e.message);
 	}
 });
 router.get('/migration/:domain/management/xpathreference',function(req,res,next){
