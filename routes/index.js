@@ -65,14 +65,14 @@ router.get('/migration/:domain/management/xpathreference',function(req,res,next)
 		throw new HttpError(406,"ERR-CON-0000","destination can't be null or empty");
 	if(req.query.origin==undefined)
 		throw new HttpError(406,"ERR-CON-0001","origin can't be null or empty");
-	if(req.query.entity==undefined)
-		throw new HttpError(406,"ERR-CON-0002","entity can't be null or empty");
+	if(req.query.entitytype==undefined)
+		throw new HttpError(406,"ERR-CON-0002","entitytype can't be null or empty");
 	const ConfigHelper=require('./../helper/ConfigHelper.js');
 	var config=new ConfigHelper(req.params.domain);
 	try{
 		config.setBasePath(process.env.DOMAINS_XML_PATH);
 		config.setMigrationBasePath(process.env.DOMAINS_XSLT);
-		config.configXSLPath(req.query.origin,req.query.dest,req.query.entity).then(file=>{
+		config.configXSLPath(req.query.origin,req.query.dest,req.query.entitytype).then(file=>{
 			res.sendFile(file);
 		}).catch(e=>{
 			next(new HttpError(500,'ERR-XX-XXXX','Unable to load domain configuration.'));	
