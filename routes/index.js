@@ -37,16 +37,14 @@ router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
 	type:['application/xml','text/xml'],
 	limit:'512mb'
 }),function(req,res,next){
-
 	if(req.query.dest==undefined)
-		next(new HttpError(406,"ERR-CON-0000","destination can't be null or empty"));
+		throw new HttpError(406,"ERR-CON-0000","destination can't be null or empty");
 	if(req.query.origin==undefined)
-		next(new HttpError(406,"ERR-CON-0001","origin can't be null or empty"));
+		throw new HttpError(406,"ERR-CON-0001","origin can't be null or empty");
 	if(req.query.entity==undefined)
-		next(new HttpError(406,"ERR-CON-0002","entity can't be null or empty"));
+		throw new HttpError(406,"ERR-CON-0002","entity can't be null or empty");
 	if(req.body.toString().length==0)
-		next(new HttpError(406,"ERR-CON-0003","input can't be null or empty"));
-
+		throw new HttpError(406,"ERR-CON-0003","input can't be null or empty");
 	const ConfigHelper=require('./../helper/ConfigHelper.js');
 	var config=new ConfigHelper(req.params.domain);
 	try{
