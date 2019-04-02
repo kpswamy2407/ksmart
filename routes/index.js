@@ -1,10 +1,8 @@
 const express = require('express');
 var router = express.Router();
-
 require('dotenv').config();
 const bodyParser=require('body-parser');
 const HttpError=require('./../error/HttpError.js');
-
 router.get('/:config/:domain/management/configuration',function(req,res,next){
 	const ConfigHelper=require('./../helper/ConfigHelper.js');
 	var config=new ConfigHelper(req.params.domain);
@@ -68,7 +66,6 @@ router.get('/migration/:domain/management/xpathreference',function(req,res,next)
 		next(new HttpError(406,"ERR-CON-0001","origin can't be null or empty"));
 	if(req.query.entity==undefined)
 		next(new HttpError(406,"ERR-CON-0002","entity can't be null or empty"));
-
 	const ConfigHelper=require('./../helper/ConfigHelper.js');
 	var config=new ConfigHelper(req.params.domain);
 	try{
@@ -79,10 +76,8 @@ router.get('/migration/:domain/management/xpathreference',function(req,res,next)
 		}).catch(e=>{
 			next(new HttpError(500,'ERR-XX-XXXX','Unable to load domain configuration.'));	
 		});
-		
 	}
 	catch(e){
-		
 		next(new HttpError(500,'ERR-XX-XXXX','Unable to load domain configuration.'));
 	}
 });
