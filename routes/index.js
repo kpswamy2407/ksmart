@@ -12,7 +12,7 @@ router.get('/:config/:domain/management/configuration',function(req,res,next){
 		res.sendFile(file);
 	}
 	catch(e){
-		next(new HttpError(500,'ERR-XX-XXXX','Unable to load domain configuration.'));
+		throw new HttpError(500,'ERR-XX-XXXX','Unable to load domain configuration.');
 	}
 });
 router.post('/:config/:domain/management/configuration',bodyParser.raw({
@@ -28,7 +28,7 @@ router.post('/:config/:domain/management/configuration',bodyParser.raw({
 		res.end();
 	}
 	catch(e){
-		next(new HttpError(500,'ERR-XX-XXXX',e.message));
+		throw new HttpError(500,'ERR-XX-XXXX',e.message);
 	}
 });
 router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
@@ -79,7 +79,7 @@ router.get('/migration/:domain/management/xpathreference',function(req,res,next)
 		});
 	}
 	catch(e){
-		next(new HttpError(500,'ERR-XX-XXXX','Unable to load domain configuration.'));
+		throw new HttpError(500,'ERR-XX-XXXX','Unable to load domain configuration.');
 	}
 });
 module.exports = router;
