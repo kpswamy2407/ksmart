@@ -50,7 +50,7 @@ router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
 		config.setBasePath(process.env.DOMAINS_XML_PATH);
 		config.createCompany();
 		config.setMigrationBasePath(process.env.DOMAINS_XSLT);
-		config.saveXSLTFile(q.origin,q.dest,q.entitytype,req.body.toString()).then(result=>{
+		config.saveXsl(q.origin,q.dest,q.entitytype,req.body.toString()).then(result=>{
 			res.end();
 		}).catch(error=>{
 			next(new HttpError(500,'ERR-XX-XXXX',error.message));	

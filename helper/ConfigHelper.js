@@ -115,7 +115,7 @@ ConfigHelper.prototype.getXSLTFile=function(source,dest,entity){
 		}
 	})
 }
-ConfigHelper.prototype.saveXSLTFile=function(source,dest,entity,data){
+ConfigHelper.prototype.saveXsl=function(source,dest,entity,data){
 	return this.getXSLTFile(source,dest,entity).then(file=>{
 		if(file){
 			return fs.writeFile(file,data,(err,res)=>{
