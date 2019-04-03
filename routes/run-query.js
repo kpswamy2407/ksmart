@@ -31,7 +31,8 @@ router.post('/:company',bodyParser.text(),function(req, res, next) {
 				password: dms.getKey("centralmastermysqlpassword"),
 				port: dms.getKey("centralslavemysqlport")
 			}
-		}
+		},
+		logging:req.app.get('__fnxtlogger__'),
 	});
 	sequelize.query(sql).then(result => {
 		res.jsonp(result);
