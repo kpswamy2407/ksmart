@@ -51,7 +51,8 @@ routes.post('/:domain/Authentication', (req, res, next) => {
           password: dbConfig.getKey("centralmastermysqlpassword"),
           port: dbConfig.getKey("centralslavemysqlport")
         }
-      }
+      },
+      logging:req.app.get('__fnxtlogger__'),
     });
 
     var authToken = req.query.auth_token;
