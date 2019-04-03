@@ -2,4 +2,3 @@
 /public/domains
 diff.diff
 /.env
-/logs/*.log
