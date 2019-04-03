@@ -1,5 +1,6 @@
 const fs=require('fs');
 const XslError=require('./XslError');
+var mqProducer=require('../../activemq/MessageProducer');
 function XslHelper(){
 	var __basePath,
 		__companyName,
@@ -132,18 +133,7 @@ XslHelper.prototype.upload=function(xml){
 					configHelper.setBasePath(self.basePath());
 					dbConfig = configHelper.load('dms');
 					const serviceUrl=dbConfig.getKey("dbserviceurl").trim();
-					const phpRequest = require('request')
-					
-					var options = {
-						method: 'post',
-						body: xmlFormattedData,
-						url: serviceUrl
-					}
-					phpRequest(options, function (err, result, body) {
-					if(err) throw new XslError(500,'ERR-PHP-0000','PHP DB Service Failed.')
-						resolve(result.statusCode)
-					
-					});
+					mqProducer.sendMessage(serviceUrl,xmlFormattedData)
 				
 				});
 			});
