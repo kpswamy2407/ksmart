@@ -19,11 +19,11 @@ const AuthFilter=require('./filter/AuthFilter.js');
 app.use(AuthFilter);
 /** LOGGER STARTS **/
 const rfs=require('rotating-file-stream');
-var accessLogStream=rfs('access.log',{
+var __logstream=rfs('access.log',{
 	interval:'1d',
 	path:path.join(__dirname,'logs'),
 });
-app.use(morgan('combined',{stream:accessLogStream}));
+app.use(morgan('combined',{stream:__logstream}));
 /** LOGGER ENDS **/
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
