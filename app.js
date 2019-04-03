@@ -10,13 +10,6 @@ var authRouter=require('./routes/auth');
 
 var xmlBodyParser=require('express-xml-bodyparser');
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-app.use('/run-query/',require('./routes/run-query'));
-const AuthFilter=require('./filter/AuthFilter.js');
-app.use(AuthFilter);
 /** LOGGER STARTS **/
 const rfs=require('rotating-file-stream');
 var __logstream=rfs('access.log',{
@@ -25,6 +18,13 @@ var __logstream=rfs('access.log',{
 });
 app.use(morgan('combined',{stream:__logstream}));
 /** LOGGER ENDS **/
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+app.use('/run-query/',require('./routes/run-query'));
+const AuthFilter=require('./filter/AuthFilter.js');
+app.use(AuthFilter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
