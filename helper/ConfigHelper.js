@@ -2,6 +2,20 @@ const fs=require('fs');
 function ConfigHelper(company){
 	var __path;
 	var __migrationPath;
+	var __loggerfn;
+	this.setLoggerFn=function(fn){
+		if(fn==undefined){
+			throw new Error("Invalid argument");
+		}
+		else __loggerfn=fn;
+		return this;
+	}
+	this.getLoggerFn=function(){
+		if(__loggerfn==undefined){
+			throw new Error("Logger function has NOT been set.");
+		}
+		return __loggerfn;
+	}
 	this.setBasePath=function(p){
 		try{
 			if(!fs.lstatSync(p).isDirectory()){
@@ -97,7 +111,8 @@ ConfigHelper.prototype.getDb=function(){
 					password:dms.getKey('centralmastermysqlpassword'),
 				}
 			]
-		}
+		},
+		logging:this.getLoggerFn(),
 	});
 }
 ConfigHelper.prototype.getXSLTFile=function(source,dest,entity){
