@@ -6,7 +6,7 @@ function Query(q,c){
 }
 Query.getKey=function(collc,key){
 	if(collc[key]==undefined)
-		throw new Error('Key %s does NOT exist in the collection.'.replace('%s',key));
+		throw new Error('Key %s does NOT exist in the collections.'.replace('%s',key));
 	return collc[key];
 }
 Query.prototype.whereCond=function(){

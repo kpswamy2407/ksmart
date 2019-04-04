@@ -19,7 +19,7 @@ routes.get('/:domain/Authentication', function (req, res, next) {
         data.dynasalt = salt;
         var isXMLResponse = (req.query.format == 'extjson') ? false : true;
         ioHelper.getSuccessResponse({
-          'collection': {
+          'collections': {
           'authentication': data,
           'rowcount': ''
           }
@@ -94,7 +94,7 @@ routes.post('/:domain/Authentication', (req, res, next) => {
                         response.apikey = apiKey;
                         redisHelper.setValue(authToken + "_apikey", apiKey,process.env.REDIS_MAX_TTL);
                         ioHelper.getSuccessResponse({
-                          'collection': response,
+                          'collections': response,
                           "success": true
                         }, isXMLResponse, res);
                       });
@@ -134,7 +134,7 @@ routes.post('/:domain/Authentication', (req, res, next) => {
                   response.apikey = apiKey;
                   redisHelper.setValue(authToken + "_apikey", apiKey,process.env.REDIS_MAX_TTL);
                   ioHelper.getSuccessResponse({
-                    'collection': response,
+                    'collections': response,
                     "success": true
                   }, isXMLResponse, res);
                 }).catch(next);
@@ -169,7 +169,7 @@ routes.post('/:domain/Authentication', (req, res, next) => {
                     response.apikey = apiKey;
                     redisHelper.setValue(authToken + "_apikey", apiKey,process.env.REDIS_MAX_TTL);
                     ioHelper.getSuccessResponse({
-                      'collection': response,
+                      'collections': response,
                       "success": true
                     }, isXMLResponse, res);
                   }).catch(next);
