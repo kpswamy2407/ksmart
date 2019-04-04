@@ -14,6 +14,10 @@ function xDistDeviceRegister(company,data){
 		if(__db==undefined) throw new Error('Db connection has NOT been set.');
 		return __db;
 	}
+	this.setLoggerFn=function(fn){
+		this.getCh().setLoggerFn(fn);
+		return this;
+	}
 }
 xDistDeviceRegister.getKey=function(collc,key){
 	if(collc[key]==undefined)
