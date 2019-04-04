@@ -19,6 +19,7 @@ router.post('/:domain/xdistdeviceregistration',xmlBodyParser({
 		throw new HttpError(404,'ERR-xx-xxxx','Invalid Content-Type request header.');
 	var xddr=new xDistDeviceRegister(req.params.domain,req.body);
 	try{
+		xddr.setLoggerFn(req.app.get('__fnxtlogger__'));
 		xddr.setBasePath(process.env.DOMAINS_XML_PATH);
 		xddr.register().then((count)=>{
 			res.status(200).json({
