@@ -22,6 +22,7 @@ DownloadHelper.getResult = function(req,res,next) {
         query=query.replace(queryMetaKeys[i],req.query[qkey]);
 
     }
+    configHelper.setLoggerFn(req.app.get('__fnxtlogger__'));
     const db=configHelper.getDb();
     var queryResult=db.query(query,{type: db.QueryTypes.SELECT});
     queryResult.catch(()=>{
