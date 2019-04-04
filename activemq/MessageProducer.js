@@ -1,10 +1,9 @@
 'use strict';
 var Stomp = require('stomp-client');
-
+require('dotenv').config();
 function MessageProducer(){
 
-}
-MessageProducer.prototype.sendMessage = function(url,message){
+	MessageProducer.prototype.sendMessage = function(url,message){
 	try{
 		var stompClient = new Stomp(
 				process.env.ACTIVEMQ_HOST,
@@ -14,9 +13,11 @@ MessageProducer.prototype.sendMessage = function(url,message){
 				'1.0',
 				null,{
 					delay:process.env.ACTIVEMQ_DELAY,
-					retries:process.env.ACTIVEMQ_RETRIES
+            		retries:process.env.ACTIVEMQ_RETRIES
 				}
+
 			);
+		
 			stompClient.connect(function(sessionId){
 			var headers={
 					'content-type':'application/xml',
@@ -24,14 +25,17 @@ MessageProducer.prototype.sendMessage = function(url,message){
 					'content-length':message.length
 					
 				};
+
 			stompClient.publish('/queue/'+process.env.ACTIVEMQ_DESTINATION, message,headers);
 			stompClient.disconnect();
 		});
 
 	}catch(e){
-		console.log(e);
+		console.log(e.message);
 	}
 
 };
+}
+
 
 module.exports = MessageProducer;

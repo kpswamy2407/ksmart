@@ -133,7 +133,9 @@ XslHelper.prototype.upload=function(xml){
 					configHelper.setBasePath(self.basePath());
 					dbConfig = configHelper.load('dms');
 					const serviceUrl=dbConfig.getKey("dbserviceurl").trim();
-					mqProducer.sendMessage(serviceUrl,xmlFormattedData)
+					mp=new mqProducer();
+					mp.sendMessage(serviceUrl,xmlFormattedData)
+					resolve(200)
 				
 				});
 			});
