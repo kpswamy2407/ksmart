@@ -63,6 +63,7 @@ routes.post('/:domain/Authentication', (req, res, next) => {
       case 'application/xml':
       case 'text/xml':
       case 'application/json':
+      case 'application/json; charset=UTF-8':
         const input = req.body.collections.authentication;
         const authConfig = configHelper.load('auth');
         switch (input.ldapentitytype) {
