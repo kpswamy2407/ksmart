@@ -59,6 +59,8 @@ xDistDeviceRegister.prototype.__updateIfActive=function(result){
 xDistDeviceRegister.prototype.register=function(){
 	var __sql=this.loadDms().getKey('distdeviceregistrationsql');
 	var __params=this.queryParams();
+	// TODO: Need to remove the next statement.
+	delete __params["unregister"];
 	var query=new Query(__sql,__params);
 	var __cb=this.__updateIfActive.bind(this);
 	this.setDb(this.getCh().getDb());
