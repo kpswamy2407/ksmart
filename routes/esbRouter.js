@@ -42,6 +42,7 @@ router.post('/:domain/:service',function(req, res, next) {
 		'application/xml',
 		'text/xml',
 		'application/json',
+		'application/json; charset=UTF-8',
 	];
 	if( !accept.includes(req.get('Content-Type')) )
 		throw new HttpError(404,'ERR-xx-xxxx','Invalid Content-Type request header.');
