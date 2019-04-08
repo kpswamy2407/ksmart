@@ -46,10 +46,9 @@ router.post('/:domain/:service',function(req, res, next) {
 	];
 	if( !accept.includes(req.get('Content-Type')) )
 		throw new HttpError(404,'ERR-xx-xxxx','Invalid Content-Type request header.');
-	if(req.get('Content-Type')=='application/json'){
+	if(['application/json','application/json; charset=UTF-8'].includes(req.get('Content-Type'))){
 		var input=req.body;
 		input=jsontoxml(input);
-		
 	}
 	else{
 		var input=req.body
