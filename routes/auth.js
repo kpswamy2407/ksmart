@@ -107,7 +107,7 @@ routes.post('/:domain/Authentication', (req, res, next) => {
 						});
 					break;
 					case 'distributorprofile':
-						redisHelper.getValue(authToken).then(validToken => {
+						redisHelper.getValue(req.query.auth_token + "_" + req.ip).then(validToken => {
 							if (!validToken) {
 								throw new HttpError(404, "ERR-AU-0005", "Property info missing")
 							}
@@ -142,7 +142,7 @@ routes.post('/:domain/Authentication', (req, res, next) => {
 						}).catch(next);
 						break;
 					case 'salesmanprofile':
-						redisHelper.getValue(authToken).then(validToken => {
+						redisHelper.getValue(req.query.auth_token + "_" + req.ip).then(validToken => {
 							if (!validToken) {
 								throw new HttpError(404, "ERR-AU-0005", "Property info missing")
 							}
