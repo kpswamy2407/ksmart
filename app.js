@@ -14,8 +14,8 @@ var app = express();
 /*app.use(function(req,res,next){
 	console.log("\n",req.method,req.url,"\n");
 	next();
-});
-app.use('/:domain/xmlReceiveMain.php',function(req,res,next){
+});*/
+/*app.use('/:domain/xmlReceiveMain.php',function(req,res,next){
 	console.log(req.headers);
 	req.on('data',function(dbuf){
 		console.log(dbuf.toString());
