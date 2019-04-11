@@ -1,8 +1,11 @@
 const fs=require('fs');
+if(process.argv.length<4){
+	throw new Error('Please provide file paths of input JSON and XSL template.');
+}
 const jsontoxml=require('jsontoxml');
 const libxslt=require('libxslt');
-const FILE_JSON='./assets/GSKL0002/mobile_to_sp/vtiger_xrsr/vtiger_xrsr.json';
-const FILE_XSL='./assets/GSKL0002/mobile_to_sp/vtiger_xrsr/vtiger_xrsr.xsl';
+const FILE_JSON=process.argv[2];
+const FILE_XSL=process.argv[3];
 Promise.all([
 	new Promise(function(rs,rj){
 		fs.readFile(FILE_JSON,{encoding:'utf8'},(err,data)=>{
