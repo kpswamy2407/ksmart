@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collections>
+	<vtiger_xrcodocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>xrCollection</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xrcodocinfo>
+	<prkey>distributorcode,customercode,bankmastercode,salesmancode,collectionmethodcode,beatcode,transactionseriescode,reasoncode</prkey>
+	<vtiger_xrco>
+		<cf_xrco_balance />
+		<latitude>/collections/documentcontent/col/header/NewDataSet/Table/latitude</latitude>
+		<longitude>/collections/documentcontent/col/header/NewDataSet/Table/longitude</longitude>
+		<cf_xrco_distributor>
+			<distributorcode>/collections/documentcontent/col/header/NewDataSet/Table/ForumCode</distributorcode>
+		</cf_xrco_distributor>
+		<cf_xrco_cheque_date>/collections/documentcontent/col/header/NewDataSet/Table/ChqOrDDdate</cf_xrco_cheque_date>
+		<cf_xrco_customer_name>
+			<customercode>/collections/documentcontent/col/header/NewDataSet/Table/Customer</customercode>
+		</cf_xrco_customer_name>
+		<cf_xrco_customer_id>
+			<customercode>/collections/documentcontent/col/header/NewDataSet/Table/Customer</customercode>
+		</cf_xrco_customer_id>
+		<cf_xrco_collection_date>/collections/docinfo/createddate</cf_xrco_collection_date>
+		<cf_xrco_amount_available />
+		<cf_xrco_next_stage_name>Creation</cf_xrco_next_stage_name>
+		<cf_xrco_transaction_series>
+			<transactionseriescode />
+			<transactionseriesname>RCollection</transactionseriesname>
+		</cf_xrco_transaction_series>
+		<cf_xrco_amount_adjusted />
+		<cf_xrco_status>Draft</cf_xrco_status>
+		<collectioncode>/collections/documentcontent/col/header/NewDataSet/Table/UID</collectioncode>
+		<cf_xrco_cheque_no>/collections/documentcontent/col/header/NewDataSet/Table/ChqOrDDNo</cf_xrco_cheque_no>
+		<cf_xrco_bank_details>
+			<bankmastercode>/collections/documentcontent/col/header/NewDataSet/Table/BankCode</bankmastercode>
+			<bankmasterbranch>/collections/documentcontent/col/header/NewDataSet/Table/BankCode</bankmasterbranch>
+		</cf_xrco_bank_details>
+		<cf_xrco_cpy_sales_man>
+			<cpysalesmancode>/collections/documentcontent/col/header/NewDataSet/Table/CompanySalesmanCode</cpysalesmancode>
+			<cpysalesman>/collections/documentcontent/col/header/NewDataSet/Table/CompanySalesmanId</cpysalesman>
+		</cf_xrco_cpy_sales_man>
+		<cf_xrco_salesman>
+			<salesmancode>/collections/documentcontent/col/header/NewDataSet/Table/SalesmanCode</salesmancode>
+			<salesman>/collections/documentcontent/col/header/NewDataSet/Table/SalesmanCode</salesman>
+			<salesmanid>/collections/documentcontent/col/header/NewDataSet/Table/SalesmanId</salesmanid>
+		</cf_xrco_salesman>
+		<cf_xrco_payment_mode>
+			<collectionmethodcode>/collections/documentcontent/col/header/NewDataSet/Table/PayType</collectionmethodcode>
+		</cf_xrco_payment_mode>
+		<cf_xrco_cash_balance />
+		<cf_xrco_transaction_number>/collections/documentcontent/col/header/NewDataSet/Table/UID</cf_xrco_transaction_number>
+		<crmid />
+		<cf_xrco_amount_received>/collections/documentcontent/col/header/NewDataSet/Table/AmtRecvd</cf_xrco_amount_received>
+		<cf_xrco_additional_information />
+		<cf_xrco_beat>
+			<beatcode>/collections/documentcontent/col/header/NewDataSet/Table/BeatID</beatcode>
+			<beatname />
+		</cf_xrco_beat>
+		<xreasonid>
+			<reasoncode>/collections/documentcontent/col/header/NewDataSet/Table/ReasonCode</reasoncode>
+			<reason>/collections/documentcontent/col/header/NewDataSet/Table/ReasonCode</reason>
+		</xreasonid>
+		<cf_xrco_recieved_balance>/collections/documentcontent/col/header/NewDataSet/Table/recieved_adjusted</cf_xrco_recieved_balance>
+		<customer_type>/collections/documentcontent/col/header/NewDataSet/Table/customer_type</customer_type>
+		<transaction_start_time>/collections/documentcontent/col/header/NewDataSet/Table/transaction_start_time</transaction_start_time>
+		<transaction_end_time>/collections/documentcontent/col/header/NewDataSet/Table/transaction_end_time</transaction_end_time>
+		<session_id>/collections/documentcontent/col/header/NewDataSet/Table/VisitUID</session_id>
+		<lineitems>
+			<vtiger_xrcodocrel repetitiveMapTag="/collections/documentcontent/col/detail/NewDataSet/Table">
+				<xrcoid />
+				<loadtype>/collections/documentcontent/col/detail/NewDataSet/Table/DocType</loadtype>
+				<recordid>/collections/documentcontent/col/detail/NewDataSet/Table/ID</recordid>
+				<amount_adjust>/collections/documentcontent/col/detail/NewDataSet/Table/AmtAdjusted</amount_adjust>
+				<addl_adjust />
+				<discount />
+			</vtiger_xrcodocrel>
+		</lineitems>
+	</vtiger_xrco>
+</collections>
