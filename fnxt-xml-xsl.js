@@ -1,8 +1,8 @@
 const fs=require('fs');
 const jsontoxml=require('jsontoxml');
 const libxslt=require('libxslt');
-const FILE_JSON='./backup/vtiger_xrso/vtiger_xrso.json';
-const FILE_XSL='./backup/vtiger_xrso/vtiger_xrso.xsl';
+const FILE_JSON='./assets/GSKL0002/mobile_to_sp/vtiger_xrsr/vtiger_xrsr.json';
+const FILE_XSL='./assets/GSKL0002/mobile_to_sp/vtiger_xrsr/vtiger_xrsr.xsl';
 Promise.all([
 	new Promise(function(rs,rj){
 		fs.readFile(FILE_JSON,{encoding:'utf8'},(err,data)=>{
@@ -32,4 +32,6 @@ Promise.all([
 	});
 }).then(function(xml){
 	console.log(xml);
+}).catch(eerr=>{
+	console.log(eerr.message);
 });
