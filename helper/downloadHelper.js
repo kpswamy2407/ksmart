@@ -26,22 +26,22 @@ DownloadHelper.getResult = function(req,res,next) {
         }
         configHelper.setLoggerFn(req.app.get('__fnxtlogger__'));
         const db=configHelper.getDb();
-        var queryResult=db.query(query,{type: db.QueryTypes.SELECT});
+        var queryResult;
+        if(/[a-zA-Z]{1,}count$/.test(req.params.key)){
+            queryResult=db.query(query,{type: db.QueryTypes.SELECT}).spread(count=>{
+                ioHelper.getSuccessResponse({collections:{response:count,rowcount:1}},isXMLResponse,res)
+            }); 
+        }
+        else{
+            queryResult=db.query(query,{type: db.QueryTypes.SELECT}).then(result=>{
+                ioHelper.getSuccessResponse({collections:{response:result,rowcount:result.length}},isXMLResponse,res)
+            });
+        }
         queryResult.catch(()=>{
             next(new HttpError(500,'ERR-CON-0021','Unknown error occured'));
         }).finally(()=>{
             db.close();
         });
-        if(/[a-zA-Z]{1,}count$/.test(req.params.key)){
-            queryResult.spread(count=>{
-                ioHelper.getSuccessResponse({collections:{response:count,rowcount:1}},isXMLResponse,res)
-            }); 
-        }
-        else{
-            queryResult.then(result=>{
-                ioHelper.getSuccessResponse({collections:{response:result,rowcount:result.length}},isXMLResponse,res)
-            });
-        }
     }
     catch(err){
         throw new HttpError(500,'FN-XX-xxxx',err.message);
