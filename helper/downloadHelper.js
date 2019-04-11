@@ -16,11 +16,10 @@ DownloadHelper.getResult = function(req,res,next) {
         next(new HttpError(404,'FN-XX-xxxx','Service "'+req.params.key+'" is not available.'))
     }
     var isXMLResponse = (req.query.format == 'extjson') ? false : true;
-    var queryMetaKeys=query.match(/#\$[a-zA-Z]{1,}#/gm)
+    var queryMetaKeys=query.match(/#\$[a-zA-Z]{1,}#/gm);
     for (var i = queryMetaKeys.length - 1; i >= 0; i--) {
         var qkey=queryMetaKeys[i].replace(/#/g,"").replace("$","");
         query=query.replace(queryMetaKeys[i],req.query[qkey]);
-
     }
     configHelper.setLoggerFn(req.app.get('__fnxtlogger__'));
     const db=configHelper.getDb();
