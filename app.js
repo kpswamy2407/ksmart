@@ -10,6 +10,12 @@ var authRouter=require('./routes/auth');
 
 var xmlBodyParser=require('express-xml-bodyparser');
 var app = express();
+
+/*app.use(function(req,res,next){
+	console.log(req.method,req.url);
+	next();
+});*/
+
 /*app.use('/:domain/xmlReceiveMain.php',function(req,res,next){
 	console.log(req.headers);
 	req.on('data',function(dbuf){
