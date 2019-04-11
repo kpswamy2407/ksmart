@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collections>
+	<docinfo>
+		<fromid>43019</fromid>
+		<transactionid>22032019153900SLM8994</transactionid>
+		<sourceapplication>mobile</sourceapplication>
+		<destapplication>sp</destapplication>
+		<documenttype>vtiger_xrsr</documenttype>
+		<clientid>GSKL0001</clientid>
+		<createddate>2019-03-22</createddate>
+	</docinfo>
+	<documentcontent>
+		<salesreturn>
+			<header>
+				<NewDataSet>
+					<Table>
+						<SNo>1</SNo>
+						<SRID>SR22032019145422SLM8994</SRID>
+						<CreatedDate>2019-03-22</CreatedDate>
+						<SalesmanId>2630593</SalesmanId>
+						<SalesmanCode>SLM8994</SalesmanCode>
+						<CustomerID>RSD266</CustomerID>
+						<BeatID>BEAT6412</BeatID>
+						<ReturnType>0</ReturnType>
+						<UID>22032019145422SLM8994</UID>
+						<ForumCode>43019</ForumCode>
+						<CustCtgryID>0</CustCtgryID>
+						<latitude>12.9898103</latitude>
+						<longitude>80.2489965</longitude>
+						<VisitUID />
+						<transaction_start_time>2019-03-22 14:54:21.49</transaction_start_time>
+						<transaction_end_time>2019-03-22 14:54:42.91</transaction_end_time>
+						<xdistId>213912</xdistId>
+						<ReasonCode />
+						<customer_type>0</customer_type>
+					</Table>
+				</NewDataSet>
+			</header>
+			<detail>
+				<NewDataSet>
+					<Table>
+						<SNo>1</SNo>
+						<SRID>SR22032019145422SLM8994</SRID>
+						<ProductCode>BT0017S</ProductCode>
+						<ProdCtgryID>BT0017S</ProdCtgryID>
+						<UOMID>Each</UOMID>
+						<Reason />
+						<ReturnType>1</ReturnType>
+						<BatchNo>Abc</BatchNo>
+						<Price>3.92</Price>
+						<SaleableQuantity>1</SaleableQuantity>
+						<FreeQuantity>0</FreeQuantity>
+						<DamagedQuantity>0</DamagedQuantity>
+						<DamagedFreeQuantity>0</DamagedFreeQuantity>
+						<Discount>0</Discount>
+						<DiscountID>0</DiscountID>
+						<Amount>3.92</Amount>
+						<UID>22032019145422SLM8994</UID>
+						<ForumCode>43019</ForumCode>
+						<InvoiceID />
+						<SNo>5</SNo>
+						<SRID>SR22032019145422SLM8994</SRID>
+						<ProductCode>BT1000R</ProductCode>
+						<ProdCtgryID>BT1000R</ProdCtgryID>
+						<UOMID>Each</UOMID>
+						<Reason />
+						<ReturnType>0</ReturnType>
+						<BatchNo>123</BatchNo>
+						<Price>339.77</Price>
+						<SaleableQuantity>0</SaleableQuantity>
+						<FreeQuantity>0</FreeQuantity>
+						<DamagedQuantity>2</DamagedQuantity>
+						<DamagedFreeQuantity>0</DamagedFreeQuantity>
+						<Discount>0</Discount>
+						<DiscountID>0</DiscountID>
+						<Amount>679.54</Amount>
+						<UID>22032019145422SLM8994</UID>
+						<ForumCode>43019</ForumCode>
+						<InvoiceID />
+					</Table>
+				</NewDataSet>
+			</detail>
+		</salesreturn>
+	</documentcontent>
+</collections>

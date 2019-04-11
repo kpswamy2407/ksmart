@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <collections>
 	<vtiger_xrsrdocinfo>
 		<fromid>/collections/documentcontent/salesreturn/header/NewDataSet/Table/ForumCode</fromid>
@@ -19,12 +19,12 @@
 		<rsales_return_type>Without Ref</rsales_return_type>
 		<cf_xrsr_next_stage_name>Creation</cf_xrsr_next_stage_name>
 		<cf_xrsr_status>Draft</cf_xrsr_status>
-		<cf_xrsr_adjustable_amount/>
-		<cf_xrsr_amount/>
-		<cf_xrsr_tax_amoount/>
+		<cf_xrsr_adjustable_amount />
+		<cf_xrsr_amount />
+		<cf_xrsr_tax_amoount />
 		<cf_xrsr_transaction_no>/collections/documentcontent/salesreturn/header/NewDataSet/Table/UID</cf_xrsr_transaction_no>
 		<cf_xrsr_intiated_date>/collections/docinfo/createddate</cf_xrsr_intiated_date>
-		<cf_xrsr_internal_ref/>
+		<cf_xrsr_internal_ref />
 		<cf_xrsalesreturn_beat>
 			<beatcode>/collections/documentcontent/salesreturn/header/NewDataSet/Table/BeatID</beatcode>
 		</cf_xrsalesreturn_beat>
@@ -40,13 +40,13 @@
 		<cf_xrsr_customer>
 			<customercode>/collections/documentcontent/salesreturn/header/NewDataSet/Table/CustomerID</customercode>
 			<customername>/collections/documentcontent/salesreturn/header/NewDataSet/Table/CustomerID</customername>
-			<crmid/>
+			<crmid />
 		</cf_xrsr_customer>
 		<reason>
 			<reasoncode>/collections/documentcontent/salesreturn/header/NewDataSet/Table/ReasonCode</reasoncode>
 		</reason>
 		<cf_xrsr_transaction_series>
-			<transactionseriescode/>
+			<transactionseriescode />
 			<transactionseriesname>RSalesReturn</transactionseriesname>
 		</cf_xrsr_transaction_series>
 		<rsrcode>/collections/documentcontent/salesreturn/header/NewDataSet/Table/SRID</rsrcode>
@@ -57,43 +57,43 @@
 		<session_id>/collections/documentcontent/salesreturn/header/NewDataSet/Table/VisitUID</session_id>
 		<lineitems>
 			<vtiger_xrsritems repetitiveMapTag="/collections/documentcontent/salesreturn/detail/NewDataSet/Table">
-				<xrsrid/>
-				<salesinvoiceid/>
+				<xrsrid />
+				<salesinvoiceid />
 				<salesinvoice_no>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/InvoiceID</salesinvoice_no>
 				<stockid>
-					<cf_xproduct_reporting_uom_conversion/>
-					<cf_xproduct_price_at_uom/>
+					<cf_xproduct_reporting_uom_conversion />
+					<cf_xproduct_price_at_uom />
 					<cf_xproduct_description>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/Reason</cf_xproduct_description>
-					<cf_xproduct_flavour/>
-					<cf_xproduct_pack/>
-					<cf_xproduct_contect/>
-					<cf_xproduct_forum_code/>
-					<cf_xproduct_purchase_tax/>
-					<cf_xproduct_sales_tax/>
-					<cf_xproduct_uom2_conversion/>
+					<cf_xproduct_flavour />
+					<cf_xproduct_pack />
+					<cf_xproduct_contect />
+					<cf_xproduct_forum_code />
+					<cf_xproduct_purchase_tax />
+					<cf_xproduct_sales_tax />
+					<cf_xproduct_uom2_conversion />
 					<cf_xproduct_uom2>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/UOMID</cf_xproduct_uom2>
-					<cf_xproduct_uom1_conversion/>
+					<cf_xproduct_uom1_conversion />
 					<cf_xproduct_uom1>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/UOMID</cf_xproduct_uom1>
-					<cf_xproduct_conversion_factor/>
-					<cf_xproduct_conversion_unit/>
-					<cf_xproduct_reporting_unit/>
-					<cf_xproduct_reporting_uom/>
+					<cf_xproduct_conversion_factor />
+					<cf_xproduct_conversion_unit />
+					<cf_xproduct_reporting_unit />
+					<cf_xproduct_reporting_uom />
 					<cf_xproduct_base_uom>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/UOMID</cf_xproduct_base_uom>
 					<cf_xproduct_mrp>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/Price</cf_xproduct_mrp>
 					<cf_xproduct_pts>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/Price</cf_xproduct_pts>
-					<cf_xproduct_minimum_order_quantity/>
-					<cf_xproduct_stock_norm/>
-					<cf_xproduct_vat/>
+					<cf_xproduct_minimum_order_quantity />
+					<cf_xproduct_stock_norm />
+					<cf_xproduct_vat />
 					<cf_xproduct_category>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/ProdCtgryID</cf_xproduct_category>
-					<cf_xproduct_division/>
-					<cf_xproduct_ecp/>
-					<cf_xproduct_ptr/>
-					<cf_xproduct_track_pkd/>
-					<cf_xproduct_track_batch/>
-					<cf_xproduct_manufacturer/>
+					<cf_xproduct_division />
+					<cf_xproduct_ecp />
+					<cf_xproduct_ptr />
+					<cf_xproduct_track_pkd />
+					<cf_xproduct_track_batch />
+					<cf_xproduct_manufacturer />
 					<productcode>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/ProductCode</productcode>
 					<productname>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/ProductCode</productname>
-					<crmid/>
+					<crmid />
 				</stockid>
 				<tuom>
 					<uomname>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/UOMID</uomname>
@@ -102,16 +102,16 @@
 				<free_qty>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/FreeQuantity</free_qty>
 				<dam_saleable_qty>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/DamagedQuantity</dam_saleable_qty>
 				<dam_free_qty>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/DamagedFreeQuantity</dam_free_qty>
-				<tax_amount/>
+				<tax_amount />
 				<batch_no>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/BatchNo</batch_no>
 				<rate>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/Price</rate>
 				<amount>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/Amount</amount>
 				<reason>
 					<reasoncode>/collections/documentcontent/salesreturn/detail/NewDataSet/Table/Reason</reasoncode>
 				</reason>
-				<tax1/>
-				<tax2/>
-				<tax3/>
+				<tax1 />
+				<tax2 />
+				<tax3 />
 			</vtiger_xrsritems>
 		</lineitems>
 	</vtiger_xrsr>
