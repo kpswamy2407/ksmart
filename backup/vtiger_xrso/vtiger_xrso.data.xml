@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collections>
+	<docinfo>
+		<clientid>GSKL0001</clientid>
+		<createddate>2019-03-22</createddate>
+		<destapplication>sp</destapplication>
+		<documenttype>vtiger_xrso</documenttype>
+		<fromid>43019</fromid>
+		<sourceapplication>mobile</sourceapplication>
+		<transactionid>22032019153854SLM8994</transactionid>
+	</docinfo>
+	<documentcontent>
+		<salesorder>
+			<detail>
+				<NewDataSet>
+					<Table>
+						<element>
+							<Amount>9.25</Amount>
+							<Baseqty>2</Baseqty>
+							<DiscountID>0</DiscountID>
+							<Discountamount>0</Discountamount>
+							<ForumCode>43019</ForumCode>
+							<OrderID>ORD22032019145416SLM8994</OrderID>
+							<PTR>3.920000</PTR>
+							<Price>3.92</Price>
+							<ProdCtgryID>Boost 17gm Sachet</ProdCtgryID>
+							<ProductCode>BT0017S</ProductCode>
+							<Quantity>2</Quantity>
+							<Remarks />
+							<SNo>1</SNo>
+							<Taxamount>1.41</Taxamount>
+							<Taxcode />
+							<Taxpercent />
+							<UID>22032019145416SLM8994</UID>
+							<UOMID>Each</UOMID>
+							<taxs>
+								<tax />
+							</taxs>
+						</element>
+					</Table>
+				</NewDataSet>
+			</detail>
+			<header>
+				<NewDataSet>
+					<Table>
+						<BeatID>BEAT6412</BeatID>
+						<CreditTerm>22032019145416SLM8994</CreditTerm>
+						<CustCtgryID>0</CustCtgryID>
+						<CustomerID>RSD266</CustomerID>
+						<DeliveryDate>2019-03-22</DeliveryDate>
+						<ForumCode>43019</ForumCode>
+						<OrderDate>2019-03-22</OrderDate>
+						<OrderID>ORD22032019145416SLM8994</OrderID>
+						<ReasonCode />
+						<SNo>1</SNo>
+						<SalesmanCode>SLM8994</SalesmanCode>
+						<SalesmanId>2630593</SalesmanId>
+						<Totllamt>0</Totllamt>
+						<UID>22032019145416SLM8994</UID>
+						<VisitUID />
+						<customer_type>0</customer_type>
+						<latitude>12.9898023</latitude>
+						<longitude>80.2490007</longitude>
+						<transaction_end_time>2019-03-22 14:54:20.06</transaction_end_time>
+						<transaction_start_time>2019-03-22 14:54:16.50</transaction_start_time>
+						<xdistId>213912</xdistId>
+					</Table>
+				</NewDataSet>
+			</header>
+		</salesorder>
+	</documentcontent>
+</collections>
