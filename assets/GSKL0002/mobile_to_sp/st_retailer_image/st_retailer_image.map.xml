@@ -1,0 +1,26 @@
+<collections>
+	<st_retailer_imagedocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>xRetailerImage</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+	</st_retailer_imagedocinfo>
+	<st_retailer_images>
+		<st_retailer_image>
+			<dist_id>/collections/documentcontent/st_retailer_image/dist_id</dist_id>
+			<dist_code>/collections/documentcontent/st_retailer_image/dist_code</dist_code>
+			<salesman_id>/collections/documentcontent/st_retailer_image/SalesmanId</salesman_id>
+			<salesman_code>/collections/documentcontent/st_retailer_image/SalesmanCode</salesman_code>
+			<retailer_id>/collections/documentcontent/st_retailer_image/ret_id</retailer_id>
+			<retailer_code>/collections/documentcontent/st_retailer_image/ret_code</retailer_code>
+			<beat_id>/collections/documentcontent/st_retailer_image/beat_id</beat_id>
+			<beat_code>/collections/documentcontent/st_retailer_image/beat_code</beat_code>
+			<retailer_image>/collections/documentcontent/st_retailer_image/image_name</retailer_image>
+			<latitude>/collections/documentcontent/st_retailer_image/latitude</latitude>
+			<longitude>/collections/documentcontent/st_retailer_image/longitude</longitude>
+			<remarks>/collections/documentcontent/st_retailer_image/remarks</remarks>
+		</st_retailer_image>
+	</st_retailer_images>
+</collections>
