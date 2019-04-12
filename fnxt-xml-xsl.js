@@ -20,6 +20,11 @@ Promise.all([
 		});
 	}),
 ]).then(function(dd){
+
+	console.log("\n------------------------\n");
+	console.log( jsontoxml(dd[0]) );
+	console.log("\n------------------------\n");
+	
 	return Promise.all([jsontoxml(dd[0]),new Promise(function(rs,rj){
 		libxslt.parse(dd[1],function(err,data){
 			if(err) rj(err);
@@ -34,7 +39,11 @@ Promise.all([
 		});
 	});
 }).then(function(xml){
+	
+	console.log("\n------------------------\n");
 	console.log(xml);
+	console.log("\n------------------------\n");
+	
 }).catch(eerr=>{
 	console.log(eerr.message);
 });
