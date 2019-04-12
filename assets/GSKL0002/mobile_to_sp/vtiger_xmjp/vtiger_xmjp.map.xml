@@ -1,0 +1,37 @@
+<collections>
+	<prkey>distributorcode,salesmancode,beatcode,customercode</prkey>
+	<vtiger_xmjpdocinfo>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<fromid>/collections/documentcontent/xmjp/header/NewDataSet/Table/ForumCode</fromid>
+		<createddate>/collections/docinfo/createddate</createddate>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<documenttype>xMJP</documenttype>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+	</vtiger_xmjpdocinfo>
+	<vtiger_xmjp repetitiveMapTag="/collections/documentcontent/xmjp">
+		<mjpcode>/collections/documentcontent/xmjp/header/NewDataSet/Table/mjpcode</mjpcode>
+		<cf_xmjp_distributor>/collections/documentcontent/xmjp/header/NewDataSet/Table/distid</cf_xmjp_distributor>
+		<distributor_id>/collections/documentcontent/xmjp/header/NewDataSet/Table/xdistId</distributor_id>
+		<fromdate>/collections/documentcontent/xmjp/header/NewDataSet/Table/fromdate</fromdate>
+		<active>1</active>
+		<cf_mjp_status>Created</cf_mjp_status>
+		<cf_mjp_next_stage_name>Approval</cf_mjp_next_stage_name>
+		<todate>/collections/documentcontent/xmjp/header/NewDataSet/Table/todate</todate>
+		<cf_xmjp_salesman>
+			<salesman>/collections/documentcontent/xmjp/header/NewDataSet/Table/SalesmanCode</salesman>
+			<salesmanid>/collections/documentcontent/xmjp/header/NewDataSet/Table/SalesmanId</salesmanid>
+			<salesmancode>/collections/documentcontent/xmjp/header/NewDataSet/Table/SalesmanCode</salesmancode>
+		</cf_xmjp_salesman>
+		<lineitems>
+			<vtiger_xmjpdetail repetitiveMapTag="/collections/documentcontent/xmjp/detail/NewDataSet/Table">
+				<mjpday>/collections/documentcontent/xmjp/detail/NewDataSet/Table/mjpday</mjpday>
+				<beatcode>/collections/documentcontent/xmjp/detail/NewDataSet/Table/beatcode</beatcode>
+				<xretailerid>/collections/documentcontent/xmjp/detail/NewDataSet/Table/xretailerid</xretailerid>
+				<mjpdate>/collections/documentcontent/xmjp/detail/NewDataSet/Table/mjpdate</mjpdate>
+				<beatname>/collections/documentcontent/xmjp/detail/NewDataSet/Table/beatname</beatname>
+				<noofretailers>/collections/documentcontent/xmjp/detail/NewDataSet/Table/noofretailers</noofretailers>
+			</vtiger_xmjpdetail>
+		</lineitems>
+	</vtiger_xmjp>
+</collections>
