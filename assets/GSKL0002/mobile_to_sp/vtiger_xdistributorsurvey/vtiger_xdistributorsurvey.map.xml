@@ -1,0 +1,40 @@
+<collections>
+	<vtiger_xdistributorsurveydocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>xDistributorSurvey</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xdistributorsurveydocinfo>
+	<prkey>customercode,salesmancode,beatcode,reasoncode</prkey>
+	<vtiger_xdistributorsurvey repetitiveMapTag="/collections/documentcontent/NewDataSet/Table">
+		<distributorsurveycode>/collections/documentcontent/NewDataSet/Table/distributorsurveycode</distributorsurveycode>
+		<distributor_code>/collections/documentcontent/NewDataSet/Table/distributor_code</distributor_code>
+		<xsalesmanid>
+			<salesmancode>/collections/documentcontent/NewDataSet/Table/xsalesmanid</salesmancode>
+			<salesman>/collections/documentcontent/NewDataSet/Table/xsalesmanid</salesman>
+			<salesmanid>/collections/documentcontent/NewDataSet/Table/xsalesmanid</salesmanid>
+		</xsalesmanid>
+		<xretailerid>
+			<customercode>/collections/documentcontent/NewDataSet/Table/xretailerid</customercode>
+		</xretailerid>
+		<xbeatid>
+			<beatcode>/collections/documentcontent/NewDataSet/Table/xbeatid</beatcode>
+		</xbeatid>
+		<latitude>/collections/documentcontent/NewDataSet/Table/latitude</latitude>
+		<longitude>/collections/documentcontent/NewDataSet/Table/longitude</longitude>
+		<session_id>/collections/documentcontent/NewDataSet/Table/session_id</session_id>
+		<image_name>/collections/documentcontent/NewDataSet/Table/image_name</image_name>
+		<customer_type>/collections/documentcontent/NewDataSet/Table/customer_type</customer_type>
+		<transaction_start_time>/collections/documentcontent/NewDataSet/Table/transaction_start_time</transaction_start_time>
+		<transaction_end_time>/collections/documentcontent/NewDataSet/Table/transaction_end_time</transaction_end_time>
+		<remark>/collections/documentcontent/NewDataSet/Table/remark</remark>
+		<complaint>/collections/documentcontent/NewDataSet/Table/complaint</complaint>
+		<xreasonid>
+			<reasoncode>/collections/documentcontent/NewDataSet/Table/ReasonCode</reasoncode>
+			<reason>/collections/documentcontent/NewDataSet/Table/ReasonCode</reason>
+		</xreasonid>
+	</vtiger_xdistributorsurvey>
+</collections>
