@@ -1,0 +1,26 @@
+<collections>
+	<st_synclogdocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>st_versionlog</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+	</st_synclogdocinfo>
+	<st_synclogs>
+		<st_synclog>
+			<dist_id>/collections/documentcontent/st_versionlog/dist_id</dist_id>
+			<dist_code>/collections/documentcontent/st_versionlog/dist_code</dist_code>
+			<salesman_id>/collections/documentcontent/st_versionlog/salesman_id</salesman_id>
+			<salesman_code>/collections/documentcontent/st_versionlog/salesman_code</salesman_code>
+			<transaction_start_time>/collections/documentcontent/st_versionlog/transaction_start_time</transaction_start_time>
+			<transaction_end_time>/collections/documentcontent/st_versionlog/transaction_end_time</transaction_end_time>
+			<version>/collections/documentcontent/st_versionlog/version</version>
+			<logtype>/collections/documentcontent/st_versionlog/logtype</logtype>
+			<log>/collections/documentcontent/st_versionlog/log</log>
+			<uid>/collections/documentcontent/st_versionlog/uid</uid>
+			<sync_completed>/collections/documentcontent/st_versionlog/sync_completed</sync_completed>
+			<sync_completed_count>/collections/documentcontent/st_versionlog/sync_completed_count</sync_completed_count>
+		</st_synclog>
+	</st_synclogs>
+</collections>

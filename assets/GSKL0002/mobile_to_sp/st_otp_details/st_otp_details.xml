@@ -1,0 +1,25 @@
+<collections>
+	<st_otp_detailsdocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>xOtpRequest</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+	</st_otp_detailsdocinfo>
+	<st_otp_detailss>
+		<st_otp_details>
+			<distributor_code>/collections/documentcontent/st_otp_details/distributor_code</distributor_code>
+			<salesman_code>/collections/documentcontent/st_otp_details/salesman_code</salesman_code>
+			<customercode>/collections/documentcontent/st_otp_details/customercode</customercode>
+			<uid>/collections/documentcontent/st_otp_details/uid</uid>
+			<createddate>/collections/documentcontent/st_otp_details/createddate</createddate>
+			<distributor_id>/collections/documentcontent/st_otp_details/distributor_id</distributor_id>
+			<salesman_id>/collections/documentcontent/st_otp_details/salesman_id</salesman_id>
+			<customer_id>/collections/documentcontent/st_otp_details/customer_id</customer_id>
+			<status>/collections/documentcontent/st_otp_details/status</status>
+			<mobile_number>/collections/documentcontent/st_otp_details/mobile_number</mobile_number>
+			<otp_hashvalue>/collections/documentcontent/st_otp_details/otp_hashvalue</otp_hashvalue>
+		</st_otp_details>
+	</st_otp_detailss>
+</collections>
