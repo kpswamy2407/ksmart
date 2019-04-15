@@ -1,0 +1,29 @@
+<collections>
+	<st_sff_visit_sessiondocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>xSFFvisitsession</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+	</st_sff_visit_sessiondocinfo>
+	<st_sff_visit_sessions>
+		<st_sff_visit_session repetitiveMapTag="/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session">
+			<distributorcode>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/distributorcode</distributorcode>
+			<salesmancode>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/SalesmanCode</salesmancode>
+			<customercode>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/customercode</customercode>
+			<beatcode>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/beatcode</beatcode>
+			<transaction_date>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/transaction_date</transaction_date>
+			<visit_session_id>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/visit_session_id</visit_session_id>
+			<in_time>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/in_time</in_time>
+			<out_time>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/out_time</out_time>
+			<duration>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/duration</duration>
+			<uid>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/UID</uid>
+			<createddate>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/createddate</createddate>
+			<distributor_id>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/distid</distributor_id>
+			<salesman_id>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/salesid</salesman_id>
+			<customer_id>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/custid</customer_id>
+			<beat_id>/collections/documentcontent/st_sff_visit_sessions/st_sff_visit_session/beatid</beat_id>
+		</st_sff_visit_session>
+	</st_sff_visit_sessions>
+</collections>
