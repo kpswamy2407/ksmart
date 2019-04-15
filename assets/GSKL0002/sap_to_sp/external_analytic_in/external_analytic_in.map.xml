@@ -1,0 +1,34 @@
+<collections>
+	<sify_external_analytic_indocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>external_analytic</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</sify_external_analytic_indocinfo>
+	<sify_external_analytic_ins>
+		<sify_external_analytic_in repetitiveMapTag="/collections/documentcontent/st_extrnlanlt">
+			<operating_cycle>/collections/documentcontent/st_extrnlanlt/operating_cycle</operating_cycle>
+			<operating_cycle_year>/collections/documentcontent/st_extrnlanlt/operating_cycle_year</operating_cycle_year>
+			<operating_cycle_month>/collections/documentcontent/st_extrnlanlt/operating_cycle_month</operating_cycle_month>
+			<region_code>/collections/documentcontent/st_extrnlanlt/region_code</region_code>
+			<area_code>/collections/documentcontent/st_extrnlanlt/area_code</area_code>
+			<territory_code>/collections/documentcontent/st_extrnlanlt/territory_code</territory_code>
+			<distributor_code>/collections/documentcontent/st_extrnlanlt/distributor_code</distributor_code>
+			<channel_name>/collections/documentcontent/st_extrnlanlt/channel_name</channel_name>
+			<outlet_code>/collections/documentcontent/st_extrnlanlt/outlet_code</outlet_code>
+			<sub_category_code>/collections/documentcontent/st_extrnlanlt/sub_category_code</sub_category_code>
+			<brand_code>/collections/documentcontent/st_extrnlanlt/brand_code</brand_code>
+			<brand_variant_code>/collections/documentcontent/st_extrnlanlt/brand_variant_code</brand_variant_code>
+			<sku_code>/collections/documentcontent/st_extrnlanlt/sku_code</sku_code>
+			<ms_rating>/collections/documentcontent/st_extrnlanlt/ms_rating</ms_rating>
+			<oos_flag>/collections/documentcontent/st_extrnlanlt/oos_flag</oos_flag>
+			<fb_flag>/collections/documentcontent/st_extrnlanlt/fb_flag</fb_flag>
+			<cs_flag>/collections/documentcontent/st_extrnlanlt/cs_flag</cs_flag>
+			<cs_rating>/collections/documentcontent/st_extrnlanlt/cs_rating</cs_rating>
+			<order_quantity>/collections/documentcontent/st_extrnlanlt/ms_rating</order_quantity>
+		</sify_external_analytic_in>
+	</sify_external_analytic_ins>
+</collections>
