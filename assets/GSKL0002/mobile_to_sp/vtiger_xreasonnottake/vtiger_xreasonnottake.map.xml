@@ -1,0 +1,46 @@
+<collections>
+	<vtiger_xreasonnottakedocinfo>
+		<fromid>/collections/documentcontent/NewDataSet/Table/ForumCode</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>xReasonNotTake</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xreasonnottakedocinfo>
+	<prkey>beatcode,customercode,distributorcode,salesmancode,reasoncode</prkey>
+	<vtiger_xreasonnottake repetitiveMapTag="/collections/documentcontent/NewDataSet/Table">
+		<latitude>/collections/documentcontent/NewDataSet/Table/latitude</latitude>
+		<longitude>/collections/documentcontent/NewDataSet/Table/longitude</longitude>
+
+		<reasonnottake_code>/collections/documentcontent/NewDataSet/Table/UID</reasonnottake_code>
+		<reasonnottake_date>/collections/documentcontent/NewDataSet/Table/CreationDate</reasonnottake_date>
+		<xbeatid>
+			<beatcode>/collections/documentcontent/NewDataSet/Table/BeatID</beatcode>
+		</xbeatid>
+		<xretailerid>
+			<customercode>/collections/documentcontent/NewDataSet/Table/CustomerID</customercode>
+		</xretailerid>
+		<xdistributorid>
+			<distributorcode>/collections/documentcontent/NewDataSet/Table/ForumCode</distributorcode>
+		</xdistributorid>
+		<xcustomersalesmanid>
+			<cpysalesmancode>/collections/documentcontent/NewDataSet/Table/CompanySalesmanCode</cpysalesmancode>
+			<cpysalesman>/collections/documentcontent/NewDataSet/Table/CompanySalesmanId</cpysalesman>
+		</xcustomersalesmanid>
+		<xsalesmanid>
+			<salesmancode>/collections/documentcontent/NewDataSet/Table/SalesmanCode</salesmancode>
+			<salesman>/collections/documentcontent/NewDataSet/Table/SalesmanCode</salesman>
+			<salesmanid>/collections/documentcontent/NewDataSet/Table/SalesmanId</salesmanid>
+		</xsalesmanid>
+		<xreasonid>
+			<reasoncode>/collections/documentcontent/NewDataSet/Table/ReasonID</reasoncode>
+		</xreasonid>
+		<comment>/collections/documentcontent/NewDataSet/Table/Remarks</comment>
+		<customer_type>/collections/documentcontent/NewDataSet/Table/customer_type</customer_type>
+		<transaction_start_time>/collections/documentcontent/NewDataSet/Table/transaction_start_time</transaction_start_time>
+		<transaction_end_time>/collections/documentcontent/NewDataSet/Table/transaction_end_time</transaction_end_time>
+		<session_id>/collections/documentcontent/NewDataSet/Table/VisitUID</session_id>
+		<reasonnottake_type>/collections/documentcontent/NewDataSet/Table/VisitType</reasonnottake_type>
+	</vtiger_xreasonnottake>
+</collections>
