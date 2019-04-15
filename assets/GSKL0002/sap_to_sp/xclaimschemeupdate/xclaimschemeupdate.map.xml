@@ -1,0 +1,15 @@
+<collections>
+	<vtiger_xclaimschemedocinfo>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<createddate>/collections/docinfo/documentdate</createddate>
+		<documenttype>ClaimUpdate</documenttype>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+	</vtiger_xclaimschemedocinfo>
+	<vtiger_xclaimscheme repetitiveMapTag="/collections/documentcontent/st_xdistributor">
+		<next_stage_name>Sent</next_stage_name>
+		<xclaimschemeid>/collections/documentcontent/st_xdistributor/internal_reference</xclaimschemeid>
+	</vtiger_xclaimscheme>
+</collections>
