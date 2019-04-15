@@ -1,0 +1,23 @@
+<collections>
+	<st_vsmdocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>st_vsm</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+	</st_vsmdocinfo>
+	<st_vsms>
+		<st_vsm>
+			<dist_id>/collections/documentcontent/st_vsm/dist_id</dist_id>
+			<dist_code>/collections/documentcontent/st_vsm/dist_code</dist_code>
+			<salesman_id>/collections/documentcontent/st_vsm/salesman_id</salesman_id>
+			<salesman_code>/collections/documentcontent/st_vsm/salesman_code</salesman_code>
+			<transaction_date>/collections/documentcontent/st_vsm/transaction_date</transaction_date>
+			<first_level>/collections/documentcontent/st_vsm/first_level</first_level>
+			<second_level>/collections/documentcontent/st_vsm/second_level</second_level>
+			<third_level>/collections/documentcontent/st_vsm/third_level</third_level>
+			<image_name>/collections/documentcontent/st_vsm/image_name</image_name>
+		</st_vsm>
+	</st_vsms>
+</collections>
