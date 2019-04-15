@@ -1,0 +1,35 @@
+<collections>
+	<sify_asr_open_orderdocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>sify_asr_open_order</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</sify_asr_open_orderdocinfo>
+	<sify_asr_open_orders>
+		<sify_asr_open_order repetitiveMapTag="/collections/documentcontent/sify_asr_open_order">                               
+			<area>/collections/documentcontent/sify_asr_open_order/area</area>
+			<dist_code>/collections/documentcontent/sify_asr_open_order/dist_code</dist_code>
+			<dist_name>/collections/documentcontent/sify_asr_open_order/dist_name</dist_name>
+			<town>/collections/documentcontent/sify_asr_open_order/town</town>
+			<order_no>/collections/documentcontent/sify_asr_open_order/order_no</order_no>
+			<order_type>/collections/documentcontent/sify_asr_open_order/order_type</order_type>
+			<created_date>/collections/documentcontent/sify_asr_open_order/created_date</created_date>
+			<psku>/collections/documentcontent/sify_asr_open_order/psku</psku>
+			<item_desc>/collections/documentcontent/sify_asr_open_order/item_desc</item_desc>
+			<qty>/collections/documentcontent/sify_asr_open_order/qty</qty>
+			<status>/collections/documentcontent/sify_asr_open_order/status</status>
+			<status_description>/collections/documentcontent/sify_asr_open_order/status_description</status_description>
+			<po_no>/collections/documentcontent/sify_asr_open_order/po_no</po_no>
+			<pick_slip_date>/collections/documentcontent/sify_asr_open_order/pick_slip_date</pick_slip_date>
+			<rate>/collections/documentcontent/sify_asr_open_order/rate</rate>
+			<ptd_cr>/collections/documentcontent/sify_asr_open_order/ptd_cr</ptd_cr>
+			<hold>/collections/documentcontent/sify_asr_open_order/hold</hold>
+			<uom_case_lot>/collections/documentcontent/sify_asr_open_order/uom_case_lot</uom_case_lot>
+			<uom_case>/collections/documentcontent/sify_asr_open_order/uom_case</uom_case>
+			<depot>/collections/documentcontent/sify_asr_open_order/depot</depot>
+		</sify_asr_open_order>
+	</sify_asr_open_orders>
+</collections>
