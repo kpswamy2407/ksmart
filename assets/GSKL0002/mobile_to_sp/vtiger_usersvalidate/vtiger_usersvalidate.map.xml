@@ -1,0 +1,21 @@
+<collections>
+	<vtiger_usersdocinfo>
+		<fromid>/collections/documentcontent/NewDataSet/Table/dist_code</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>xUserValidate</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_usersdocinfo>
+	<prkey>user_name</prkey>
+	<vtiger_users repetitiveMapTag="/collections/documentcontent/NewDataSet/Table">
+		<user_name>/collections/documentcontent/NewDataSet/Table/username</user_name>
+		<user_password>/collections/documentcontent/NewDataSet/Table/password</user_password>
+		<salesmancode>/collections/documentcontent/NewDataSet/Table/SalesmanCode</salesmancode>
+		<xsalesmanid>/collections/documentcontent/NewDataSet/Table/SalesmanId</xsalesmanid>
+		<distributorcode>/collections/documentcontent/NewDataSet/Table/dist_code</distributorcode>
+		<distributor_id>/collections/documentcontent/NewDataSet/Table/distid</distributor_id>
+		<validate>UserValidate</validate>
+	</vtiger_users>
+</collections>
