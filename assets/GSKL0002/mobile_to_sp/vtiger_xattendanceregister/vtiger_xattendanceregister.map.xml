@@ -1,0 +1,33 @@
+<collections>
+	<vtiger_xattendanceregisterinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>xAttendanceRegister</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xattendanceregisterinfo>
+	<prkey>salesmancode,reasoncode,distributorcode</prkey>
+	<vtiger_xattendanceregister>
+		<referencenumber>/collections/documentcontent/attendance/NewDataSet/Table/referencenumber</referencenumber>
+		<xattendance_type>/collections/documentcontent/attendance/NewDataSet/Table/xattendance_type</xattendance_type>
+		<xattendance_status>/collections/documentcontent/attendance/NewDataSet/Table/xattendance_status</xattendance_status>
+		<reason>
+			<reasoncode>/collections/documentcontent/attendance/NewDataSet/Table/reason</reasoncode>
+		</reason>
+		<remarks>/collections/documentcontent/attendance/NewDataSet/Table/remarks</remarks>
+		<register_date>/collections/documentcontent/attendance/NewDataSet/Table/register_date</register_date>
+		<xattendance_date>/collections/documentcontent/attendance/NewDataSet/Table/xattendance_date</xattendance_date>
+		<salesman_or_staff_name>
+			<salesmancode>/collections/documentcontent/attendance/NewDataSet/Table/salesman_or_staff_name</salesmancode>
+		</salesman_or_staff_name>
+		<xattendance_in_time>/collections/documentcontent/attendance/NewDataSet/Table/xattendance_in_time</xattendance_in_time>
+		<xattendance_out_time>/collections/documentcontent/attendance/NewDataSet/Table/xattendance_out_time</xattendance_out_time>
+		<xdistributorid>
+			<distributorcode>/collections/docinfo/fromid</distributorcode>
+			<distributorname>/collections/docinfo/fromid</distributorname>
+		</xdistributorid>
+		<image_name>/collections/documentcontent/attendance/NewDataSet/Table/image_name</image_name>
+	</vtiger_xattendanceregister>
+</collections>
