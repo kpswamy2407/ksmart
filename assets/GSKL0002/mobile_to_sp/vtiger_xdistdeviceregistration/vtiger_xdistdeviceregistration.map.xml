@@ -1,0 +1,23 @@
+<collections>
+	<vtiger_xdistdeviceregistrationdocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>vtiger_xdistdeviceregistrations</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xdistdeviceregistrationdocinfo>
+	<vtiger_xdistdeviceregistrations>
+		<vtiger_xdistdeviceregistration>
+			<distributorid>/collections/documentcontent/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration/distributorid</distributorid>
+			<salesmanid>/collections/documentcontent/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration/salesmanid</salesmanid>
+			<clientid>/collections/documentcontent/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration/clientid</clientid>
+			<cdkey>/collections/documentcontent/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration/cdkey</cdkey>
+			<deviceuniquekey>/collections/documentcontent/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration/deviceuniquekey</deviceuniquekey>
+			<access_token>/collections/documentcontent/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration/access_token</access_token>
+			<client_version>/collections/documentcontent/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration/client_version</client_version>
+			<imeino>/collections/documentcontent/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration/imeino</imeino>
+		</vtiger_xdistdeviceregistration>
+	</vtiger_xdistdeviceregistrations>
+</collections>
