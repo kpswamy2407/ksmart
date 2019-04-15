@@ -1,0 +1,18 @@
+<collections>
+	<vtiger_xpricebootstrapdocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>xPriceBootstrap</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xpricebootstrapdocinfo>
+	<prkey>user_name</prkey>
+	<vtiger_xpricebootstrap repetitiveMapTag="/collections/documentcontent/NewDataSet/Table">
+		<distids>/collections/documentcontent/NewDataSet/Table/distids</distids>
+		<slmid>/collections/documentcontent/NewDataSet/Table/slmid</slmid>
+		<cslmid>/collections/documentcontent/NewDataSet/Table/cslmid</cslmid>
+		<appname>companyApp</appname>
+	</vtiger_xpricebootstrap>
+</collections>
