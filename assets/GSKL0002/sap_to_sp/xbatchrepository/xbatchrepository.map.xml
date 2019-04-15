@@ -1,0 +1,28 @@
+<collections>
+	<sify_batch_central_repositorydocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>batch_central_repository</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</sify_batch_central_repositorydocinfo>
+	<sify_batch_central_repositorys>
+		<sify_batch_central_repository repetitiveMapTag="/collections/documentcontent/st_xbatchrepository">
+			<xproductid>/collections/documentcontent/st_xbatchrepository/xproductid</xproductid>
+			<productcode>/collections/documentcontent/st_xbatchrepository/productcode</productcode>
+			<productname>/collections/documentcontent/st_xbatchrepository/productname</productname>
+			<xprodhierid>/collections/documentcontent/st_xbatchrepository/xprodhierid</xprodhierid>
+			<prodhiercode>/collections/documentcontent/st_xbatchrepository/prodhiercode</prodhiercode>
+			<prodhiername>/collections/documentcontent/st_xbatchrepository/prodhiername</prodhiername>
+			<batch_no>/collections/documentcontent/st_xbatchrepository/batch_no</batch_no>
+			<pkd>/collections/documentcontent/st_xbatchrepository/pkd</pkd>
+			<ptr>/collections/documentcontent/st_xbatchrepository/ptr</ptr>
+			<expiry>/collections/documentcontent/st_xbatchrepository/expiry</expiry>
+			<mrp>/collections/documentcontent/st_xbatchrepository/mrp</mrp>
+			<location>/collections/documentcontent/st_xbatchrepository/location</location>
+			<ch_plant>/collections/documentcontent/st_xbatchrepository/ch_plant</ch_plant>
+		</sify_batch_central_repository>
+	</sify_batch_central_repositorys>
+</collections>
