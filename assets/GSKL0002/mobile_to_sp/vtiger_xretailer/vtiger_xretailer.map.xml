@@ -1,0 +1,20 @@
+<collections>
+	<vtiger_xretailerdocinfo>
+		<fromid>/collections/documentcontent/NewDataSet/Table/ForumCode</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>/collections/docinfo/sourceapplication</sourceapplication>
+		<destapplication>/collections/docinfo/destapplication</destapplication>
+		<documenttype>xRetailerUpdate</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xretailerdocinfo>
+	<prkey>customercode</prkey>
+	<vtiger_xretailer repetitiveMapTag="/collections/documentcontent/NewDataSet/Table">
+		<latitude>/collections/documentcontent/NewDataSet/Table/latitude</latitude>
+		<longitude>/collections/documentcontent/NewDataSet/Table/longitude</longitude>
+		<customercode>/collections/documentcontent/NewDataSet/Table/CustomerID</customercode>
+		<distributorcode>/collections/documentcontent/NewDataSet/Table/ForumCode</distributorcode>
+		<distributor_id>/collections/documentcontent/NewDataSet/Table/distid</distributor_id>
+		<retailer>Retailer</retailer>
+	</vtiger_xretailer>
+</collections>
