@@ -1,0 +1,25 @@
+<collections>
+	<vtiger_xprodhierdocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>sap</sourceapplication>
+		<destapplication>sp</destapplication>
+		<documenttype>xProdHier</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xprodhierdocinfo>
+	<prkey>prodhiercode,levelname</prkey>
+	<vtiger_xprodhier repetitiveMapTag="/collections/documentcontent/st_xprodhier">
+		<prodhiername>/collections/documentcontent/st_xprodhier/prodhiername</prodhiername>
+		<prodhiercode>/collections/documentcontent/st_xprodhier/prodhiercode</prodhiercode>
+		<cf_xprodhier_parent>
+			<prodhiercode>/collections/documentcontent/st_xprodhier/parent</prodhiercode>
+		</cf_xprodhier_parent>
+		<cf_xprodhier_level>
+			<levelcode>/collections/documentcontent/st_xprodhier/level</levelcode>
+			<levelname>/collections/documentcontent/st_xprodhier/level</levelname>
+		</cf_xprodhier_level>
+		<cf_xprodhier_active>/collections/documentcontent/st_xprodhier/active</cf_xprodhier_active>
+		<cf_xprodhier_track_inventory>Yes</cf_xprodhier_track_inventory>
+	</vtiger_xprodhier>
+</collections>
