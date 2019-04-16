@@ -1,0 +1,24 @@
+<collections>
+	<vtiger_xorganisationhierdocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>sap</sourceapplication>
+		<destapplication>sp</destapplication>
+		<documenttype>xOrganisationHier</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xorganisationhierdocinfo>
+	<prkey>organisationhiercode,levelname</prkey>
+	<vtiger_xorganisationhier repetitiveMapTag="/collections/documentcontent/st_xorganisationhier">
+		<organisationhiername>/collections/documentcontent/st_xorganisationhier/organisationhiername</organisationhiername>
+		<organisationhiercode>/collections/documentcontent/st_xorganisationhier/organisationhiercode</organisationhiercode>
+		<cf_xorganisationhier_parent>
+			<organisationhiercode>/collections/documentcontent/st_xorganisationhier/parent</organisationhiercode>
+		</cf_xorganisationhier_parent>
+		<cf_xorganisationhier_level>
+			<levelcode>/collections/documentcontent/st_xorganisationhier/level</levelcode>
+			<levelname>/collections/documentcontent/st_xorganisationhier/level</levelname>
+		</cf_xorganisationhier_level>
+		<cf_xorganisationhier_active>1</cf_xorganisationhier_active>
+	</vtiger_xorganisationhier>
+</collections>
