@@ -1,0 +1,39 @@
+<collections>
+	<vtiger_xtaxmappingdocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>sap</sourceapplication>
+		<destapplication>sp</destapplication>
+		<documenttype>xTaxMapping</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xtaxmappingdocinfo>
+	<prkey>statename,productcode,prodhiercode,taxcode</prkey>
+	<vtiger_xtaxmapping repetitiveMapTag="/collections/documentcontent/st_xtaxmapping">
+		<cf_xtaxmapping_from_date>/collections/documentcontent/st_xtaxmapping/from_date</cf_xtaxmapping_from_date>
+		<cf_xtaxmapping_to_date>/collections/documentcontent/st_xtaxmapping/to_date</cf_xtaxmapping_to_date>
+		<statename>
+			<statename>India</statename>
+			<statecode>00</statecode>
+		</statename>
+		<hsncode>/collections/documentcontent/st_xtaxmapping/hsncode</hsncode>
+		<cf_xtaxmapping_product>
+			<productname>/collections/documentcontent/st_xtaxmapping/productcode</productname>
+			<productcode>/collections/documentcontent/st_xtaxmapping/productcode</productcode>
+		</cf_xtaxmapping_product>
+		<cf_xtaxmapping_product_hierachy>
+			<prodhiername>/collections/documentcontent/st_xtaxmapping/product_hierachy</prodhiername>
+			<prodhiercode>/collections/documentcontent/st_xtaxmapping/product_hierachy</prodhiercode>
+		</cf_xtaxmapping_product_hierachy>
+		<cf_xtaxmapping_sales_tax>
+			<taxcode>/collections/documentcontent/st_xtaxmapping/sales_tax</taxcode>
+			<taxdescription>/collections/documentcontent/st_xtaxmapping/sales_tax</taxdescription>
+		</cf_xtaxmapping_sales_tax>
+		<cf_xtaxmapping_purchase_tax>
+			<taxcode>/collections/documentcontent/st_xtaxmapping/purchase_tax</taxcode>
+			<taxdescription>/collections/documentcontent/st_xtaxmapping/purchase_tax</taxdescription>
+		</cf_xtaxmapping_purchase_tax>
+		<incremental_flag>/collections/documentcontent/st_xtaxmapping/incremental_flag</incremental_flag>
+		<cf_xtaxmapping_active>/collections/documentcontent/st_xtaxmapping/active</cf_xtaxmapping_active>
+	</vtiger_xtaxmapping>
+</collections>
