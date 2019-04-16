@@ -1,0 +1,39 @@
+<collections>
+	<vtiger_xdepotdocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>sap</sourceapplication>
+		<destapplication>sp</destapplication>
+		<documenttype>xDepot</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xdepotdocinfo>
+	<prkey>geohiercode,statecode</prkey>
+	<vtiger_xdepot repetitiveMapTag="/collections/documentcontent/st_xdepot">
+		<supplylocation>/collections/documentcontent/st_xdepot/supplylocation</supplylocation>
+		<depotcode>/collections/documentcontent/st_xdepot/depotcode</depotcode>
+		<cf_xdepot_location_address>/collections/documentcontent/st_xdepot/location_address</cf_xdepot_location_address>
+		<cf_xdepot_geographical_category>
+			<geohiername>/collections/documentcontent/st_xdepot/geohiercode</geohiername>
+			<geohiercode>/collections/documentcontent/st_xdepot/geohiercode</geohiercode>
+		</cf_xdepot_geographical_category>
+		<cf_xdepot_city_name>/collections/documentcontent/st_xdepot/city_name</cf_xdepot_city_name>
+		<cf_xdepot_state>
+			<statename>/collections/documentcontent/st_xdepot/state</statename>
+			<statecode>/collections/documentcontent/st_xdepot/state</statecode>
+		</cf_xdepot_state>
+		<cf_xdepot_postal_code>/collections/documentcontent/st_xdepot/pin_code</cf_xdepot_postal_code>
+		<cf_xdepot_depot_fax>/collections/documentcontent/st_xdepot/depot_fax</cf_xdepot_depot_fax>
+		<cf_xdepot_sales_organisation_code>
+			<organisationhiername>/collections/documentcontent/st_xdepot/salesorg_code</organisationhiername>
+			<organisationhiercode>/collections/documentcontent/st_xdepot/salesorg_code</organisationhiercode>
+		</cf_xdepot_sales_organisation_code>
+		<gstinno>/collections/documentcontent/st_xdepot/gstinno</gstinno>
+		<panno>/collections/documentcontent/st_xdepot/panno</panno>
+		<cf_xdepot_st_vat_tin/>
+		<cf_xdepot_cst_tin/>
+		<cf_xdepot_service_tax_reg_no/>
+		<cf_xdepot_status>/collections/documentcontent/st_xdepot/active</cf_xdepot_status>
+		<cf_xdepot_depot_type>/collections/documentcontent/st_xdepot/depot_type</cf_xdepot_depot_type>
+	</vtiger_xdepot>
+</collections>
