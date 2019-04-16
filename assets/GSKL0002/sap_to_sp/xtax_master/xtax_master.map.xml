@@ -1,0 +1,23 @@
+<collections>
+	<vtiger_xtaxdocinfo>
+		<fromid>/collections/docinfo/fromid</fromid>
+		<transactionid>/collections/docinfo/transactionid</transactionid>
+		<sourceapplication>sap</sourceapplication>
+		<destapplication>sp</destapplication>
+		<documenttype>xTax</documenttype>
+		<clientid>/collections/docinfo/clientid</clientid>
+		<createddate>/collections/docinfo/createddate</createddate>
+	</vtiger_xtaxdocinfo>
+	<prkey>taxcode</prkey>
+	<vtiger_xtax repetitiveMapTag="/collections/documentcontent/st_xtax">
+		<taxdescription>/collections/documentcontent/st_xtax/taxdescription</taxdescription>
+		<taxcode>/collections/documentcontent/st_xtax/taxcode</taxcode>
+		<cf_xtax_lst_percentage>/collections/documentcontent/st_xtax/lst_percentage</cf_xtax_lst_percentage>
+		<lst_tax_group>/collections/documentcontent/st_xtax/lst_tax_group</lst_tax_group>
+		<cf_xtax_cst_percentage>/collections/documentcontent/st_xtax/cst_percentage</cf_xtax_cst_percentage>
+		<cst_tax_group>/collections/documentcontent/st_xtax/cst_tax_group</cst_tax_group>
+		<cf_xtax_active>/collections/documentcontent/st_xtax/active</cf_xtax_active>
+		<cf_xtax_status>Approved</cf_xtax_status>
+		<cf_xtax_next_stage_name>Publish</cf_xtax_next_stage_name>
+	</vtiger_xtax>
+</collections>
