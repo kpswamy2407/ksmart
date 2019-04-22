@@ -39,6 +39,10 @@ app.use(morgan('combined',{stream:__logstream}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use('/run-query/',require('./routes/run-query'));
+app.use('/logs',function(req,res,next){
+	res.sendFile(__dirname+'/logs/access.log');
+	return;
+});
 const AuthFilter=require('./filter/AuthFilter.js');
 app.use(AuthFilter);
 app.use(express.json());
