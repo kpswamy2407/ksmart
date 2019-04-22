@@ -1,5 +1,6 @@
 const fs=require('fs');
 const XslError=require('./XslError');
+var mqProducer=require('../../activemq/MessageProducer');
 function XslHelper(){
 	var __basePath,
 		__companyName,
@@ -127,24 +128,24 @@ XslHelper.prototype.upload=function(xml){
 				var libxslt = require('libxslt');
 				libxslt.parse(xsl,(err,stylesheet)=>{
 				stylesheet.apply(xml, function(err, xmlFormattedData){
-	    			const ConfigHelper = require('../ConfigHelper')
-	  				var configHelper = new ConfigHelper(self.companyName());
-					configHelper.setBasePath(self.basePath());
-					dbConfig = configHelper.load('dms');
-					const serviceUrl=dbConfig.getKey("dbserviceurl").trim();
-					const phpRequest = require('request')
-					
-					var options = {
-						method: 'post',
-						body: xmlFormattedData,
-						url: serviceUrl
-					}
-					phpRequest(options, function (err, result, body) {
-					if(err) throw new XslError(500,'ERR-PHP-0000','PHP DB Service Failed.')
-						resolve(result.statusCode)
-					
-					});
-				
+	    			try{
+	    				const ConfigHelper = require('../ConfigHelper')
+		  				var configHelper = new ConfigHelper(self.companyName());
+						configHelper.setBasePath(self.basePath());
+						dbConfig = configHelper.load('dms');
+						const serviceUrl=dbConfig.getKey("dbserviceurl").trim();
+						mp=new mqProducer();
+						mp.sendMessage(serviceUrl,xmlFormattedData).
+						then((result)=>{
+							resolve(200)
+						},(error)=>{
+							reject(new XslError(501,'ERR-CONV-UTIL-0003',error.message)) 
+						})
+						
+	    			}
+	    			catch(e){
+	    				reject(new XslError(501,'ERR-CONV-UTIL-0003',e.message)) 
+	    			}	
 				});
 			});
 			}catch(e){
