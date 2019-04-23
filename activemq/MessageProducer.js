@@ -22,8 +22,7 @@ MessageProducer.prototype.sendMessage = function (url, message) {
 				var headers = {
 					'content-type': 'application/xml',
 					'url': url,
-					'content-length': message.length
-
+					'content-length': message.length,
 				};
 				stompClient.publish('/queue/' + process.env.ACTIVEMQ_DESTINATION, message, headers);
 				stompClient.disconnect();
