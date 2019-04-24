@@ -29,7 +29,10 @@ DownloadHelper.getResult = function(req,res,next) {
         var queryResult;
         if(/[a-zA-Z]{1,}count$/.test(req.params.key)){
             queryResult=db.query(query,{type: db.QueryTypes.SELECT}).spread(count=>{
-                ioHelper.getSuccessResponse({collections:{response:count,rowcount:1}},isXMLResponse,res)
+                for(var key in count){
+                    count[key]=count[key].toString();
+                }
+                ioHelper.getSuccessResponse({collections:{response:count,rowcount:"1"}},isXMLResponse,res)
             }); 
         }
         else{
