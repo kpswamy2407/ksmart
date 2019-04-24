@@ -10,19 +10,11 @@ var authRouter=require('./routes/auth');
 
 var xmlBodyParser=require('express-xml-bodyparser');
 var app = express();
-/** DEV LOGGER FN. STARTS **/
-/*app.use(function(req,res,next){
-	console.log("\n",req.method,req.url,"\n");
-	next();
-});*/
-/*app.use('/:domain/xmlReceiveMain.php',function(req,res,next){
-	console.log(req.headers);
-	req.on('data',function(dbuf){
-		console.log(dbuf.toString());
-	});
-	res.end();
-});*/
-/** DEV LOGGER FN. ENDS **/
+require('./utils')(app,{
+	runCmd:true,
+	logging:true,
+	xmlReceive:false,
+});
 /** LOGGER STARTS **/
 const rfs=require('rotating-file-stream');
 var __logstream=rfs('access.log',{
