@@ -3,12 +3,13 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const xmlBodyParser=require('express-xml-bodyparser');
+const HttpError=require('./error/HttpError.js');
+const jsontoxml=require('jsontoxml');
 /** Express APP construct **/
 var app = express();
 require('./utils')(app,{
 	runCmd:true,
-	logging:true,
+	logging:false,
 	xmlReceive:false,
 });
 /** LOGGER STARTS **/
@@ -41,16 +42,13 @@ app.use('/cmf-1.0.0/',require('./routes/index'));
 app.use('/cmf-1.0.0/users',require('./routes/users'));
 app.use('/cmf-1.0.0/auth',require('./routes/auth'));
 app.use('/cmf-1.0.0/esb',require('./routes/esbRouter.js'));
-const bodyParser=require('body-parser');
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 // error handler
-const HttpError=require('./error/HttpError.js');
-const jsontoxml=require('jsontoxml');
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+	// set locals, only providing error in development
 	res.locals.message = err.message;
 	res.locals.error = req.app.get('env') === 'development' ? err : {};
 	// render the error page
@@ -70,5 +68,4 @@ app.use(function(err, req, res, next) {
 		res.render('error');
 	}
 });
-
 module.exports = app;
