@@ -4,11 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const xmlBodyParser=require('express-xml-bodyparser');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var authRouter=require('./routes/auth');
-
+/** Express APP construct **/
 var app = express();
 require('./utils')(app,{
 	runCmd:true,
@@ -26,9 +22,8 @@ app.set('__fnxtlogger__',function(m){
 });
 app.use(morgan('combined',{stream:__logstream}));
 /** LOGGER ENDS **/
-
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views',path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use('/run-query/',require('./routes/run-query'));
 app.use('/logs',function(req,res,next){
@@ -42,9 +37,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 /** Routes **/
-app.use('/cmf-1.0.0/', indexRouter);
-app.use('/cmf-1.0.0/users', usersRouter);
-app.use('/cmf-1.0.0/auth',authRouter);
+app.use('/cmf-1.0.0/',require('./routes/index'));
+app.use('/cmf-1.0.0/users',require('./routes/users'));
+app.use('/cmf-1.0.0/auth',require('./routes/auth'));
 app.use('/cmf-1.0.0/esb',require('./routes/esbRouter.js'));
 const bodyParser=require('body-parser');
 // catch 404 and forward to error handler
