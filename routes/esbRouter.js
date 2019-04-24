@@ -66,6 +66,14 @@ router.post('/:domain/:service',function(req, res, next) {
 		xslh.companyName(req.params.domain);
 		xslh.migrationFolder(process.env.DOMAINS_XSLT);
 		xslh.service=req.params.service;
+		switch(xslh.service){
+			case 'st_otp_details':
+				xslh.isQueued=false;
+			break;
+			default:
+				xslh.isQueued=true;
+			break;
+		}
 		xslh.sourceDestName(req.query.origin,req.query.dest);
 		xslh.upload(input).then((responseCode)=>{
 			if(responseCode==200){

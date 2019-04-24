@@ -69,6 +69,7 @@ XslHelper.isDir=function(path){
 	}
 }
 XslHelper.prototype.service;
+XslHelper.prototype.isQueued=true;
 XslHelper.prototype.serviceName=function(){
 	if(this.service==undefined || this.service=='')
 		throw new XslError(500,'ERR-XXX-xxxx','Service has NOT been set.');
@@ -134,14 +135,34 @@ XslHelper.prototype.upload=function(xml){
 						configHelper.setBasePath(self.basePath());
 						dbConfig = configHelper.load('dms');
 						const serviceUrl=dbConfig.getKey("dbserviceurl").trim();
+						if(self.isQueued==true){
 						mp=new mqProducer();
 						mp.sendMessage(serviceUrl,xmlFormattedData).
 						then((result)=>{
 							resolve(200)
 						},(error)=>{
-							reject(new XslError(501,'ERR-CONV-UTIL-0003',error.message)) 
+							reject(new XslError(501,'ERR-CONV-UTIL-0003',error.message));
 						})
-						
+						}else{
+							const phpRequest = require('request');
+							var options = {
+								method: 'POST',
+								body: xmlFormattedData,
+								url: serviceUrl,
+								headers: {
+									"Content-Type": "application/xml"
+								}
+							};
+							phpRequest(options, function (err, result, body) {
+								if(err){
+									reject(new XslError(500,'ERR-CONV-UTIL-0003',err.message));
+								}else if(result.statusCode==200){
+									resolve(200);
+								}else{
+									reject(new XslError(500,'ERR-CONV-UTIL-0003','PHP DB service Failed'));
+								}
+							});
+						}
 	    			}
 	    			catch(e){
 	    				reject(new XslError(501,'ERR-CONV-UTIL-0003',e.message)) 
