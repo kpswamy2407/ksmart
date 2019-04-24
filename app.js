@@ -1,14 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var morgan = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const morgan = require('morgan');
+const xmlBodyParser=require('express-xml-bodyparser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter=require('./routes/auth');
 
-var xmlBodyParser=require('express-xml-bodyparser');
 var app = express();
 require('./utils')(app,{
 	runCmd:true,
