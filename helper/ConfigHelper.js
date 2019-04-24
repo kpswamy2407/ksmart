@@ -118,7 +118,6 @@ ConfigHelper.prototype.getDb=function(){
 ConfigHelper.prototype.getXSLTFile=function(source,dest,entity){
 	return new Promise((resolve,reject)=>{
 		var destPath=this.getBasePath()+"/"+this.companyName()+"/"+this.getMigrationBasePath()+"/"+source+"_to_"+dest;
-		console.log(destPath);
 		if(!this.isXSLTPathExits(destPath)){
 			fs.mkdir(destPath, { recursive: true }, (err) => {
   				if (err) throw new Error("Error while creating folder");
