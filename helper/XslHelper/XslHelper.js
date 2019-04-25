@@ -136,13 +136,13 @@ XslHelper.prototype.upload=function(xml){
 						dbConfig = configHelper.load('dms');
 						const serviceUrl=dbConfig.getKey("dbserviceurl").trim();
 						if(self.isQueued==true){
-						mp=new mqProducer();
-						mp.sendMessage(serviceUrl,xmlFormattedData).
-						then((result)=>{
-							resolve(200)
-						},(error)=>{
-							reject(new XslError(501,'ERR-CONV-UTIL-0003',error.message));
-						})
+							mp=new mqProducer();
+							mp.sendMessage(serviceUrl,xmlFormattedData).
+							then((result)=>{
+								resolve(200)
+							},(error)=>{
+								reject(new XslError(501,'ERR-CONV-UTIL-0003',error.message));
+							})
 						}else{
 							const phpRequest = require('request');
 							var options = {
