@@ -19,7 +19,7 @@ var __logstream=rfs('access.log',{
 	path:path.join(__dirname,'logs'),
 });
 app.set('__fnxtlogger__',function(m){
-	__logstream.write.bind(__logstream,m+"\n")();
+	__logstream.write.bind(__logstream,m+"\n\n")();
 });
 app.use(morgan('combined',{stream:__logstream}));
 /** LOGGER ENDS **/
