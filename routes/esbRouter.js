@@ -1,13 +1,14 @@
 const express=require('express');
-var router=express.Router();
+const router=express.Router();
 const bodyParser=require('body-parser');
-var xmlBodyParser=require('express-xml-bodyparser');
+const xmlBodyParser=require('express-xml-bodyparser');
 const HttpError=require('./../error/HttpError.js');
 const DownloadHelper=require('../helper/downloadHelper');
-require('dotenv').config();
 const jsontoxml=require('jsontoxml');
 const xDistDeviceRegister=require('./../helper/xDistDeviceRegister');
-router.post('/:domain/xdistdeviceregistration',xmlBodyParser({
+const utils=require('./../utils');
+
+router.post('/:domain/xdistdeviceregistration',utils.hasPayload(),xmlBodyParser({
 	trim: false, explicitArray: false,
 }),function(req, res, next) {
 	var accept=[
@@ -37,7 +38,7 @@ router.post('/:domain/xdistdeviceregistration',xmlBodyParser({
 	}
 });
 router.get('/:domain/mobile/:key',DownloadHelper.getResult);
-router.post('/:domain/:service',function(req, res, next) {
+router.post('/:domain/:service',utils.hasPayload(),function(req, res, next) {
 	var accept=[
 		'application/xml',
 		'text/xml',
@@ -94,7 +95,7 @@ router.post('/:domain/:service',function(req, res, next) {
 		throw new HttpError(500,'ERR-xx-xxxx',e.message);
 	}
 });
-router.post('/:domain/:service/test',function(req, res, next) {
+router.post('/:domain/:service/test',utils.hasPayload(),function(req, res, next) {
 	var accept=[
 		'application/xml',
 		'text/xml',
