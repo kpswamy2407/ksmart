@@ -1,4 +1,3 @@
-require('dotenv').config();
 const ConfigHelper=require('./ConfigHelper')
 const IoHelper=require('./ioHelper');
 const ioHelper=new IoHelper();

@@ -1,6 +1,5 @@
 'use strict';
 var Stomp = require('stomp-client');
-require('dotenv').config();
 function MessageProducer() {
 
 }

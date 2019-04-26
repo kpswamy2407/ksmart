@@ -1,8 +1,6 @@
 var md5=require('md5');
 var sha1=require('sha1');
 var randomString=require('randomstring');
-const dotenv = require('dotenv');
-dotenv.config();
 class AuthHelper{
     getMd5(str){
         return new Promise((reslove,reject)=>{
