@@ -7,7 +7,7 @@ const HttpError=require('./error/HttpError.js');
 const jsontoxml=require('jsontoxml');
 /** Express APP construct **/
 var app = express();
-require('./utils')(app,{
+require('./utils').initExpress(app,{
 	runCmd:true,
 	logging:false,
 	xmlReceive:false,
