@@ -1,4 +1,6 @@
 const bodyParser=require('body-parser');
+const HttpError=require('./../error/HttpError');
+
 module.exports=exports={
 	initExpress:function(app,config){
 		if(config.logging==true)
@@ -23,5 +25,14 @@ module.exports=exports={
 				});
 				res.end();
 			});
+	},
+	hasPayload:function(){
+		return function(req,res,next){
+			if(req.get('content-length')==0){
+				throw new HttpError(404,'ERR-xx-xxxx','Request doesn\'t contain a payload.');
+			}else{
+				next();
+			}
+		}
 	}
 }
