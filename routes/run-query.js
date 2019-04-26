@@ -1,14 +1,13 @@
-var express=require('express');
-var router=express.Router();
-var bodyParser=require('body-parser')
+const express=require('express');
+const router=express.Router();
+const bodyParser=require('body-parser');
 const HttpError= require('../error/HttpError');
-require('dotenv').config();
-router.post('/:company',bodyParser.text(),function(req, res, next) {
+const utils=require('./../utils');
+
+router.post('/:company',utils.hasPayload(),bodyParser.text(),function(req, res, next) {
 	const ConfigHelper=require('./../helper/ConfigHelper');
 	const Sequelize=require('sequelize');
 	var sql,company,dms;
-	if(req.get('content-length')==0)
-		throw new HttpError(400,'FN-XX-xxxx','Payload is empty.');
 	if(req.get('content-type')!='text/plain')
 		throw new HttpError(400,'FN-XX-xxxx','Invalid payload Content-type.');
 	sql=req.body;
