@@ -21,7 +21,7 @@ var __logstream=rfs('access.log',{
 app.set('__fnxtlogger__',function(m){
 	__logstream.write.bind(__logstream,m+"\n\n")();
 });
-app.use(morgan('combined',{stream:__logstream}));
+app.use(morgan(":date[web] :method :remote-addr :url :req[content-length] :status \n",{stream:__logstream}));
 /** LOGGER ENDS **/
 // view engine setup
 app.set('views',path.join(__dirname, 'views'));
