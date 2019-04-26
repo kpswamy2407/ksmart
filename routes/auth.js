@@ -1,5 +1,5 @@
-var express=require("express");
-var routes=express.Router();
+const express=require("express");
+const routes=express.Router();
 const Sequelize=require('sequelize');
 const AuthHelper=require('../helper/authHelper');
 const authHelper=new AuthHelper();
@@ -7,7 +7,7 @@ const IoHelper=require('../helper/ioHelper');
 const RedisHelper=require('../helper/redisHelper');
 const ioHelper=new IoHelper();
 const redisHelper=new RedisHelper();
-require('dotenv').config();
+
 const HttpError=require('../error/HttpError');
 routes.get('/:domain/Authentication', function (req, res, next) {
 	try {
