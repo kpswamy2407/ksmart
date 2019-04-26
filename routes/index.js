@@ -1,8 +1,9 @@
 const express = require('express');
-var router = express.Router();
-require('dotenv').config();
+const router = express.Router();
 const bodyParser=require('body-parser');
 const HttpError=require('./../error/HttpError.js');
+const utils=require('./../utils');
+
 router.get('/:config/:domain/management/configuration',function(req,res,next){
 	const ConfigHelper=require('./../helper/ConfigHelper.js');
 	var config=new ConfigHelper(req.params.domain);
@@ -15,7 +16,7 @@ router.get('/:config/:domain/management/configuration',function(req,res,next){
 		throw new HttpError(500,'ERR-XX-XXXX','Unable to load domain configuration.');
 	}
 });
-router.post('/:config/:domain/management/configuration',bodyParser.raw({
+router.post('/:config/:domain/management/configuration',utils.hasPayload(),bodyParser.raw({
 	type:['application/xml','text/xml'],
 	limit:'512mb'
 }),function(req,res,next){
@@ -31,7 +32,7 @@ router.post('/:config/:domain/management/configuration',bodyParser.raw({
 		throw new HttpError(500,'ERR-XX-XXXX',e.message);
 	}
 });
-router.post('/migration/:domain/management/xpathreference',bodyParser.raw({
+router.post('/migration/:domain/management/xpathreference',utils.hasPayload(),bodyParser.raw({
 	type:['application/xml','text/xml'],
 	limit:'512mb'
 }),function(req,res,next){
