@@ -29,7 +29,7 @@ module.exports=exports={
 	hasPayload:function(){
 		return function(req,res,next){
 			if(req.get('content-length')==0){
-				throw new HttpError(404,'ERR-xx-xxxx','Request doesn\'t contain a payload.');
+				throw new HttpError(404,'ERR-xx-xxxx','Request body is empty.');
 			}else{
 				next();
 			}
