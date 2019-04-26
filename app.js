@@ -1,3 +1,4 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -5,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const HttpError=require('./error/HttpError.js');
 const jsontoxml=require('jsontoxml');
+
 /** Express APP construct **/
 var app = express();
 require('./utils').initExpress(app,{
