@@ -23,6 +23,13 @@ DownloadHelper.getResult = function(req,res,next) {
                 query=query.replace(queryMetaKeys[i],req.query[qkey]);
             }
         }
+        var l,o;
+        if((l=req.query.limit)!==undefined){
+            query+=' LIMIT '+l;
+            if((o=req.query.offset)!==undefined){
+                query+=' OFFSET '+o;
+            }
+        }
         configHelper.setLoggerFn(req.app.get('__fnxtlogger__'));
         const db=configHelper.getDb();
         var queryResult;
