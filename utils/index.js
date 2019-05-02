@@ -1,7 +1,9 @@
 const bodyParser=require('body-parser');
 const HttpError=require('./../error/HttpError');
+const FnxtLog=require('./FnxtLog');
 
 module.exports=exports={
+	FnxtLog: FnxtLog,
 	initExpress:function(app,config){
 		if(config.logging==true)
 			app.use(function(req,res,next){

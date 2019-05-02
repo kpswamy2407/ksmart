@@ -15,8 +15,7 @@ require('./utils').initExpress(app,{
 	xmlReceive:false,
 });
 /** LOGGER STARTS **/
-const rfs=require('rotating-file-stream');
-var __logstream=rfs('access.log',{
+var __logstream=require('./utils').FnxtLog('access.log',{
 	interval:'1d',
 	path:path.join(__dirname,'logs'),
 });
