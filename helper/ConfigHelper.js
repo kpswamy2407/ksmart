@@ -113,6 +113,10 @@ ConfigHelper.prototype.getDb=function(){
 			]
 		},
 		logging:this.getLoggerFn(),
+		dialectOptions:{
+            dateStrings: true,
+            typeCast: true
+		}
 	});
 }
 ConfigHelper.prototype.getXSLTFile=function(source,dest,entity){
