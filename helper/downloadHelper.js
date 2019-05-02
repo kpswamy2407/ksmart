@@ -22,6 +22,26 @@ DownloadHelper.NullToEmptyString=function(collc) {
     }
     return collc;
 }
+DownloadHelper.NumberToString=function(collc) {
+    for(var i in collc){
+        switch(typeof collc[i]){
+            case 'number':
+                collc[i]=collc[i].toString();
+            break;
+            case 'object':
+                if(collc[i]===null){
+                    collc[i]=collc[i];
+                }else{
+                    collc[i]=DownloadHelper.NumberToString(collc[i]);
+                }
+            break;
+            default:
+                collc[i]=collc[i];
+            break;
+        }
+    }
+    return collc;
+}
 DownloadHelper.getResult = function(req,res,next) {
     var configHelper=new ConfigHelper(req.params.domain);
     configHelper.setBasePath(process.env.DOMAINS_XML_PATH);
@@ -61,6 +81,7 @@ DownloadHelper.getResult = function(req,res,next) {
         else{
             queryResult=db.query(query,{type: db.QueryTypes.SELECT}).then(result=>{
                 result=DownloadHelper.NullToEmptyString(result);
+                result=DownloadHelper.NumberToString(result);
                 ioHelper.getSuccessResponse({collections:{response:result,rowcount:result.length}},isXMLResponse,res)
             });
         }
