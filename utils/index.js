@@ -8,6 +8,12 @@ const log_dir=path.join(__dirname,'..','logs');
 module.exports=exports={
 	FnxtLog: FnxtLog,
 	initExpress:function(app,config){
+		var loggr=FnxtLog('access.log',{
+			interval:'1d',
+			path:log_dir,
+		});
+		app.use(morgan(":date[web] :method :remote-addr :url :req[content-length] :status \n",{stream:loggr}));
+		app.set('loggr',loggr);
 		if(config.logging==true)
 			app.use(function(req,res,next){
 				console.log("\n",req.method,req.url,"\n");
@@ -30,16 +36,6 @@ module.exports=exports={
 				});
 				res.end();
 			});
-		/** LOGGER STARTS **/
-		var __logstream=FnxtLog('access.log',{
-			interval:'1d',
-			path:log_dir,
-		});
-		app.set('__fnxtlogger__',function(m){
-			__logstream.write.bind(__logstream,m+"\n\n")();
-		});
-		app.use(morgan(":date[web] :method :remote-addr :url :req[content-length] :status \n",{stream:__logstream}));
-		/** LOGGER ENDS **/
 	},
 	hasPayload:function(){
 		return function(req,res,next){
