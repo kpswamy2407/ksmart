@@ -1,6 +1,9 @@
 const bodyParser=require('body-parser');
+const morgan = require('morgan');
 const HttpError=require('./../error/HttpError');
 const FnxtLog=require('./FnxtLog');
+const path=require('path');
+const log_dir=path.join(__dirname,'..','logs');
 
 module.exports=exports={
 	FnxtLog: FnxtLog,
@@ -27,6 +30,16 @@ module.exports=exports={
 				});
 				res.end();
 			});
+		/** LOGGER STARTS **/
+		var __logstream=FnxtLog('access.log',{
+			interval:'1d',
+			path:log_dir,
+		});
+		app.set('__fnxtlogger__',function(m){
+			__logstream.write.bind(__logstream,m+"\n\n")();
+		});
+		app.use(morgan(":date[web] :method :remote-addr :url :req[content-length] :status \n",{stream:__logstream}));
+		/** LOGGER ENDS **/
 	},
 	hasPayload:function(){
 		return function(req,res,next){
