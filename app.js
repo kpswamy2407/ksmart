@@ -10,15 +10,13 @@ const jsontoxml=require('jsontoxml');
 var app = express();
 require('./utils').initExpress(app,{
 	runCmd:true,
-	logging:false,
-	xmlReceive:false,
 });
 // view engine setup
 app.set('views',path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use('/run-query/',require('./routes/run-query'));
 app.use('/logs',function(req,res,next){
-	res.sendFile(__dirname+'/logs/access.log');
+	res.sendFile(path.join(__dirname,'logs','access.log'));
 	return;
 });
 const AuthFilter=require('./filter/AuthFilter.js');
