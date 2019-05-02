@@ -67,7 +67,7 @@ DownloadHelper.getResult = function(req,res,next) {
                 query+=' OFFSET '+o;
             }
         }
-        configHelper.setLoggerFn(req.app.get('__fnxtlogger__'));
+        configHelper.logger(req.app.get('loggr'));
         const db=configHelper.getDb();
         var queryResult;
         if(/[a-zA-Z]{1,}count$/.test(req.params.key)){

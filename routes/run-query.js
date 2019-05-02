@@ -14,7 +14,7 @@ router.post('/:company',utils.hasPayload(),bodyParser.text(),function(req, res, 
 	company=req.params.company;
 	var ch=new ConfigHelper(company);
 	ch.setBasePath(process.env.DOMAINS_XML_PATH);
-	ch.setLoggerFn(req.app.get('__fnxtlogger__'));
+	ch.logger(req.app.get('loggr'));
 	const sequelize=ch.getDb();
 	sequelize.query(sql).then(result => {
 		res.jsonp(result);

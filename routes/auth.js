@@ -35,7 +35,7 @@ routes.post('/:domain/Authentication', (req, res, next) => {
 	var configHelper=new ConfigHelper(req.params.domain);
 	try {
 		configHelper.setBasePath(process.env.DOMAINS_XML_PATH);
-		configHelper.setLoggerFn(req.app.get('__fnxtlogger__'));
+		configHelper.logger(req.app.get('loggr'));
 		const sequelize=configHelper.getDb();
 		var authToken=req.query.auth_token;
 		var domain=req.params.domain;
