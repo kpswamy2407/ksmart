@@ -3,7 +3,6 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
 const HttpError=require('./error/HttpError.js');
 const jsontoxml=require('jsontoxml');
 
@@ -14,16 +13,6 @@ require('./utils').initExpress(app,{
 	logging:false,
 	xmlReceive:false,
 });
-/** LOGGER STARTS **/
-var __logstream=require('./utils').FnxtLog('access.log',{
-	interval:'1d',
-	path:path.join(__dirname,'logs'),
-});
-app.set('__fnxtlogger__',function(m){
-	__logstream.write.bind(__logstream,m+"\n\n")();
-});
-app.use(morgan(":date[web] :method :remote-addr :url :req[content-length] :status \n",{stream:__logstream}));
-/** LOGGER ENDS **/
 // view engine setup
 app.set('views',path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
