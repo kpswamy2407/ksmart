@@ -5,6 +5,23 @@ const HttpError=require('./../error/HttpError.js');
 function DownloadHelper(){
     
 }
+DownloadHelper.NullToEmptyString=function(collc) {
+    for(var i in collc){
+        switch(typeof collc[i]){
+            case 'object':
+                if(collc[i]===null){
+                    collc[i]="";
+                }else{
+                    collc[i]=DownloadHelper.NullToEmptyString(collc[i]);
+                }
+            break;
+            default:
+                collc[i]=(collc[i]===null)?"":collc[i];     
+            break;
+        }       
+    }
+    return collc;
+}
 DownloadHelper.getResult = function(req,res,next) {
     var configHelper=new ConfigHelper(req.params.domain);
     configHelper.setBasePath(process.env.DOMAINS_XML_PATH);
@@ -43,6 +60,7 @@ DownloadHelper.getResult = function(req,res,next) {
         }
         else{
             queryResult=db.query(query,{type: db.QueryTypes.SELECT}).then(result=>{
+                result=DownloadHelper.NullToEmptyString(result);
                 ioHelper.getSuccessResponse({collections:{response:result,rowcount:result.length}},isXMLResponse,res)
             });
         }
