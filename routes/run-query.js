@@ -32,6 +32,10 @@ router.post('/:company',utils.hasPayload(),bodyParser.text(),function(req, res, 
 			}
 		},
 		logging:req.app.get('__fnxtlogger__'),
+		dialectOptions:{
+            dateStrings: true,
+            typeCast: true
+		}
 	});
 	sequelize.query(sql).then(result => {
 		res.jsonp(result);

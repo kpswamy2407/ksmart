@@ -53,6 +53,10 @@ routes.post('/:domain/Authentication', (req, res, next) => {
 				}
 			},
 			logging: req.app.get('__fnxtlogger__'),
+			dialectOptions:{
+	            dateStrings: true,
+	            typeCast: true
+			}
 		});
 		var authToken=req.query.auth_token;
 		var domain=req.params.domain;
