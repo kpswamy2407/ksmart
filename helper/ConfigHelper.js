@@ -2,19 +2,17 @@ const fs=require('fs');
 function ConfigHelper(company){
 	var __path;
 	var __migrationPath;
-	var __loggerfn;
-	this.setLoggerFn=function(fn){
-		if(fn==undefined){
-			throw new Error("Invalid argument");
+	var __logger;
+	this.logger=function(loggr){
+		if(loggr==undefined){
+			if(__logger==undefined)
+				throw new Error("Logger instance has NOT been set.");
+			return __logger;
 		}
-		else __loggerfn=fn;
+		else{
+			__logger=loggr
+		}
 		return this;
-	}
-	this.getLoggerFn=function(){
-		if(__loggerfn==undefined){
-			throw new Error("Logger function has NOT been set.");
-		}
-		return __loggerfn;
 	}
 	this.setBasePath=function(p){
 		try{
@@ -94,6 +92,7 @@ ConfigHelper.prototype.loadDms=function(configItem){
 ConfigHelper.prototype.getDb=function(){
 	const Sequelize=require('sequelize');
 	var dms=this.loadDms();
+	const loggr=this.logger();
 	return new Sequelize(dms.getKey('centralmastermysqldatabase'),null,null,{
 		dialect:'mysql',
 		replication:{
@@ -112,7 +111,7 @@ ConfigHelper.prototype.getDb=function(){
 				}
 			]
 		},
-		logging:this.getLoggerFn(),
+		logging:loggr.log.bind(loggr),
 		dialectOptions:{
             dateStrings: true,
             typeCast: true
