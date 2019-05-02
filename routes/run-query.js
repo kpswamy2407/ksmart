@@ -14,29 +14,7 @@ router.post('/:company',utils.hasPayload(),bodyParser.text(),function(req, res, 
 	company=req.params.company;
 	var ch=new ConfigHelper(company);
 	ch.setBasePath(process.env.DOMAINS_XML_PATH);
-	dms=ch.loadDms();
-	const sequelize = new Sequelize(dms.getKey("centralmastermysqldatabase"), null, null, {
-		dialect: 'mysql',
-		replication: {
-			write: {
-				host: dms.getKey("centralmastermysqlhost"),
-				username: dms.getKey("centralmastermysqluser"),
-				password: dms.getKey("centralmastermysqlpassword"),
-				port: dms.getKey("centralmastermysqlport")
-			},
-			read: {
-				host: dms.getKey("centralslavemysqlhost"),
-				username: dms.getKey("centralmastermysqluser"),
-				password: dms.getKey("centralmastermysqlpassword"),
-				port: dms.getKey("centralslavemysqlport")
-			}
-		},
-		logging:req.app.get('__fnxtlogger__'),
-		dialectOptions:{
-            dateStrings: true,
-            typeCast: true
-		}
-	});
+	const sequelize=ch.getDb();
 	sequelize.query(sql).then(result => {
 		res.jsonp(result);
 	}).catch((er)=>{

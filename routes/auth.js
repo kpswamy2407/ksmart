@@ -35,29 +35,7 @@ routes.post('/:domain/Authentication', (req, res, next) => {
 	var configHelper=new ConfigHelper(req.params.domain);
 	try {
 		configHelper.setBasePath(process.env.DOMAINS_XML_PATH);
-		dbConfig=configHelper.load('dms');
-		const sequelize=new Sequelize(dbConfig.getKey("centralmastermysqldatabase"), null, null, {
-			dialect: 'mysql',
-			replication: {
-				write: {
-					host: dbConfig.getKey("centralmastermysqlhost"),
-					username: dbConfig.getKey("centralmastermysqluser"),
-					password: dbConfig.getKey("centralmastermysqlpassword"),
-					port: dbConfig.getKey("centralmastermysqlport")
-				},
-				read: {
-					host: dbConfig.getKey("centralslavemysqlhost"),
-					username: dbConfig.getKey("centralmastermysqluser"),
-					password: dbConfig.getKey("centralmastermysqlpassword"),
-					port: dbConfig.getKey("centralslavemysqlport")
-				}
-			},
-			logging: req.app.get('__fnxtlogger__'),
-			dialectOptions:{
-	            dateStrings: true,
-	            typeCast: true
-			}
-		});
+		const sequelize=configHelper.getDb();
 		var authToken=req.query.auth_token;
 		var domain=req.params.domain;
 		var isXMLResponse=(req.query.format == 'extjson') ? false : true;
