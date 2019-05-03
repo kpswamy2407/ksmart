@@ -2,13 +2,13 @@ const express=require("express");
 const routes=express.Router();
 const Sequelize=require('sequelize');
 const AuthHelper=require('../helper/authHelper');
-const authHelper=new AuthHelper();
 const IoHelper=require('../helper/ioHelper');
 const RedisHelper=require('../helper/redisHelper');
+const HttpError=require('../error/HttpError');
+const authHelper=new AuthHelper();
 const ioHelper=new IoHelper();
 const redisHelper=new RedisHelper();
 
-const HttpError=require('../error/HttpError');
 routes.get('/:domain/Authentication', function (req, res, next) {
 	try {
 		authHelper.getMd5(authHelper.getRandomString()).then(authToken => {
