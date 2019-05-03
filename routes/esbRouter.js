@@ -17,11 +17,12 @@ router.post('/:domain/xdistdeviceregistration',utils.hasPayload(),xmlBodyParser(
 		'application/json',
 		'application/json; charset=UTF-8',
 	];
+	const loggr=req.app.get('loggr');
 	if( !accept.includes(req.get('Content-Type')) )
 		throw new HttpError(404,'ERR-xx-xxxx','Invalid Content-Type request header.');
 	var xddr=new xDistDeviceRegister(req.params.domain,req.body);
 	try{
-		xddr.logger(req.app.get('loggr'));
+		xddr.logger(loggr);
 		xddr.setBasePath(process.env.DOMAINS_XML_PATH);
 		xddr.register().then((count)=>{
 			res.status(200).json({
@@ -29,12 +30,14 @@ router.post('/:domain/xdistdeviceregistration',utils.hasPayload(),xmlBodyParser(
 					Count: count,
 				}
 			});
-		}).catch(e=>{
-			next(new HttpError(500,'ERR-xx-xxxx',e.message));
+		}).catch(err=>{
+			loggr.log(err.message);
+			next(new HttpError(500,'ERR-xx-xxxx',err.message));
 		});
 	}
-	catch(e){
-		throw new HttpError(500,'ERR-xx-xxxx',e.message);
+	catch(err){
+		loggr.log(err.message);
+		throw new HttpError(500,'ERR-xx-xxxx',err.message);
 	}
 });
 router.get('/:domain/mobile/:key',DownloadHelper.getResult);
@@ -45,6 +48,7 @@ router.post('/:domain/:service',utils.hasPayload(),function(req, res, next) {
 		'application/json',
 		'application/json; charset=UTF-8',
 	];
+	const loggr=req.app.get('loggr');
 	if( !accept.includes(req.get('Content-Type')) )
 		throw new HttpError(404,'ERR-xx-xxxx','Invalid Content-Type request header.');
 	if(['application/json','application/json; charset=UTF-8'].includes(req.get('Content-Type'))){
@@ -87,12 +91,14 @@ router.post('/:domain/:service',utils.hasPayload(),function(req, res, next) {
 			else{
 				next(new HttpError(responseCode,'ERR-xx-xxxx',"invalid input data"))
 			}
-		}).catch(e=>{
-			next(new HttpError(500,'ERR-xx-xxxx',e.message));
+		}).catch(err=>{
+			loggr.log(err.message);
+			next(new HttpError(500,'ERR-xx-xxxx',err.message));
 		});
 	}
-	catch(e){
-		throw new HttpError(500,'ERR-xx-xxxx',e.message);
+	catch(err){
+		loggr.log(err.message);
+		throw new HttpError(500,'ERR-xx-xxxx',err.message);
 	}
 });
 router.post('/:domain/:service/test',utils.hasPayload(),function(req, res, next) {
@@ -101,12 +107,12 @@ router.post('/:domain/:service/test',utils.hasPayload(),function(req, res, next)
 		'text/xml',
 		'application/json',
 	];
+	const loggr=req.app.get('loggr');
 	if( !accept.includes(req.get('Content-Type')) )
 		throw new HttpError(404,'ERR-xx-xxxx','Invalid Content-Type request header.');
 	if(req.get('Content-Type')=='application/json'){
 		var input=req.body;
-		input=jsontoxml(input);
-		
+		input=jsontoxml(input);		
 	}
 	else{
 		var input=req.body
@@ -127,12 +133,14 @@ router.post('/:domain/:service/test',utils.hasPayload(),function(req, res, next)
 		xslh.sourceDestName(req.query.origin,req.query.dest);
 		xslh.uploadTest(input).then((response)=>{
 			res.status(200).json(response);
-		}).catch(e=>{
-			next(new HttpError(500,'ERR-xx-xxxx',e.message));
+		}).catch(err=>{
+			loggr.log(err.message);
+			next(new HttpError(500,'ERR-xx-xxxx',err.message));
 		});
 	}
-	catch(e){
-		throw new HttpError(500,'ERR-xx-xxxx',e.message);
+	catch(err){
+		loggr.log(err.message);
+		throw new HttpError(500,'ERR-xx-xxxx',err.message);
 	}
 });
 module.exports = router;
