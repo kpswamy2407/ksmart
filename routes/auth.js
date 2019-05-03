@@ -10,6 +10,7 @@ const ioHelper=new IoHelper();
 const redisHelper=new RedisHelper();
 
 routes.get('/:domain/Authentication', function (req, res, next) {
+	const loggr=req.app.get('loggr');
 	try {
 		authHelper.getMd5(authHelper.getRandomString()).then(authToken => {
 			authHelper.getMd5(authHelper.getRandomString()).then(salt => {
@@ -27,15 +28,17 @@ routes.get('/:domain/Authentication', function (req, res, next) {
 			});
 		});
 	} catch (err) {
+		loggr.log(err.message);
 		ioHelper.getErrorResponse(err, true, res);
 	}
 });
 routes.post('/:domain/Authentication', (req, res, next) => {
-	const ConfigHelper=require('../helper/ConfigHelper')
+	const ConfigHelper=require('../helper/ConfigHelper');
+	const loggr=req.app.get('loggr');
 	var configHelper=new ConfigHelper(req.params.domain);
 	try {
 		configHelper.setBasePath(process.env.DOMAINS_XML_PATH);
-		configHelper.logger(req.app.get('loggr'));
+		configHelper.logger(loggr);
 		const sequelize=configHelper.getDb();
 		var authToken=req.query.auth_token;
 		var domain=req.params.domain;
@@ -84,9 +87,10 @@ routes.post('/:domain/Authentication', (req, res, next) => {
 									});
 								}).catch(next);
 							});
-						}).catch((er) => {
-							if (er instanceof HttpError) next(er);
-							else next(new HttpError(500, "ERR-XX-xxxx", er.message));
+						}).catch((err) => {
+							loggr.log(err.message);
+							if (err instanceof HttpError) next(err);
+							else next(new HttpError(500, "ERR-XX-xxxx", err.message));
 						});
 					break;
 					case 'distributorprofile':
@@ -169,6 +173,7 @@ routes.post('/:domain/Authentication', (req, res, next) => {
 			break;
 		}
 	} catch (err) {
+		loggr.log(err.message);
 		throw new HttpError(400, 'ERR-AU-XXXX',err.message);
 	} finally {
 
