@@ -44,11 +44,14 @@ DownloadHelper.NumberToString=function(collc) {
 }
 DownloadHelper.getResult = function(req,res,next) {
     var configHelper=new ConfigHelper(req.params.domain);
+    const loggr=req.app.get('loggr');
     configHelper.setBasePath(process.env.DOMAINS_XML_PATH);
+    configHelper.logger(loggr);
     downloadConfig=configHelper.load('mobile');
     try{
         var query=downloadConfig.getKey(req.params.key);   
     }catch(e){
+        loggr.log(e.message);
         throw new HttpError(404,'FN-XX-xxxx','Service "'+req.params.key+'" is not available.');
     }
     try{
@@ -67,7 +70,6 @@ DownloadHelper.getResult = function(req,res,next) {
                 query+=' OFFSET '+o;
             }
         }
-        configHelper.logger(req.app.get('loggr'));
         const db=configHelper.getDb();
         var queryResult;
         if(/[a-zA-Z]{1,}count$/.test(req.params.key)){
@@ -85,13 +87,15 @@ DownloadHelper.getResult = function(req,res,next) {
                 ioHelper.getSuccessResponse({collections:{response:result,rowcount:result.length}},isXMLResponse,res)
             });
         }
-        queryResult.catch(()=>{
+        queryResult.catch((err)=>{
+            loggr.log(err.message);
             next(new HttpError(500,'ERR-CON-0021','Unknown error occured'));
         }).finally(()=>{
             db.close();
         });
     }
     catch(err){
+        loggr.log(err.message);
         throw new HttpError(500,'FN-XX-xxxx',err.message);
     }
 };
