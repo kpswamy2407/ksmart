@@ -26,8 +26,8 @@ routes.get('/:domain/Authentication', function (req, res, next) {
 				}, isXMLResponse, res);
 			});
 		});
-	} catch (error) {
-		ioHelper.getErrorResponse(error, true, res);
+	} catch (err) {
+		ioHelper.getErrorResponse(err, true, res);
 	}
 });
 routes.post('/:domain/Authentication', (req, res, next) => {
@@ -168,8 +168,8 @@ routes.post('/:domain/Authentication', (req, res, next) => {
 				throw new HttpError(400, 'ERR-AU-XXXX', 'Invalid input format');
 			break;
 		}
-	} catch (error) {
-		throw new HttpError(400, 'ERR-AU-XXXX', error.message);
+	} catch (err) {
+		throw new HttpError(400, 'ERR-AU-XXXX',err.message);
 	} finally {
 
 	}
