@@ -82,9 +82,10 @@ DownloadHelper.getResult = function(req,res,next) {
         }
         else{
             queryResult=db.query(query,{type: db.QueryTypes.SELECT}).then(result=>{
+                result={collections:{response:result,rowcount:result.length}};
                 result=DownloadHelper.NullToEmptyString(result);
                 result=DownloadHelper.NumberToString(result);
-                ioHelper.getSuccessResponse({collections:{response:result,rowcount:result.length}},isXMLResponse,res)
+                ioHelper.getSuccessResponse(result,isXMLResponse,res);
             });
         }
         queryResult.catch((err)=>{
