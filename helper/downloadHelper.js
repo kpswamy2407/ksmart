@@ -77,15 +77,24 @@ DownloadHelper.getResult = function(req,res,next) {
                 for(var key in count){
                     count[key]=count[key].toString();
                 }
-                ioHelper.getSuccessResponse({collections:{response:count,rowcount:"1"}},isXMLResponse,res)
+                ioHelper.getSuccessResponse({
+                    collections:{
+                        response:count,
+                        rowcount:"1"
+                    }
+                },isXMLResponse,res)
             }); 
         }
         else{
             queryResult=db.query(query,{type: db.QueryTypes.SELECT}).then(result=>{
-                result={collections:{response:result,rowcount:result.length}};
                 result=DownloadHelper.NullToEmptyString(result);
                 result=DownloadHelper.NumberToString(result);
-                ioHelper.getSuccessResponse(result,isXMLResponse,res);
+                ioHelper.getSuccessResponse({
+                    collections:{
+                        response:result,
+                        rowcount:result.length.toString()
+                    }
+                },isXMLResponse,res);
             });
         }
         queryResult.catch((err)=>{
