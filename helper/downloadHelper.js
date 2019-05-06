@@ -72,7 +72,7 @@ DownloadHelper.getResult = function(req,res,next) {
         }
         const db=configHelper.getDb();
         var queryResult;
-        if(/[a-zA-Z]{1,}count$/.test(req.params.key)){
+        if(/[a-zA-Z]{1,}count$/.test(req.params.key) || req.params.key=='fullchannelhierarchycode'){
             queryResult=db.query(query,{type: db.QueryTypes.SELECT}).spread(count=>{
                 for(var key in count){
                     count[key]=count[key].toString();
