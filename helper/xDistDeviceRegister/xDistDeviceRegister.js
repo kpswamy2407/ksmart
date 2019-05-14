@@ -81,9 +81,7 @@ xDistDeviceRegister.prototype.register=function(){
 	return this.__query(query).spread(function(salesman){
 		var isValid=self.isValidSalesman(salesman);
 		if(__unregister && !isValid){
-			// TODO: unregister should not be called.
-			// return self.setDeviceUniqueKey('');
-			return Promise.resolve(0);
+			return self.setDeviceUniqueKey('');
 		}else if(isValid){
 			return self.setDeviceUniqueKey(__params['deviceuniquekey']);
 		}else{
