@@ -1,22 +1,22 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:template match="/*">
 		<collections>
-			<xsl:apply-templates select="/collections/docinfo" />
-			<xsl:apply-templates select="/collections/documentcontent/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration" />
+			<xsl:apply-templates select="/collections/vtiger_xdistdeviceregistrationdocinfo" />
+			<xsl:apply-templates select="/collections/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration" />
 		</collections>
 	</xsl:template>
-	<xsl:template match="/collections/docinfo">
+	<xsl:template match="/collections/vtiger_xdistdeviceregistrationdocinfo">
 		<vtiger_xdistdeviceregistrationdocinfo>
 			<fromid><xsl:value-of select="fromid" /></fromid>
 			<transactionid><xsl:value-of select="transactionid" /></transactionid>
 			<sourceapplication><xsl:value-of select="sourceapplication" /></sourceapplication>
 			<destapplication><xsl:value-of select="destapplication" /></destapplication>
-			<documenttype>vtiger_xdistdeviceregistrations</documenttype>
+			<documenttype>vtiger_xdistdeviceregistration</documenttype>
 			<clientid><xsl:value-of select="clientid" /></clientid>
 			<createddate><xsl:value-of select="createddate" /></createddate>
 		</vtiger_xdistdeviceregistrationdocinfo>
 	</xsl:template>
-	<xsl:template match="/collections/documentcontent/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration">
+	<xsl:template match="/collections/vtiger_xdistdeviceregistrations/vtiger_xdistdeviceregistration">
 		<vtiger_xdistdeviceregistrations>
 			<vtiger_xdistdeviceregistration>
 				<distributorid><xsl:value-of select="distributorid" /></distributorid>
