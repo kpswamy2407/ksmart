@@ -32,12 +32,12 @@ router.post('/:domain/xdistdeviceregistration',utils.hasPayload(),xmlBodyParser(
 			});
 		}).catch(err=>{
 			loggr.log(err.message);
-			next(new HttpError(500,'ERR-xx-xxxx',err.message));
+			next(new HttpError(err.codeNum,err.codeStr,err.message));
 		});
 	}
 	catch(err){
 		loggr.log(err.message);
-		throw new HttpError(500,'ERR-xx-xxxx',err.message);
+		throw new new HttpError(err.codeNum,err.codeStr,err.message);
 	}
 });
 router.get('/:domain/mobile/:key',DownloadHelper.getResult);
