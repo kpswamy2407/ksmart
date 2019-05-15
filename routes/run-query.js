@@ -1,7 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const bodyParser=require('body-parser');
-const HttpError= require('../error/HttpError');
+const HttpError= require('../errors/HttpError');
 const utils=require('./../utils');
 
 router.post('/:company',utils.hasPayload(),bodyParser.text(),function(req, res, next) {

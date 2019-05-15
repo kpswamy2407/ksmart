@@ -3,7 +3,7 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const HttpError=require('./error/HttpError.js');
+const HttpError=require('./errors/HttpError.js');
 const jsontoxml=require('jsontoxml');
 
 /** Express APP construct **/

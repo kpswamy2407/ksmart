@@ -1,5 +1,5 @@
 const Query=require('./Query.js');
-const FnxtModelError=require('./../../error/FnxtModelError');
+const FnxtModelError=require('./../../errors/FnxtModelError');
 
 function xDistDeviceRegister(company,data){
 	const ConfigHelper=require('./../ConfigHelper.js');

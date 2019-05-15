@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser=require('body-parser');
-const HttpError=require('./../error/HttpError.js');
+const HttpError=require('./../errors/HttpError.js');
 const utils=require('./../utils');
 
 router.get('/:config/:domain/management/configuration',function(req,res,next){

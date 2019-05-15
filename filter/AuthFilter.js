@@ -1,4 +1,4 @@
-const HttpError=require('./../error/HttpError.js');
+const HttpError=require('./../errors/HttpError.js');
 const RedisHelper=require('./../helper/redisHelper.js');
 function AuthFilter(ip,token,user,key){
 	this.ip=ip;

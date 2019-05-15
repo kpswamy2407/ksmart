@@ -1,7 +1,7 @@
 const ConfigHelper=require('./ConfigHelper')
 const IoHelper=require('./ioHelper');
 const ioHelper=new IoHelper();
-const HttpError=require('./../error/HttpError.js');
+const HttpError=require('./../errors/HttpError.js');
 function DownloadHelper(){
     
 }

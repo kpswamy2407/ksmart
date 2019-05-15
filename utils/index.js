@@ -1,6 +1,6 @@
 const bodyParser=require('body-parser');
 const morgan = require('morgan');
-const HttpError=require('./../error/HttpError');
+const HttpError=require('./../errors/HttpError');
 const FnxtLog=require('./FnxtLog');
 const path=require('path');
 const log_dir=path.join(__dirname,'..','logs');
